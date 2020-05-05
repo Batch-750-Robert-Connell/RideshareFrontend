@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ValidationService } from 'src/app/services/validation-service/validation.service';
-
+declare var Cleave;
 @Component({
   selector: 'app-profile-contact',
   templateUrl: './profile-contact.component.html',
-  styleUrls: ['./profile-contact.component.css']
+  styleUrls: ['./profile-contact.component.scss']
 })
 export class ProfileContactComponent implements OnInit {
   profilForm: FormGroup;
@@ -29,6 +29,11 @@ export class ProfileContactComponent implements OnInit {
       this.phone = this.profileObject.phoneNumber;
 
 
+      var cleave = new Cleave('#phone', {
+        phone: true,
+        phoneRegionCode: 'us',
+        delimiter: '-'
+    });
 
     });
 

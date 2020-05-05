@@ -37,6 +37,9 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { UserRegisterComponent } from './components/user-register/user-register.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
 
 
 
@@ -66,7 +69,8 @@ import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
     DriverListComponent,
     UserRegisterComponent,
     HomePageComponent,
-    BsNavbarComponent
+    BsNavbarComponent,
+    
     
   ],
   imports: [
@@ -78,7 +82,10 @@ import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
     FormsModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [
     UserService,
