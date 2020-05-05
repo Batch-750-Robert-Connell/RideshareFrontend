@@ -61,6 +61,7 @@ export class LoginComponent implements OnInit {
 	ngOnInit() {
 		this.userService.getAllUsers()
 			.subscribe(allUsers => {
+				console.log(allUsers);
 				this.allUsers = allUsers;
 				this.totalPage = Math.ceil(this.allUsers.length / 5);
 				this.users = this.allUsers.slice(0, 5);
