@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ValidationService } from 'src/app/services/validation-service/validation.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 declare var Cleave;
 @Component({
   selector: 'app-profile-contact',
@@ -19,7 +20,7 @@ export class ProfileContactComponent implements OnInit {
   phone: string;
   success :string;
   failure: string;
-  constructor(private router: Router, private userService: UserService,private formBuilder: FormBuilder) {
+  constructor(private router: Router, private userService: UserService,private formBuilder: FormBuilder,private snackBar: MatSnackBar) {
     this.userService.getUserById2(sessionStorage.getItem("userid")).subscribe((response)=>{
       this.user = response;
       this.profilForm = this.formBuilder.group({
@@ -27,18 +28,15 @@ export class ProfileContactComponent implements OnInit {
         lastName: [this.user.lastName, Validators.required],
         email: [this.user.email, Validators.email],
         phone: [this.user.phoneNumber, Validators.pattern(/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/)]
-  
       });
-
-
-
+      var cleave = new Cleave('#phone', {
+        phone: true,
+        phoneRegionCode: 'us',
+        delimiter: '-'
+    });
     });
 
-    /*var cleave = new Cleave('#phone', {
-      phone: true,
-      phoneRegionCode: 'us',
-      delimiter: '-'
-  });*/
+
 
   }
 
@@ -54,12 +52,18 @@ export class ProfileContactComponent implements OnInit {
       console.log(this.user);
       console.log(this.profilForm.value);
       this.userService.updateUserInfo(this.user);
-      this.success = "Updated Successfully!";
-      this.failure = "";
+      this.snackBar.open("success", "", {
+        duration: 2000,
+        verticalPosition: 'top',
+        panelClass: ['success']
+      });
     } else {
       console.log("nope");
-      this.failure = "you can't do that !";
-      this.success = "";
+      this.snackBar.open("failure", "", {
+        duration: 2000,
+        verticalPosition: 'top',
+        panelClass: ['failure']
+      });
     }
 
   }

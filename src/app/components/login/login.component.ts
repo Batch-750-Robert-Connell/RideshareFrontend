@@ -160,7 +160,8 @@ export class LoginComponent implements OnInit {
         this.http.get(`${environment.loginUri}?userName=${this.userName}&passWord=${this.passWord}`)
 			.subscribe(
                   (response) => {
-                     //console.log(response);
+					  console.log("look here");
+                     console.log(response);
                       if(response["userName"] != undefined){
                          this.usernameError=  response["userName"][0];
                       }

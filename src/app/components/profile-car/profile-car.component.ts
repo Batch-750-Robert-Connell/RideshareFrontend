@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CarService } from 'src/app/services/car-service/car.service';
 import { Car } from 'src/app/models/car';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-profile-car',
@@ -17,7 +18,7 @@ export class ProfileCarComponent implements OnInit {
   car: Car;
   success :string;
 
-  constructor(private carService: CarService,private formBuilder: FormBuilder) {
+  constructor(private carService: CarService,private formBuilder: FormBuilder,private snackBar: MatSnackBar) {
     this.carService.getCarByUserId2(sessionStorage.getItem("userid")).subscribe((response)=>{
       console.log(response);
       this.car = response;
@@ -43,8 +44,18 @@ export class ProfileCarComponent implements OnInit {
     if (this.CarForm.valid) {
     this.carService.updateCarInfo(this.car);
     this.success = "Updated Successfully!";
+    this.snackBar.open("success", "", {
+      duration: 2000,
+      verticalPosition: 'top',
+      panelClass: ['success']
+    });
     } else {
       console.log("nope");
+      this.snackBar.open("success", "", {
+        duration: 2000,
+        verticalPosition: 'top',
+        panelClass: ['success']
+      });
     }
   }
 
