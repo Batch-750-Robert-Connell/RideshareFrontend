@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+declare var $;
 
 @Component({
   selector: 'app-home-page',
@@ -11,6 +11,9 @@ export class HomePageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $('#slides').carousel({
+      interval: 3000
+    });
   }
 
 
