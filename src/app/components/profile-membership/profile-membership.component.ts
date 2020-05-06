@@ -4,7 +4,7 @@ import { User } from 'src/app/models/user';
 @Component({
   selector: 'app-profile-membership',
   templateUrl: './profile-membership.component.html',
-  styleUrls: ['./profile-membership.component.css']
+  styleUrls: ['./profile-membership.component.scss']
 })
 export class ProfileMembershipComponent implements OnInit {
   profileObject : User;
