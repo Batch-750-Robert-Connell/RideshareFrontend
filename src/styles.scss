@@ -23,7 +23,7 @@ input[type="url"]:focus,
 input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
-.uneditable-input:focus {   
+.uneditable-input:focus {
   border-color: $primary;
   box-shadow: 0 0px 1px $primary inset, 0 0 5px $primary;
   outline: 0 none;
@@ -45,3 +45,4 @@ button{
   background-color: rgb(143, 1, 1) !important;
   width: 100%;
 }
+

@@ -6,8 +6,8 @@
     position: relative;
     text-align: center;
     color: white;
-  } 
-  
+  }
+
 i{
   padding-top:5px;
 }
@@ -18,28 +18,28 @@ i{
     bottom: 8px;
     left: 16px;
   }
-  
+
   /* Top left text */
   .top-left {
     position: absolute;
     top: 8px;
     left: 16px;
   }
-  
+
   /* Top right text */
   .top-right {
     position: absolute;
     top: 8px;
     right: 16px;
   }
-  
+
   /* Bottom right text */
   .bottom-right {
     position: absolute;
     bottom: 8px;
     right: 16px;
   }
-  
+
   /* Centered text */
   .centered {
     position: absolute;
@@ -48,7 +48,7 @@ i{
     transform: translate(-50%, -50%);
     font-family: "Overpass",sans-serif;
   }
-/* 
+/*
   .orangeText {
       color: black;
   } */
@@ -109,6 +109,7 @@ margin: 0 auto;
   height: 500px;
   display: block;
   margin: 80px auto;
+  box-shadow: 2px 3px 10px 0px #9b9b9be8;
 }
 
 .row{
@@ -117,9 +118,14 @@ margin: 0 auto;
 }
 
 .left{
-  #welcome{
-    font-weight: 700;
-    color: #545454;
+  // #welcome{
+  //   font-weight: 700;
+  //   color: #545454;
+  // }
+
+  #logo{
+    margin-left: 143px;
+    margin-top: 15px;
   }
 }
 
@@ -145,3 +151,4 @@ margin: 0 auto;
 
   }
 }
+

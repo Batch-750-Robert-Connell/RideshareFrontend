@@ -59,7 +59,7 @@ describe('LoginComponent', () => {
   });
 
   it('should change user in login dropdown', () => {
-    
+
     // arrange
     const user = component.users = [{ userId: 1,
       userName: 'username',
@@ -80,7 +80,7 @@ describe('LoginComponent', () => {
       expect(component.users).toMatch;
   });
 
-  it('should search account and return a user', () => { 
+  it('should search account and return a user', () => {
 
   });
 
@@ -112,5 +112,5 @@ describe('LoginComponent', () => {
     expect(component.userName).toBe('');
     expect(component.failed).toBe(true);
   });
-  
+
 });
