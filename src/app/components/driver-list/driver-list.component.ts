@@ -21,7 +21,7 @@ export class DriverListComponent implements OnInit {
   mapProperties: {};
   availableCars: Array<any> = [];
   drivers: Array<any> = [];
-  googleDrivers: any[] = [];
+  googleDrivers: Array<any> = [];
 
   @ViewChild("map", null) mapElement: any;
   map: google.maps.Map;
@@ -144,7 +144,7 @@ export class DriverListComponent implements OnInit {
           avoidHighways: false,
           avoidTolls: false,
         },
-        function (response, status) {
+        (response, status) => {
           if (status !== "OK") {
             alert("Error was: " + status);
           } else {
@@ -161,8 +161,15 @@ export class DriverListComponent implements OnInit {
               Distance: results[0].distance.text,
               Duration: results[0].duration.text,
             };
+            console.log(myobj);
 
-            this.googleDrivers.push(myobj);
+            this.googleDrivers.push({
+              Id: element.id,
+              Name: name,
+              Distance: results[0].distance.text,
+              Duration: results[0].duration.text,
+            });
+            console.log(this.googleDrivers);
 
             // outputDiv.innerHTML += `<tr><td class="col">${name}</td>
             //                       <td class="col">${results[0].distance.text}</td>
