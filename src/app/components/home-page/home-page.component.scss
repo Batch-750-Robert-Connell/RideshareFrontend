@@ -108,7 +108,7 @@ margin: 0 auto;
   border-radius: 20px;
   height: 500px;
   display: block;
-  margin: 80px auto;
+  margin: 70px auto;
 }
 
 .row{
@@ -117,11 +117,56 @@ margin: 0 auto;
 }
 
 .left{
-  #welcome{
-    font-weight: 700;
-    color: #545454;
+  background-color: #fffaf5;
+  border-radius: 20px;
+  #logo{
+    display: block;
+    margin: auto;
+    width: 200px;
+  }
+  #form-container{
+    padding: 30px 70px;
+    mat-form-field {
+
+      input {
+        width: 90%;
+      }
+      mat-icon {
+        width: 10%;
+        font-size: 30px;
+        color: $primary;
+      }
+    }
+    button{
+      width: 100%;
+      font-size: 18px;
+      border: 2px solid $primary;
+    }
+    button:hover{
+      width: 100%;
+      font-size: 18px;
+      border: 2px solid $primary;
+      background-color: white !important;
+      color: $primary;
+    }
+    #no-account{
+      color: rgb(65, 65, 65);
+      text-align: center;
+      margin-top: 20px;
+      span{
+        color: $primary;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      span:hover{
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
   }
 }
+
+
 
 .right{
   border-radius: 0 20px 20px 0;
@@ -145,3 +190,4 @@ margin: 0 auto;
 
   }
 }
+

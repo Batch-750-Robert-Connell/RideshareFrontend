@@ -45,3 +45,13 @@ button{
   background-color: rgb(143, 1, 1) !important;
   width: 100%;
 }
+
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: $primary !important;
+} 
+
+::ng-deep.mat-form-field-ripple {
+ /*change color of underline when focused*/
+ background-color: $primary !important;;
+}
