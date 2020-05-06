@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Overpass&display=swap');
-
+@import "custom-theme.scss";
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -21,8 +21,8 @@ input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
 .uneditable-input:focus {   
-  border-color: rgba(126, 239, 104, 0.8);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6);
+  border-color: $primary;
+  box-shadow: 0 0px 1px $primary inset, 0 0 5px $primary;
   outline: 0 none;
 }
 /* all button rounded*/

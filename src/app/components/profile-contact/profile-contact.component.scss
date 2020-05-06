@@ -1,26 +1,11 @@
 @import "../../../custom-theme.scss";
 
-*{
-    font-family:"Overpass",sans-serif;
-}
-/**success*/
-.success {
-    border-radius: 5px;
-    color: green;
-    font-size: 16px;
-}
-.failure {
-    border-radius: 5px;
-    color: red;
-    font-size: 16px;
-}
+
+
 .mainContainer {
-    margin: 5% auto;
-    width: 61%;  
-    border:1px outset gray;
-    box-shadow:2px 2px 5px rgb(212, 212, 212);
-    background-color:rgb(243, 243, 243);
-    padding-bottom:5%;
+ 
+    border:1px outset rgb(206, 206, 206);
+    background-color:rgb(252, 252, 252);
     border-radius: 10px;
 }
 .fa-user{
@@ -33,10 +18,7 @@
     background-color: rgb(255, 255, 255);
     display:inline;
 }
-.form-control {
-    width: 230px;
-    border-radius:15px;
-}
+
 .row{
     text-align:center;
 }
@@ -54,8 +36,16 @@ h4{
 
 
 /*****REAL CODE !!****/
-#container  mat-form-field  input:focus{
-   /*border: 1px solid orangered;*/
+#container{
+    padding: 40px;
+    width: 75%;
+    display: block;
+    margin: 20px auto;
+}
+#container button{
+    display: block;
+    margin: auto;
+    border: solid 1px $primary;
 }
 
 #container button:hover{

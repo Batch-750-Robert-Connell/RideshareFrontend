@@ -12,8 +12,7 @@ declare var Cleave;
 })
 export class ProfileContactComponent implements OnInit {
   profilForm: FormGroup;
-  profileObject : User;
-  currentUser: any = '';
+  user : User;
   firstName: string;
   lastName: string;
   email: string;
@@ -21,40 +20,40 @@ export class ProfileContactComponent implements OnInit {
   success :string;
   failure: string;
   constructor(private router: Router, private userService: UserService,private formBuilder: FormBuilder) {
-    this.currentUser = this.userService.getUserById2(sessionStorage.getItem("userid")).subscribe((response)=>{
-      this.profileObject = response;
-      this.firstName = this.profileObject.firstName;
-      this.lastName = this.profileObject.lastName;
-      this.email = this.profileObject.email;
-      this.phone = this.profileObject.phoneNumber;
+    this.userService.getUserById2(sessionStorage.getItem("userid")).subscribe((response)=>{
+      this.user = response;
+      this.profilForm = this.formBuilder.group({
+        firstName: [this.user.firstName, Validators.required],
+        lastName: [this.user.lastName, Validators.required],
+        email: [this.user.email, Validators.email],
+        phone: [this.user.phoneNumber, Validators.pattern(/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/)]
+  
+      });
 
 
-      var cleave = new Cleave('#phone', {
-        phone: true,
-        phoneRegionCode: 'us',
-        delimiter: '-'
-    });
 
     });
+
+    /*var cleave = new Cleave('#phone', {
+      phone: true,
+      phoneRegionCode: 'us',
+      delimiter: '-'
+  });*/
 
   }
 
   ngOnInit() {
 
-    this.profilForm = this.formBuilder.group({
-      firstName: [this.firstName, Validators.required],
-      lastName: [this.lastName, Validators.required],
-      email: [this.email, Validators.email],
-      phone: [this.phone, Validators.pattern(/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/)]
 
-    });
   }
 
   updatesContactInfo(){
     console.log("ok");
     console.log(this.profilForm);
     if (this.profilForm.valid) {
-      this.userService.updateUserInfo(this.profileObject);
+      console.log(this.user);
+      console.log(this.profilForm.value);
+      this.userService.updateUserInfo(this.user);
       this.success = "Updated Successfully!";
       this.failure = "";
     } else {

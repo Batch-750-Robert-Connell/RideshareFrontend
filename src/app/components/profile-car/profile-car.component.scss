@@ -1,0 +1,51 @@
+@import "../../../custom-theme.scss";
+
+
+/**success*/
+.success {
+    border-radius: 5px;
+    color: green;
+    font-size: 16px;
+}
+
+.mainContainer {
+    margin: 3% auto;
+    width: 61%;  
+    text-align:center;
+    border:1px outset gray;
+    box-shadow:2px 2px 5px rgb(212, 212, 212);
+    background-color:rgb(243, 243, 243);
+    padding-bottom:5%;
+   
+    border-radius: 10px;
+}
+
+
+
+.form-control {
+    width: 230px;
+    border-radius:10px;
+}
+
+.fa-car{
+    z-index: 2;
+    border:1.5px solid black;
+    padding:14px;
+    font-size:23px;
+    margin-left:85%;
+    border-radius: 20px;
+    background-color: white;
+    display:inline;
+}
+h4{
+    text-align:left;
+    font-weight:bold;
+}
+
+
+
+#container button:hover{
+    background-color: white;
+    color: $primary;
+    border: solid 1px $primary;
+}

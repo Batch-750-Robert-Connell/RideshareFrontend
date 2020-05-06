@@ -40,6 +40,7 @@ import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -85,7 +86,8 @@ import {MatButtonModule} from '@angular/material/button';
     NgbModule,
     BrowserAnimationsModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule
   ],
   providers: [
     UserService,
