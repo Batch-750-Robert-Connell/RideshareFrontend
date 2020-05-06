@@ -1,27 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user-service/user.service';
 import { User } from 'src/app/models/user';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-profile-membership',
   templateUrl: './profile-membership.component.html',
   styleUrls: ['./profile-membership.component.scss']
 })
 export class ProfileMembershipComponent implements OnInit {
-  profileObject : User;
-  currentUser: any = '';
-  isDriver: boolean;
-  active: boolean;
-  success: string;
-  constructor(private userService: UserService) { }
+  user : User;
+  membershipForm:FormGroup
+
+  constructor(private userService: UserService,private formBuilder: FormBuilder) { }
   ngOnInit() {
-    this.currentUser = this.userService.getUserById2(sessionStorage.getItem("userid")).subscribe((response)=>{
-      this.profileObject = response;
+    this.userService.getUserById2(sessionStorage.getItem("userid")).subscribe((response)=>{
+      console.log(response);
+      this.user = response;
+      this.membershipForm = this.formBuilder.group({
+        driver: [this.user.driver, Validators.required],
+        active: [this.user.active, Validators.required]
+       
+      });
     });
   }
   updatesMembershipInfo(){
-    this.profileObject.isDriver = this.isDriver;
-    this.profileObject.active = this.active;
-    this.userService.updateUserInfo(this.profileObject);
-    this.success = "Updated Successfully!";
+
+    this.userService.updateUserInfo(this.user);
   }
 }

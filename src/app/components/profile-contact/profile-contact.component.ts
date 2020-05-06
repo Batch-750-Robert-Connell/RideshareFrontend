@@ -14,12 +14,7 @@ declare var Cleave;
 export class ProfileContactComponent implements OnInit {
   profilForm: FormGroup;
   user : User;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  success :string;
-  failure: string;
+
   constructor(private router: Router, private userService: UserService,private formBuilder: FormBuilder,private snackBar: MatSnackBar) {
     this.userService.getUserById2(sessionStorage.getItem("userid")).subscribe((response)=>{
       this.user = response;
