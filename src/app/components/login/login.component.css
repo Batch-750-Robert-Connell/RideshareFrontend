@@ -46,7 +46,7 @@ p {
 .dropdown-content p:hover {
     background-color: whitesmoke;
 }
-  
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -59,7 +59,7 @@ p {
     min-width: 208px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-}  
+}
 
 img {
     width: 50%;
@@ -85,9 +85,9 @@ img {
     letter-spacing:1px;
     height:45px;
     display:inline-block;
-    
+
 }
- 
+
 .btn:hover{
     background-color:white;
     color:#F26925;
@@ -99,16 +99,15 @@ img {
 
 
 .error {
-    border-radius: 5px;
     /*background-color: #dd1616;
     color: white;*/
-    width: 30%; 
+    width: 30%;
     margin-left: 150px;
     margin-top: 8px;
     border-radius: 5px;
     color: red;
     font-size: 16px;
-  } 
+  }
 
 /*-------------------------Media Queries---------------------------------*/
 
@@ -139,7 +138,7 @@ img {
         border-radius:10px;
         height:40px;
     }
-    
+
     input{
         width:100%;
         font-size:14px;
@@ -153,7 +152,7 @@ img {
         border-radius:10px;
         height:35px;
     }
-    
+
     input{
         font-size:13px;
     }
@@ -166,7 +165,7 @@ img {
         border-radius:10px;
         height:35px;
     }
-    
+
     input{
         font-size:11px;
     }

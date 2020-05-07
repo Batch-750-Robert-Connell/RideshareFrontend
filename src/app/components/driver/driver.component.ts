@@ -4,79 +4,68 @@ import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user-service/user.service';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 
-
-
-
 @Component({
   selector: 'app-driver',
   templateUrl: './driver.component.html',
-  styleUrls: ['./driver.component.css']
+  styleUrls: ['./driver.component.css'],
 })
 export class DriverComponent implements OnInit {
 
   /**
    * Initializing userDriver as an User object and set riders array
    */
-
-  userDriver : User ;
-
+  userDriver: User;
   riders: User[];
-  location = '';   
-   
+  location = '';
+
   /**
-   * Constructor 
+   * Constructor
    * @param userService An user service is instantiated.
    * @param router Provides an instance of a router.
    * @param authService An auth service is injected.
    */
-
-  
-  constructor(private userService: UserService, private router: Router, private authService: AuthService) { }
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     let userId = this.authService.user.userId;
     if (userId) {
-      this.userService.getDriverById(userId).
-        subscribe(
-          data => {
-            this.userDriver = data;
-            this.location = data.batch.batchLocation;
-            this.userService.getRidersForLocation(this.location)
-            .subscribe(
-              data=> {
-                this.riders = data;
-              });
-          })
-        }
-      else {
-        this.router.navigate(['']);
-      }
+      this.userService.getDriverById(userId).subscribe((data) => {
+        this.userDriver = data;
+        this.location = data.batch.batchLocation;
+        this.userService
+          .getRidersForLocation(this.location)
+          .subscribe((data) => {
+            this.riders = data;
+          });
+      });
+    } else {
+      this.router.navigate(['']);
     }
+  }
 
   /**
    * A PUT method that changes accepting ride status
-   * @param userdriver 
+   * @param userdriver
    */
-
-    changeAcceptingRides(userdriver){
-       if(userdriver.acceptingRides == true){
-        userdriver.acceptingRides = false;
+  changeAcceptingRides(userdriver) {
+    if (userdriver.acceptingRides == true) {
+      userdriver.acceptingRides = false;
       this.userService.updateUserInfo(this.userDriver);
-      
-    }
-    else {
+    } else {
       userdriver.acceptingRides = true;
       this.userService.updateUserInfo(this.userDriver);
-            
     }
   }
 
   /**
    * Logs out the user
    */
-
-
   logout() {
     this.router.navigate(['']);
   }
+
 }

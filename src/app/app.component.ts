@@ -19,17 +19,12 @@ export class AppComponent {
 
   constructor() { }
 
-  ngOnInit() {
+  OnInit() {
    if (navigator.geolocation) {
        navigator.geolocation.getCurrentPosition(function(position) {
-        sessionStorage.setItem("lat", position.coords.latitude+""),
-        sessionStorage.setItem("lng", position.coords.longitude+"")
-     })
+        sessionStorage.setItem('lat', position.coords.latitude + '');
+        sessionStorage.setItem('lng', position.coords.longitude + '');
+     });
   }
- } 
-
-
-   
-
-
+ }
 }
