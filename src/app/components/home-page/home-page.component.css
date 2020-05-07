@@ -4,8 +4,8 @@
     position: relative;
     text-align: center;
     color: white;
-  } 
-  
+  }
+
 i{
   padding-top:5px;
 }
@@ -16,28 +16,28 @@ i{
     bottom: 8px;
     left: 16px;
   }
-  
+
   /* Top left text */
   .top-left {
     position: absolute;
     top: 8px;
     left: 16px;
   }
-  
+
   /* Top right text */
   .top-right {
     position: absolute;
     top: 8px;
     right: 16px;
   }
-  
+
   /* Bottom right text */
   .bottom-right {
     position: absolute;
     bottom: 8px;
     right: 16px;
   }
-  
+
   /* Centered text */
   .centered {
     position: absolute;
@@ -46,7 +46,7 @@ i{
     transform: translate(-50%, -50%);
     font-family: "Overpass",sans-serif;
   }
-/* 
+/*
   .orangeText {
       color: black;
   } */
@@ -61,7 +61,7 @@ i{
   background-color: #F26925;
   color:white;
   width:300px;
-  font-family:"Overpass";
+  font-family:"Overpass", sans-serif;
   font-weight:bold;
   font-size:22px;
   border-radius:27px;
@@ -75,7 +75,7 @@ i{
   color:#F26925;
   border: 2px solid #F26925;
   border-radius: 22px ;
-  font-family:"Overpass";
+  font-family:"Overpass", sans-serif;
   font-size:23px;
 }
 
