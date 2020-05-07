@@ -1,97 +1,102 @@
 
-<form id="container" *ngIf="user" class="container mainContainer" [formGroup]="locationForm" (submit)="updatesContactInfo()">
-    <!--<i class="fa fa-home" style="font-family:'FontAwesome';"></i>-->
+<div class="container mainContainer">
+    <i class="fa fa-home" style="font-family:'FontAwesome';"></i>
        
         <h4>Location:</h4>
-
-        <mat-form-field class="w-100 pl-5 pr-5 pt-2 pb-2">
-            <mat-label>Address</mat-label>
-            <input matInput formControlName="address" [(ngModel)]="user.hAddress"   type="text" class="form-control" id="address" required >
-          </mat-form-field>
         
-
+        <div class="form-group row">
+            <div class="col-sm-1"></div>
+                <label for="address" class="col-sm-4 col-form-label">Address:</label>
+                <div class="col-sm-4">
+                    <input [(ngModel)]=address type="text" class="form-control" id="address">
+                </div>
+        </div>
         
-      <!--  <div class="form-group row">
+        <div class="form-group row">
                 <div class="col-sm-1"></div>
             <label for="address2" class="col-sm-4 col-form-label">Address 2:</label>
             <div class="col-sm-4">
-                <input [(ngModel)]="address2" type="text" class="form-control" id="address2">
+                <input [(ngModel)]=address2 type="text" class="form-control" id="address2">
             </div>
-        </div> -->
-
-        <mat-form-field class="w-100 pl-5 pr-5 pt-0 pb-0">
-            <mat-label>City</mat-label>
-            <input matInput formControlName="city" [(ngModel)]="user.hCity" type="text" class="form-control" id="city" required >
-          </mat-form-field>
+        </div>
     
+        <div class="form-group row">
+                <div class="col-sm-1"></div>
+                    <label for="city" class="col-sm-4 col-form-label">City:</label>
+                    <div class="col-sm-4">
+                    <input [(ngModel)]=city type="text" class="form-control" id="city">
+                </div>
+        </div>
+            
+            <div class="form-group row">
+                <div class="col-sm-1"></div>
+                <label for="state" class="col-sm-4 col-form-label">State:</label>
+                <div class="col-sm-4">
+                    <select class="form-control" name="states" id="state" [(ngModel)]=hState required>
+                        <option value="" selected disabled>Select a state</option>
+                        <option value="AL">Alabama</option>
+                        <option value="AK">Alaska</option>
+                        <option value="AZ">Arizona</option>
+                        <option value="AR">Arkansas</option>
+                        <option value="CA">California</option>
+                        <option value="CO">Colorado</option>
+                        <option value="CT">Connecticut</option>
+                        <option value="DE">Delaware</option>
+                        <option value="DC">District Of Columbia</option>
+                        <option value="FL">Florida</option>
+                        <option value="GA">Georgia</option>
+                        <option value="HI">Hawaii</option>
+                        <option value="ID">Idaho</option>
+                        <option value="IL">Illinois</option>
+                        <option value="IN">Indiana</option>
+                        <option value="IA">Iowa</option>
+                        <option value="KS">Kansas</option>
+                        <option value="KY">Kentucky</option>
+                        <option value="LA">Louisiana</option>
+                        <option value="ME">Maine</option>
+                        <option value="MD">Maryland</option>
+                        <option value="MA">Massachusetts</option>
+                        <option value="MI">Michigan</option>
+                        <option value="MN">Minnesota</option>
+                        <option value="MS">Mississippi</option>
+                        <option value="MO">Missouri</option>
+                        <option value="MT">Montana</option>
+                        <option value="NE">Nebraska</option>
+                        <option value="NV">Nevada</option>
+                        <option value="NH">New Hampshire</option>
+                        <option value="NJ">New Jersey</option>
+                        <option value="NM">New Mexico</option>
+                        <option value="NY">New York</option>
+                        <option value="NC">North Carolina</option>
+                        <option value="ND">North Dakota</option>
+                        <option value="OH">Ohio</option>
+                        <option value="OK">Oklahoma</option>
+                        <option value="OR">Oregon</option>
+                        <option value="PA">Pennsylvania</option>
+                        <option value="RI">Rhode Island</option>
+                        <option value="SC">South Carolina</option>
+                        <option value="SD">South Dakota</option>
+                        <option value="TN">Tennessee</option>
+                        <option value="TX">Texas</option>
+                        <option value="UT">Utah</option>
+                        <option value="VT">Vermont</option>
+                        <option value="VA">Virginia</option>
+                        <option value="WA">Washington</option>
+                        <option value="WV">West Virginia</option>
+                        <option value="WI">Wisconsin</option>
+                        <option value="WY">Wyoming</option>
+                    </select>
+                </div>
+            </div>
 
-          <mat-form-field class="w-100 pl-5 pr-5 pt-0 pb-0">
-            <mat-label>Select a state</mat-label>
-            <mat-select id="state" formControlName="state" [(ngModel)]="user.hState" required>
-
-              <mat-option value="" selected disabled>Select a state</mat-option>
-              <mat-option value="AL">Alabama</mat-option>
-              <mat-option value="AK">Alaska</mat-option>
-              <mat-option value="AZ">Arizona</mat-option>
-              <mat-option value="AR">Arkansas</mat-option>
-              <mat-option value="CA">California</mat-option>
-              <mat-option value="CO">Colorado</mat-option>
-              <mat-option value="CT">Connecticut</mat-option>
-              <mat-option value="DE">Delaware</mat-option>
-              <mat-option value="DC">District Of Columbia</mat-option>
-              <mat-option value="FL">Florida</mat-option>
-              <mat-option value="GA">Georgia</mat-option>
-              <mat-option value="HI">Hawaii</mat-option>
-              <mat-option value="ID">Idaho</mat-option>
-              <mat-option value="IL">Illinois</mat-option>
-              <mat-option value="IN">Indiana</mat-option>
-              <mat-option value="IA">Iowa</mat-option>
-              <mat-option value="KS">Kansas</mat-option>
-              <mat-option value="KY">Kentucky</mat-option>
-              <mat-option value="LA">Louisiana</mat-option>
-              <mat-option value="ME">Maine</mat-option>
-              <mat-option value="MD">Maryland</mat-option>
-              <mat-option value="MA">Massachusetts</mat-option>
-              <mat-option value="MI">Michigan</mat-option>
-              <mat-option value="MN">Minnesota</mat-option>
-              <mat-option value="MS">Mississippi</mat-option>
-              <mat-option value="MO">Missouri</mat-option>
-              <mat-option value="MT">Montana</mat-option>
-              <mat-option value="NE">Nebraska</mat-option>
-              <mat-option value="NV">Nevada</mat-option>
-              <mat-option value="NH">New Hampshire</mat-option>
-              <mat-option value="NJ">New Jersey</mat-option>
-              <mat-option value="NM">New Mexico</mat-option>
-              <mat-option value="NY">New York</mat-option>
-              <mat-option value="NC">North Carolina</mat-option>
-              <mat-option value="ND">North Dakota</mat-option>
-              <mat-option value="OH">Ohio</mat-option>
-              <mat-option value="OK">Oklahoma</mat-option>
-              <mat-option value="OR">Oregon</mat-option>
-              <mat-option value="PA">Pennsylvania</mat-option>
-              <mat-option value="RI">Rhode Island</mat-option>
-              <mat-option value="SC">South Carolina</mat-option>
-              <mat-option value="SD">South Dakota</mat-option>
-              <mat-option value="TN">Tennessee</mat-option>
-              <mat-option value="TX">Texas</mat-option>
-              <mat-option value="UT">Utah</mat-option>
-              <mat-option value="VT">Vermont</mat-option>
-              <mat-option value="VA">Virginia</mat-option>
-              <mat-option value="WA">Washington</mat-option>
-              <mat-option value="WV">West Virginia</mat-option>
-              <mat-option value="WI">Wisconsin</mat-option>
-              <mat-option value="WY">Wyoming</mat-option>
-            </mat-select>
-          </mat-form-field>
-
-
-
-          <mat-form-field class="w-100 pl-5 pr-5 pt-0 pb-0">
-            <mat-label>Zip code</mat-label>
-            <input matInput formControlName="zipcode" [(ngModel)]="user.hZip" type="number" class="form-control" id="city" required >
-          </mat-form-field>
-
-
+            <div class="form-group row">
+                    <div class="col-sm-1"></div>
+                        <label for="zipcode" class="col-sm-4 col-form-label">Zipcode:</label>
+                        <div class="col-sm-4">
+                        <input [(ngModel)]=zipcode type="text" class="form-control" id="zipcode">
+                        <p *ngIf="success != ''" class="success">{{success}}</p>
+                    </div>
+            </div>
         
-        <button type="submit" mat-raised-button color="primary" >Save</button>
-        </form>
+        <button type="submit" class="btn btn-primary myBtn" (click)="updatesContactInfo()">Save</button>
+    </div>

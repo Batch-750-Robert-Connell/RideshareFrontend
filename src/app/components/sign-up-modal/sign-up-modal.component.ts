@@ -83,10 +83,10 @@ export class SignupModalComponent implements OnInit {
     let rider = <HTMLInputElement> document.getElementById("rider");  
 
     if(driver.checked == true){
-      this.user.driver =  true;
+      this.user.isDriver =  true;
     }
     if(rider.checked == true){
-      this.user.driver =  false;
+      this.user.isDriver =  false;
     }
     //console.log(this.user);
     this.userService.addUser(this.user).subscribe(

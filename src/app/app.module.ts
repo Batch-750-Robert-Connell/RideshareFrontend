@@ -2,7 +2,7 @@
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from 'node_modules/ngx-bootstrap';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -37,12 +37,6 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { UserRegisterComponent } from './components/user-register/user-register.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSelectModule} from '@angular/material/select';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatIconModule} from '@angular/material/icon';
 
 
 
@@ -72,8 +66,7 @@ import {MatIconModule} from '@angular/material/icon';
     DriverListComponent,
     UserRegisterComponent,
     HomePageComponent,
-    BsNavbarComponent,
-    
+    BsNavbarComponent
     
   ],
   imports: [
@@ -83,15 +76,8 @@ import {MatIconModule} from '@angular/material/icon';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
     ModalModule.forRoot(),
-    NgbModule,
-    BrowserAnimationsModule,
-    MatInputModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    MatIconModule
+    NgbModule
   ],
   providers: [
     UserService,
