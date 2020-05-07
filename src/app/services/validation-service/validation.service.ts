@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ValidationService {
-  static emailValidator: any;
    /**
     * This is the contructor for the validation service.
 	*/

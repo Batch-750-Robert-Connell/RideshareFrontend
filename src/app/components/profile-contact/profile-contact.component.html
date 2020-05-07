@@ -1,33 +1,45 @@
 
-<form id="container" class="container mainContainer" [formGroup]="profilForm" (submit)="updatesContactInfo()">
+<div class="container mainContainer">
     
-   <!-- <i class="fa fa-user" style="font-family:'FontAwesome';"></i>  -->
+    <i class="fa fa-user" style="font-family:'FontAwesome';"></i>
        
         <h4>Contact Information:</h4>
-
-        <mat-form-field class="w-100 pl-5 pr-5 pt-0 pb-0">
-            <mat-label>First name</mat-label>
-            <input matInput type="text" class="form-control" id="f_name" formControlName="firstName" [(ngModel)]="user.firstName" required >
-          </mat-form-field>
-          <mat-form-field class="w-100 pl-5 pr-5 pt-0 pb-0">
-            <mat-label>Last Name</mat-label>
-            <input matInput type="text" class="form-control" id="l_name" formControlName="lastName" [(ngModel)]="user.lastName" required >
-          </mat-form-field>
-          <mat-form-field class="w-100 pl-5 pr-5 pt-0 pb-0">
-            <mat-label>Email</mat-label>
-            <input matInput type="text" class="form-control" id="email" formControlName="email" [(ngModel)]="user.email" required >
-            <mat-error>Email should be valid</mat-error>  
-        </mat-form-field>
-          <mat-form-field class="w-100 pl-5 pr-5 pt-0 pb-0">
-            <mat-label>Phone number</mat-label>
-            <input matInput type="text" class="form-control" id="phone" formControlName="phone" [(ngModel)]="user.phoneNumber" required >
-            <mat-error>Phone number should be valid</mat-error>  
-  
-        </mat-form-field>
-
+    
+        <div class="form-group row">
+            <div class="col-sm-1"></div>
+                <label for="f_name" class="col-sm-4 col-form-label">First Name:</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="f_name" [(ngModel)]=firstName value="{{ profileObject?.firstName }}">
+                </div>
+        </div>
         
-        <button type="submit" mat-raised-button color="primary" >Save</button>
-    </form>
+        <div class="form-group row">
+                <div class="col-sm-1"></div>
+            <label for="l_name" class="col-sm-4 col-form-label">Last Name:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="l_name" [(ngModel)]=lastName value="{{ profileObject?.lastName }}">
+            </div>
+        </div>
+    
+        <div class="form-group row">
+                <div class="col-sm-1"></div>
+            <label for="user_email" class="col-sm-4 col-form-label">Email:</label>
+            <div class="col-sm-4">
+                <input type="email" class="form-control" id="user_email" aria-describedby="emailHelp" [(ngModel)]=email value="{{ profileObject?.email }}">
+            </div>
+        </div>
+    
+        <div class="form-group row">
+                <div class="col-sm-1"></div>
+            <label for="phone" class="col-sm-4 col-form-label">Phone:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="phone" [(ngModel)]=phone value="{{ profileObject?.phoneNumber }}">
+                <p *ngIf="success != ''" class="success">{{success}}</p>
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary myBtn" (click)="updatesContactInfo()">Save</button>
+    </div>
   
         
     
