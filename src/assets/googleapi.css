@@ -4,20 +4,8 @@
     padding-left: 10px;
     float: right;
     width: 48%;
-    /* padding-left: 2%; */
   }
-​
-  /* #right-panel select, #right-panel input {
-    font-size: 15px;
-  }
-​
-  #right-panel select {
-    width: 100%;
-  }
-​
-  #right-panel i {
-    font-size: 12px;
-  } */
+
   html, body {
     height: 100%;
     margin: 0;
