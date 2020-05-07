@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { BatchService } from 'src/app/services/batch-service/batch.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-driver-list',
@@ -21,13 +22,18 @@ export class DriverListComponent implements OnInit {
   mapProperties: {};
   availableCars: Array<any> = [];
   drivers: Array<any> = [];
-
   googleDrivers: Array<any> = [];
+  IdOfDriver: number;
+  IdOfUser: number;
 
   @ViewChild('map', null) mapElement: any;
   map: google.maps.Map;
 
-  constructor(private http: HttpClient, private userService: UserService) {}
+  constructor(
+    private http: HttpClient,
+    private userService: UserService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit() {
     this.drivers = [];
@@ -109,6 +115,25 @@ export class DriverListComponent implements OnInit {
     });
   }
 
+  submitRequest(id: number, driver: string) {
+    console.log('HELLO');
+    console.log(
+      sessionStorage.getItem('userid') +
+        ' is the userID of the person logged in'
+    );
+
+    console.log('This is the Driver ID ' + id);
+
+    this.snackBar.open('Request has been sent to ' + driver, '', {
+      duration: 2000,
+      direction: 'ltr',
+      politeness: 'assertive',
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      panelClass: ['success'],
+    });
+  }
+
   displayRoute(origin, destination, service, display) {
     service.route(
       {
@@ -161,7 +186,10 @@ export class DriverListComponent implements OnInit {
               Duration: results[0].duration.text,
             };
             console.log(myobj);
-            this.googleDrivers.push(myobj);
+            if (myobj.Id != sessionStorage.getItem('userid')) {
+              this.googleDrivers.push(myobj);
+            }
+
             // this.googleDrivers.sort(element, element);
             console.log(this.googleDrivers);
             this.googleDrivers.sort((a, b) =>
@@ -170,6 +198,7 @@ export class DriverListComponent implements OnInit {
                 ? 1
                 : -1
             );
+
             // outputDiv.innerHTML += `<tr><td class="col">${name}</td>
             //                         <td class="col">${results[0].distance.text}</td>
             //                         <td class="col">${results[0].duration.text}</td>
