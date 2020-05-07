@@ -10,7 +10,7 @@ import { BsModalService, BsModalRef} from 'ngx-bootstrap';
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html',
-	styleUrls: ['./login.component.css']
+	styleUrls: ['./login.component.scss']
 })
 
 
@@ -61,6 +61,7 @@ export class LoginComponent implements OnInit {
 	ngOnInit() {
 		this.userService.getAllUsers()
 			.subscribe(allUsers => {
+				console.log(allUsers);
 				this.allUsers = allUsers;
 				this.totalPage = Math.ceil(this.allUsers.length / 5);
 				this.users = this.allUsers.slice(0, 5);
@@ -93,7 +94,7 @@ export class LoginComponent implements OnInit {
 					user.firstName.toLowerCase().startsWith(this.chosenUserFullName.toLowerCase()) ||
 					user.lastName.toLowerCase().startsWith(this.chosenUserFullName.toLowerCase()) ||
 					`${user.firstName} ${user.lastName}`.toLowerCase().startsWith(this.chosenUserFullName.toLowerCase()) ||
-					`${user.firstName} ${user.lastName}: ${user.isDriver ? 'Driver' : 'Rider'}`.toLowerCase().startsWith(this.chosenUserFullName.toLowerCase())
+					`${user.firstName} ${user.lastName}: ${user.driver ? 'Driver' : 'Rider'}`.toLowerCase().startsWith(this.chosenUserFullName.toLowerCase())
 				);
 			});
 			this.totalPage = Math.ceil(this.users.length / 5);
@@ -159,7 +160,8 @@ export class LoginComponent implements OnInit {
         this.http.get(`${environment.loginUri}?userName=${this.userName}&passWord=${this.passWord}`)
 			.subscribe(
                   (response) => {
-                     //console.log(response);
+					  console.log("look here");
+                     console.log(response);
                       if(response["userName"] != undefined){
                          this.usernameError=  response["userName"][0];
                       }
