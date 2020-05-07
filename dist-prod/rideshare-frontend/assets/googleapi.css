@@ -1,13 +1,7 @@
 #right-panel {
-    font-family: 'Roboto',sans-serif;
+    font-family: 'Roboto', sans-serif;
     line-height: 30px;
     padding-left: 10px;
-  }
-​
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
   }
   #map {
     height: 100%;
