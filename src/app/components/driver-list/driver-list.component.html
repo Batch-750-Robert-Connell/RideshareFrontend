@@ -23,7 +23,7 @@
             <th scope="col">Name</th>
             <th scope="col">Distance</th>
             <th scope="col">Time</th>
-            <th scope="col">View Info</th>
+            <th scope="col">Request a Ride</th>
           </tr>
         </thead>
         <tbody>
@@ -31,13 +31,14 @@
             <td>{{ driver.Name }}</td>
             <td>{{ driver.Distance }}</td>
             <td>{{ driver.Duration }}</td>
-            <td><button class="btn btn-light btn-sm">Send Request</button></td>
+            <td><input type="hidden" value="{{driver.Id}}"><button (click)="submitRequest(driver.Id, driver.Name)"
+                class="btn btn-light btn-sm">Request</button></td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="col-lg-6">
-      <h4>Directions:</h4>
+      <!-- <h4>Directions:</h4> -->
       <div #map id="gmap" class="img-responsive"></div>
     </div>
   </div>
