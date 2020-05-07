@@ -19,7 +19,7 @@ export class AppComponent {
 
   constructor() { }
 
-  ngOnInit() {
+  OnInit() {
    if (navigator.geolocation) {
        navigator.geolocation.getCurrentPosition(function(position) {
         sessionStorage.setItem('lat', position.coords.latitude + '');

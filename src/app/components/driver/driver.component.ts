@@ -10,12 +10,11 @@ import { AuthService } from 'src/app/services/auth-service/auth.service';
   styleUrls: ['./driver.component.css'],
 })
 export class DriverComponent implements OnInit {
+
   /**
    * Initializing userDriver as an User object and set riders array
    */
-
   userDriver: User;
-
   riders: User[];
   location = '';
 
@@ -25,7 +24,6 @@ export class DriverComponent implements OnInit {
    * @param router Provides an instance of a router.
    * @param authService An auth service is injected.
    */
-
   constructor(
     private userService: UserService,
     private router: Router,
@@ -53,7 +51,6 @@ export class DriverComponent implements OnInit {
    * A PUT method that changes accepting ride status
    * @param userdriver
    */
-
   changeAcceptingRides(userdriver) {
     if (userdriver.acceptingRides == true) {
       userdriver.acceptingRides = false;
@@ -67,8 +64,8 @@ export class DriverComponent implements OnInit {
   /**
    * Logs out the user
    */
-
   logout() {
     this.router.navigate(['']);
   }
+
 }

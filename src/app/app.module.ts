@@ -36,7 +36,6 @@ import { DriverListComponent } from './components/driver-list/driver-list.compon
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { UserRegisterComponent } from './components/user-register/user-register.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
-import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
@@ -71,9 +70,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     DriverListComponent,
     UserRegisterComponent,
     HomePageComponent,
-    BsNavbarComponent,
-    
-    
+
+
   ],
   imports: [
     BrowserModule,
