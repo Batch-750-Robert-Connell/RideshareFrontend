@@ -23,17 +23,18 @@
 <div class="container-fluid">
 
 <table class="table" class="table text-center">
+  <caption>Rider Information</caption>
     <tr>
-      <th> ID </th>
-      <th> Rider's Name </th>
-      <th> Email </th>
-      <th> Phone Number </th>
-      <th> Batch Number</th>
-      <th>Location</th>
-      <th>Active</th>
-      <th>Role</th>
+      <th scope="col">ID</th>
+      <th scope="col">Rider's Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Batch Number</th>
+      <th scope="col">Location</th>
+      <th scope="col">Active</th>
+      <th scope="col">Role</th>
     </tr>
-  
+
     <tr *ngFor="let get of riders" >
       <td>{{get.userId}}</td>
       <td>{{get.firstName}}</td>
@@ -41,13 +42,13 @@
       <td>{{get.phoneNumber}}</td>
       <td *ngIf="get.batch">{{get.batch.batchNumber}}</td>
       <td>{{get.batch.batchLocation}}</td>
-      <td *ngIf="get.active===true"><img src=".\assets\yesno.jpg" width="15" height="15" ></td>
-      <td *ngIf="get.active===false"><img src=".\assets\no.jpg" width="15" height="15"></td>
-      <td *ngIf="get.driver===false">Rider</td>
-      <td *ngIf="get.driver===true">Driver</td>
-     
+      <td *ngIf="get.active===true"><img src=".\assets\yesno.jpg" width="15" height="15" alt="Green Check"></td>
+      <td *ngIf="get.active===false"><img src=".\assets\no.jpg" width="15" height="15" alt="Red X"></td>
+      <td *ngIf="get.isDriver===false">Rider</td>
+      <td *ngIf="get.isDriver===true">Driver</td>
+
     </tr>
-  
+
   </table>
 
 </div>
