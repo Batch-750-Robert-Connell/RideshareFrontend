@@ -1,7 +1,7 @@
-<div class = "container">
-    <div class="row">
+<div class="container">
+  <div class="row">
     <div class="col-lg-5">
-     <!--<div class="form-group">
+      <!--<div class="form-group">
         <h4>Origin</h4>
         <input [(ngModel)]="origin" id="origin" class="form-control" placeholder="Morgantown, WV"/>
       </div>
@@ -17,21 +17,28 @@
       <p id="total"></p>-->
       <h4>Driver's List</h4>
 
-     <table class="table table-striped">
-       <thead class="thead-dark">
-         <tr>
-           <th scope="col">Name</th>
-           <th scope="col">Distance</th>
-           <th scope="col">Time</th>
-           <th scope="col">View Info</th>
-         </tr>
-       </thead>
-       <tbody id="output"></tbody>
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Distance</th>
+            <th scope="col">Time</th>
+            <th scope="col">View Info</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let driver of googleDrivers">
+            <td>{{ driver.Name }}</td>
+            <td>{{ driver.Distance }}</td>
+            <td>{{ driver.Duration }}</td>
+            <td><button class="btn btn-light btn-sm">Send Request</button></td>
+          </tr>
+        </tbody>
       </table>
-     </div>
-     <div class="col-lg-6">
-       <h4>Directions:</h4>
-       <div #map id="gmap" class="img-responsive"></div>
-     </div>
+    </div>
+    <div class="col-lg-6">
+      <h4>Directions:</h4>
+      <div #map id="gmap" class="img-responsive"></div>
     </div>
   </div>
+</div>
