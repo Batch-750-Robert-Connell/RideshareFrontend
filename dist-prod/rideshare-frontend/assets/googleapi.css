@@ -2,15 +2,12 @@
     font-family: 'Roboto', sans-serif;
     line-height: 30px;
     padding-left: 10px;
+    float: right;
+    width: 48%;
   }
   #map {
     height: 100%;
     width: 50%;
-  }
-  #right-panel {
-    float: right;
-    width: 48%;
-    padding-left: 2%;
   }
   #output {
     font-size: 11px;
