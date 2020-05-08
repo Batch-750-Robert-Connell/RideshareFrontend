@@ -9,8 +9,12 @@
 }
 
 .imageLogo {
-    height:60px;
-    width:140px;
+  height: 70px;
+    width: 160px;
+    margin-bottom: 5px;
+    left: 34px;
+    position: absolute;
+    top: 1px;
 }
 
 #logout-btn, a {
@@ -24,9 +28,12 @@ nav {
 .navbar {
      padding-left: 7%;
      padding-right: 7%;
-    line-height: 42px;
+    /* line-height: 42px; */
+    height: 81px;
     font-size: -2.7rem;
     font-weight: 800;
+    /* background-color: #F26925; */
+    background-image: linear-gradient(#F26925, rgb(211, 79, 12));
 
 }
 
@@ -38,8 +45,14 @@ a.nav-link{
     padding: 0;
 }
 
+
+.borderbottom{
+  color:white;
+}
+
 .borderbottom:hover{
-    border-bottom: 2px solid #F26925;
+    border-bottom: 2px solid rgb(255, 255, 255);
+    /* transform: translateY(-3px); */
 }
 
 .mainnav{

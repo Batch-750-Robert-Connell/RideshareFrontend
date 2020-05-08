@@ -76,11 +76,11 @@
           <form [formGroup]="registerForm" (submit)="register()">
 
             <mat-form-field class="w-100">
-              <mat-label>Firstname</mat-label>
+              <mat-label>First Name</mat-label>
               <input type="text" matInput formControlName="firstName" [(ngModel)]="user.firstName" required>
             </mat-form-field>
             <mat-form-field class="w-100">
-              <mat-label>Lastname</mat-label>
+              <mat-label>Last Name</mat-label>
               <input type="text" matInput formControlName="lastName" [(ngModel)]="user.lastName" required>
             </mat-form-field>
             <mat-form-field class="w-100">
