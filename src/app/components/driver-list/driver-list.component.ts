@@ -53,15 +53,7 @@ export class DriverListComponent implements OnInit {
             "elementType": "geometry",
             "stylers": [
               {
-                "color": "#212121"
-              }
-            ]
-          },
-          {
-            "elementType": "labels.icon",
-            "stylers": [
-              {
-                "visibility": "off"
+                "color": "#3e3e3e"
               }
             ]
           },
@@ -69,7 +61,10 @@ export class DriverListComponent implements OnInit {
             "elementType": "labels.text.fill",
             "stylers": [
               {
-                "color": "#757575"
+                "color": "#cecece"
+              },
+              {
+                "weight": 0.5
               }
             ]
           },
@@ -77,25 +72,16 @@ export class DriverListComponent implements OnInit {
             "elementType": "labels.text.stroke",
             "stylers": [
               {
-                "color": "#212121"
+                "visibility": "off"
               }
             ]
           },
           {
             "featureType": "administrative",
-            "elementType": "geometry",
+            "elementType": "labels.text",
             "stylers": [
               {
-                "color": "#757575"
-              }
-            ]
-          },
-          {
-            "featureType": "administrative.country",
-            "elementType": "labels.text.fill",
-            "stylers": [
-              {
-                "color": "#9e9e9e"
+                "color": "#dbdbdb"
               }
             ]
           },
@@ -103,16 +89,34 @@ export class DriverListComponent implements OnInit {
             "featureType": "administrative.land_parcel",
             "stylers": [
               {
-                "visibility": "off"
+                "color": "#757575"
               }
             ]
           },
           {
-            "featureType": "administrative.locality",
-            "elementType": "labels.text.fill",
+            "featureType": "administrative.land_parcel",
+            "elementType": "geometry.stroke",
             "stylers": [
               {
-                "color": "#bdbdbd"
+                "color": "#dcd2be"
+              }
+            ]
+          },
+          {
+            "featureType": "landscape.natural",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#313131"
+              }
+            ]
+          },
+          {
+            "featureType": "poi",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#053203"
               }
             ]
           },
@@ -121,7 +125,7 @@ export class DriverListComponent implements OnInit {
             "elementType": "labels.text.fill",
             "stylers": [
               {
-                "color": "#757575"
+                "color": "#ffffff"
               }
             ]
           },
@@ -130,7 +134,7 @@ export class DriverListComponent implements OnInit {
             "elementType": "geometry",
             "stylers": [
               {
-                "color": "#181818"
+                "color": "#022600"
               }
             ]
           },
@@ -139,16 +143,7 @@ export class DriverListComponent implements OnInit {
             "elementType": "labels.text.fill",
             "stylers": [
               {
-                "color": "#616161"
-              }
-            ]
-          },
-          {
-            "featureType": "poi.park",
-            "elementType": "labels.text.stroke",
-            "stylers": [
-              {
-                "color": "#1b1b1b"
+                "color": "#99be98"
               }
             ]
           },
@@ -157,16 +152,16 @@ export class DriverListComponent implements OnInit {
             "elementType": "geometry.fill",
             "stylers": [
               {
-                "color": "#ff0000"
+                "color": "#0092df"
               }
             ]
           },
           {
             "featureType": "road",
-            "elementType": "labels.text.fill",
+            "elementType": "labels.icon",
             "stylers": [
               {
-                "color": "#8a8a8a"
+                "visibility": "off"
               }
             ]
           },
@@ -175,7 +170,7 @@ export class DriverListComponent implements OnInit {
             "elementType": "geometry",
             "stylers": [
               {
-                "color": "#373737"
+                "color": "#fdfcf8"
               }
             ]
           },
@@ -184,7 +179,7 @@ export class DriverListComponent implements OnInit {
             "elementType": "geometry.fill",
             "stylers": [
               {
-                "color": "#0b73ff"
+                "color": "#0bc8ff"
               }
             ]
           },
@@ -193,7 +188,7 @@ export class DriverListComponent implements OnInit {
             "elementType": "geometry",
             "stylers": [
               {
-                "color": "#3c3c3c"
+                "color": "#00c4ce"
               }
             ]
           },
@@ -202,7 +197,16 @@ export class DriverListComponent implements OnInit {
             "elementType": "geometry.fill",
             "stylers": [
               {
-                "color": "#00ff13"
+                "color": "#00dadf"
+              }
+            ]
+          },
+          {
+            "featureType": "road.highway",
+            "elementType": "labels.icon",
+            "stylers": [
+              {
+                "visibility": "off"
               }
             ]
           },
@@ -211,7 +215,7 @@ export class DriverListComponent implements OnInit {
             "elementType": "geometry",
             "stylers": [
               {
-                "color": "#4e4e4e"
+                "color": "#00a4a8"
               }
             ]
           },
@@ -221,6 +225,18 @@ export class DriverListComponent implements OnInit {
             "stylers": [
               {
                 "color": "#0bfff9"
+              },
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "road.highway.controlled_access",
+            "elementType": "labels.icon",
+            "stylers": [
+              {
+                "visibility": "off"
               }
             ]
           },
@@ -229,7 +245,7 @@ export class DriverListComponent implements OnInit {
             "elementType": "geometry.fill",
             "stylers": [
               {
-                "color": "#ffff0b"
+                "color": "#a6a6a6"
               }
             ]
           },
@@ -238,7 +254,7 @@ export class DriverListComponent implements OnInit {
             "elementType": "labels.text.fill",
             "stylers": [
               {
-                "color": "#616161"
+                "color": "#c0c0c0"
               }
             ]
           },
@@ -252,20 +268,38 @@ export class DriverListComponent implements OnInit {
             ]
           },
           {
-            "featureType": "transit",
-            "elementType": "labels.text.fill",
+            "featureType": "transit.line",
+            "elementType": "geometry",
             "stylers": [
               {
-                "color": "#757575"
+                "color": "#808080"
               }
             ]
           },
           {
-            "featureType": "water",
+            "featureType": "transit.line",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#8f7d77"
+              }
+            ]
+          },
+          {
+            "featureType": "transit.line",
+            "elementType": "labels.text.stroke",
+            "stylers": [
+              {
+                "color": "#ebe3cd"
+              }
+            ]
+          },
+          {
+            "featureType": "transit.station",
             "elementType": "geometry",
             "stylers": [
               {
-                "color": "#000000"
+                "color": "#808080"
               }
             ]
           },
@@ -274,7 +308,7 @@ export class DriverListComponent implements OnInit {
             "elementType": "geometry.fill",
             "stylers": [
               {
-                "color": "#fe610c"
+                "color": "#ff6000"
               }
             ]
           },
@@ -283,7 +317,7 @@ export class DriverListComponent implements OnInit {
             "elementType": "labels.text.fill",
             "stylers": [
               {
-                "color": "#3d3d3d"
+                "color": "#92998d"
               }
             ]
           }
