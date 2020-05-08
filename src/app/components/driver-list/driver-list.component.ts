@@ -8,6 +8,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './driver-list.component.html',
   styleUrls: ['./driver-list.component.css'],
 })
+
+/**
+ * DriverListComponent has the properties related to the drivers. These prpoerties
+ * include the available cars?, the drivers, which are the application users that are registered
+ * as drivers, googleDrivers which are listed and sorted with respect to distance. IdOfDriver and IdOfUser
+ * are user for us to be able to send a ride request via email from a specific user to he driver of their choice.
+ *
+ */
 export class DriverListComponent implements OnInit {
   location: string = 'Morgantown, WV';
   mapProperties: {};
@@ -26,6 +34,11 @@ export class DriverListComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
 
+
+/**
+ * ngOnInit() gets the drivers from our database and adds them to our drivers array.
+ */
+
   ngOnInit() {
     this.drivers = [];
     this.googleDrivers = [];
@@ -42,12 +55,287 @@ export class DriverListComponent implements OnInit {
       });
     });
 
+    // shows the map on the drivers page
     this.sleep(2000).then(() => {
       this.mapProperties = {
         center: new google.maps.LatLng(
           Number(sessionStorage.getItem('lat')),
           Number(sessionStorage.getItem('lng'))
         ),
+        styles: [
+          {
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#3e3e3e"
+              }
+            ]
+          },
+          {
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#cecece"
+              },
+              {
+                "weight": 0.5
+              }
+            ]
+          },
+          {
+            "elementType": "labels.text.stroke",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "administrative",
+            "elementType": "labels.text",
+            "stylers": [
+              {
+                "color": "#dbdbdb"
+              }
+            ]
+          },
+          {
+            "featureType": "administrative.land_parcel",
+            "stylers": [
+              {
+                "color": "#757575"
+              }
+            ]
+          },
+          {
+            "featureType": "administrative.land_parcel",
+            "elementType": "geometry.stroke",
+            "stylers": [
+              {
+                "color": "#dcd2be"
+              }
+            ]
+          },
+          {
+            "featureType": "landscape.natural",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#313131"
+              }
+            ]
+          },
+          {
+            "featureType": "poi",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#053203"
+              }
+            ]
+          },
+          {
+            "featureType": "poi",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#ffffff"
+              }
+            ]
+          },
+          {
+            "featureType": "poi.park",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#022600"
+              }
+            ]
+          },
+          {
+            "featureType": "poi.park",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#99be98"
+              }
+            ]
+          },
+          {
+            "featureType": "road",
+            "elementType": "geometry.fill",
+            "stylers": [
+              {
+                "color": "#0092df"
+              }
+            ]
+          },
+          {
+            "featureType": "road",
+            "elementType": "labels.icon",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "road.arterial",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#fdfcf8"
+              }
+            ]
+          },
+          {
+            "featureType": "road.arterial",
+            "elementType": "geometry.fill",
+            "stylers": [
+              {
+                "color": "#0bc8ff"
+              }
+            ]
+          },
+          {
+            "featureType": "road.highway",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#00c4ce"
+              }
+            ]
+          },
+          {
+            "featureType": "road.highway",
+            "elementType": "geometry.fill",
+            "stylers": [
+              {
+                "color": "#00dadf"
+              }
+            ]
+          },
+          {
+            "featureType": "road.highway",
+            "elementType": "labels.icon",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "road.highway.controlled_access",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#00a4a8"
+              }
+            ]
+          },
+          {
+            "featureType": "road.highway.controlled_access",
+            "elementType": "geometry.fill",
+            "stylers": [
+              {
+                "color": "#0bfff9"
+              },
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "road.highway.controlled_access",
+            "elementType": "labels.icon",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "road.local",
+            "elementType": "geometry.fill",
+            "stylers": [
+              {
+                "color": "#a6a6a6"
+              }
+            ]
+          },
+          {
+            "featureType": "road.local",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#c0c0c0"
+              }
+            ]
+          },
+          {
+            "featureType": "transit",
+            "elementType": "geometry.fill",
+            "stylers": [
+              {
+                "color": "#ff0b11"
+              }
+            ]
+          },
+          {
+            "featureType": "transit.line",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#808080"
+              }
+            ]
+          },
+          {
+            "featureType": "transit.line",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#8f7d77"
+              }
+            ]
+          },
+          {
+            "featureType": "transit.line",
+            "elementType": "labels.text.stroke",
+            "stylers": [
+              {
+                "color": "#ebe3cd"
+              }
+            ]
+          },
+          {
+            "featureType": "transit.station",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#808080"
+              }
+            ]
+          },
+          {
+            "featureType": "water",
+            "elementType": "geometry.fill",
+            "stylers": [
+              {
+                "color": "#ff6000"
+              }
+            ]
+          },
+          {
+            "featureType": "water",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#92998d"
+              }
+            ]
+          }
+        ],
         zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
       };
@@ -55,9 +343,9 @@ export class DriverListComponent implements OnInit {
         this.mapElement.nativeElement,
         this.mapProperties
       );
-      //get all routes
+      // get all routes
       this.displayDriversList(this.location, this.drivers);
-      //show drivers on map
+      // show drivers on map
       this.showDriversOnMap(this.location, this.drivers);
     });
   }
@@ -65,6 +353,12 @@ export class DriverListComponent implements OnInit {
   sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
+
+
+/**
+ * showDriversOnMap will show the user where each driver is located on the map
+ * as well as displaying the route from the location.
+ */
 
   showDriversOnMap(origin, drivers) {
     drivers.forEach((element) => {
@@ -82,6 +376,16 @@ export class DriverListComponent implements OnInit {
     });
   }
 
+ /**
+  *
+  * @param driverId
+  * @param driver
+  * submitRequest() will send a request email to the driver from the specific
+  * user who is logged in. After the user is clickes the request button, a confirmation
+  * message will appear for 2 seconds stating that the request has been sent to the specific
+  * driver chosen.
+  */
+
   submitRequest(driverId: string, driver: string) {
     let parseDriverId = parseInt(driverId);
     let userId = parseInt(sessionStorage.getItem('userid'));
@@ -97,6 +401,15 @@ export class DriverListComponent implements OnInit {
     });
   }
 
+ /**
+  *
+  * @param origin
+  * @param destination
+  * @param service
+  * @param display
+  * displayRoute() will display the Route on the map for the user to view. If there was
+  * an error and the route is not displayed, an alert will notify the user with a status code.
+  */
   displayRoute(origin, destination, service, display) {
     service.route(
       {
@@ -115,12 +428,24 @@ export class DriverListComponent implements OnInit {
     );
   }
 
+
+  /**
+   *
+   * @param origin
+   * @param drivers
+   * displayDriverList will display the dirvers with the distance and time needed
+   * in the table on the drivers page. if the user who is logged in is a driver, their
+   * name will not be displayed because they can't request a ride from themselves. The data
+   * in this list is sorted by distance, so the closest driver to the user will be displayed on
+   * top of the list.
+   */
+
   displayDriversList(origin, drivers) {
     let origins = [];
     //set origin
     origins.push(origin);
 
-    var outputDiv = document.getElementById('output');
+
     drivers.forEach((element) => {
       var service = new google.maps.DistanceMatrixService();
       service.getDistanceMatrix(
@@ -132,6 +457,7 @@ export class DriverListComponent implements OnInit {
           avoidHighways: false,
           avoidTolls: false,
         },
+
         (response, status) => {
           if (status !== 'OK') {
             alert('Error was: ' + status);
@@ -149,10 +475,11 @@ export class DriverListComponent implements OnInit {
               Duration: results[0].duration.text,
             };
 
+            // driver won't be able to view himself in the driversList.
             if (myobj.Id != sessionStorage.getItem('userid')) {
               this.googleDrivers.push(myobj);
             }
-
+            // sorting the drivers list by distance
             this.googleDrivers.sort((a, b) =>
               parseFloat(a.Distance.split()[0]) >
               parseFloat(b.Distance.split()[0])

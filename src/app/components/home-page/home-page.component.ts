@@ -15,49 +15,50 @@ declare var Cleave;
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-  isLogin:boolean = true;
-  batches:Batch[];
-  registerForm:FormGroup;
-  loginForm:FormGroup;
-  username:string;
-  password:string;
-  isWelcome:boolean = true;
-  isLoginSuccess:boolean = false;
-  isRegisterSuccess:boolean = false;
-  isLoginFailure:boolean = false;
-  user:User = {
-    userId:0,
-    userName: "",
-    password: "",
-    batch:{
-      batchNumber:0,
-      batchLocation:''
+  isLogin = true;
+  batches: Batch[];
+  registerForm: FormGroup;
+  loginForm: FormGroup;
+  username: string;
+  password: string;
+  isWelcome = true;
+  isLoginSuccess = false;
+  isRegisterSuccess = false;
+  isLoginFailure = false;
+  user: User = {
+    userId: 0,
+    userName: '',
+    password: '',
+    batch: {
+      batchNumber: 0,
+      batchLocation: ''
     },
-    firstName: "",
-    lastName: "",
-    email: "",
-    phoneNumber: "",
-    active: false,
-    driver: false,
-    isAcceptingRides:false ,
-    hState: "",
-    hAddress: "",
-    hCity: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    phoneNumber: '',
+    isActive: false,
+    isDriver: false,
+    isAcceptingRides: false ,
+    hState: '',
+    hAddress: '',
+    hCity: '',
     hZip: null,
-    wAddress: "",
-    wCity: "",
-    wState: "",
+    wAddress: '',
+    wCity: '',
+    wState: '',
     wZip: null,
-  }
+  };
 
-  constructor(private batchService:BatchService, private formBuilder:FormBuilder,private authService:AuthService,private router:Router,private userService:UserService) {
+  constructor(private batchService: BatchService, private formBuilder: FormBuilder,
+              private authService: AuthService, private router: Router, private userService: UserService) {
     this.batchService.getAllBatchesByLocation1().subscribe(
       res => {
          this.batches = res;
          console.log(this.batches);
           },
       );
-      this.registerForm =this.formBuilder.group({
+    this.registerForm = this.formBuilder.group({
         userId: [0],
         batch: [this.user.batch],
         userName: [this.user.userName, Validators.required],
@@ -73,14 +74,14 @@ export class HomePageComponent implements OnInit {
         hZip: [this.user.hZip, Validators.required],
       });
 
-      this.loginForm =this.formBuilder.group({
+    this.loginForm = this.formBuilder.group({
         username: [this.username, Validators.required],
         password: [this.password, Validators.required],
       });
 
 
   }
-  
+
 
   ngOnInit() {
     $('#slides').carousel({
@@ -88,48 +89,48 @@ export class HomePageComponent implements OnInit {
     });
   }
 
-  register(){
+  register() {
     this.registerForm.value.wAddress = this.registerForm.value.hAddress;
     this.registerForm.value.wCity = this.registerForm.value.hCity;
     this.registerForm.value.wState = this.registerForm.value.hState;
     this.registerForm.value.wZip = this.registerForm.value.hZip;
     console.log(this.registerForm.value);
-    this.userService.addUser(this.registerForm.value).subscribe((resp)=>{
+    this.userService.addUser(this.registerForm.value).subscribe((resp) => {
       console.log(resp);
       this.successRegister();
     });
   }
 
   login() {
-    if(this.loginForm.valid) {
-      this.authService.authMe(this.username,this.password).then((resp)=>{
+    if (this.loginForm.valid) {
+      this.authService.authMe(this.username, this.password).then((resp) => {
       console.log(resp);
-      if(resp["userid"] != undefined){
+      if (resp["userid"] != undefined) {
         setTimeout(() => {
-          sessionStorage.setItem("userid",resp["userid"][0]);
-          this.router.navigate(["/landingPage"]);
+          sessionStorage.setItem('userid', resp["userid"][0]);
+          this.router.navigate(['/landingPage']);
         }, 2000);
         this.successLogin();
-      } else{
+      } else {
         this.failureLogin();
       }
     });
   }
   }
-  
-  successLogin(){
+
+  successLogin() {
     this.isWelcome = false;
     this.isLoginSuccess = true;
     this.isRegisterSuccess = false;
     this.isLoginFailure = false;
   }
-  failureLogin(){
+  failureLogin() {
     this.isWelcome = false;
     this.isLoginSuccess = false;
     this.isRegisterSuccess = false;
     this.isLoginFailure = true;
   }
-  successRegister(){
+  successRegister() {
     this.isWelcome = false;
     this.isLoginSuccess = false;
     this.isRegisterSuccess = true;
@@ -138,10 +139,10 @@ export class HomePageComponent implements OnInit {
   }
 
 
-  toggle(){
+  toggle() {
     this.isLogin = !this.isLogin;
-    if(!this.isLogin) {
-      console.log("ok");
+    if (!this.isLogin) {
+      console.log('ok');
       setTimeout(() => {
         new Cleave('#phone', {
           phone: true,

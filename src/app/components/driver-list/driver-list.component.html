@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="container">
   <div class="row">
     <div class="col-lg-5">
@@ -32,8 +33,14 @@
             <td>{{ driver.Name }}</td>
             <td>{{ driver.Distance }}</td>
             <td>{{ driver.Duration }}</td>
-            <td><input type="hidden" value="{{driver.Id}}"><button (click)="submitRequest(driver.Id, driver.Name)"
-                class="btn btn-light btn-sm">Request</button></td>
+            <td>
+              <input type="hidden" value="{{ driver.Id }}" /><button
+                (click)="submitRequest(driver.Id, driver.Name)"
+                class="btn btn-light btn-sm"
+              >
+                Request
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>

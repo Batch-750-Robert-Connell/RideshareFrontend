@@ -37,8 +37,8 @@
       <td>{{user.phoneNumber}}</td>
       <td *ngIf="user.batch">{{user.batch.batchNumber}}</td>
       <td *ngIf="!user.batch">N/A</td>
-      <td>{{user.active}}</td>
-      <td><button [ngClass]="user.active? falsy : truthy" (click)="banning(user)">{{user.active? "Ban" : "UnBan"}}</button></td>
+      <td>{{user.isActive}}</td>
+      <td><button [ngClass]="user.isActive? falsy : truthy" (click)="banning(user)">{{user.isActive? "Ban" : "UnBan"}}</button></td>
     </tr>
 
   </table>
