@@ -115,22 +115,20 @@ export class DriverListComponent implements OnInit {
     });
   }
 
-  submitRequest(id: number, driver: string) {
-    console.log('HELLO');
-    console.log(
-      sessionStorage.getItem('userid') +
-        ' is the userID of the person logged in'
-    );
-
-    console.log('This is the Driver ID ' + id);
-
-    this.snackBar.open('Request has been sent to ' + driver, '', {
-      duration: 2000,
-      direction: 'ltr',
-      politeness: 'assertive',
-      verticalPosition: 'top',
-      horizontalPosition: 'center',
-      panelClass: ['success'],
+  submitRequest(driverId: string, driver: string) {
+    let parseDriverId = parseInt(driverId);
+    let userId = parseInt(sessionStorage.getItem('userid'));
+    this.userService.sendEmail(userId, parseDriverId).then(data =>{
+     // console.log(data);
+      this.snackBar.open('Request has been sent to ' + driver, '', {
+        duration: 2000,
+        direction: 'ltr',
+        politeness: 'assertive',
+        verticalPosition: 'top',
+        horizontalPosition: 'center',
+        panelClass: ['success'],
+      });
+      console.log("Email sent successfully");
     });
   }
 
