@@ -8,6 +8,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './driver-list.component.html',
   styleUrls: ['./driver-list.component.css'],
 })
+
+/**
+ * DriverListComponent has the properties related to the drivers. These prpoerties
+ * include the available cars?, the drivers, which are the application users that are registered
+ * as drivers, googleDrivers which are listed and sorted with respect to distance. IdOfDriver and IdOfUser
+ * are user for us to be able to send a ride request via email from a specific user to he driver of their choice.
+ *
+ */
 export class DriverListComponent implements OnInit {
   location: string = 'Morgantown, WV';
   mapProperties: {};
@@ -26,6 +34,11 @@ export class DriverListComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
 
+
+/**
+ * ngOnInit() gets the drivers from our database and adds them to our drivers array.
+ */
+
   ngOnInit() {
     this.drivers = [];
     this.googleDrivers = [];
@@ -42,6 +55,7 @@ export class DriverListComponent implements OnInit {
       });
     });
 
+    // shows the map on the drivers page
     this.sleep(2000).then(() => {
       this.mapProperties = {
         center: new google.maps.LatLng(
@@ -55,9 +69,9 @@ export class DriverListComponent implements OnInit {
         this.mapElement.nativeElement,
         this.mapProperties
       );
-      //get all routes
+      // get all routes
       this.displayDriversList(this.location, this.drivers);
-      //show drivers on map
+      // show drivers on map
       this.showDriversOnMap(this.location, this.drivers);
     });
   }
@@ -65,6 +79,12 @@ export class DriverListComponent implements OnInit {
   sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
+
+
+/**
+ * showDriversOnMap will show the user where each driver is located on the map
+ * as well as displaying the route from the location.
+ */
 
   showDriversOnMap(origin, drivers) {
     drivers.forEach((element) => {
@@ -82,6 +102,16 @@ export class DriverListComponent implements OnInit {
     });
   }
 
+ /**
+  *
+  * @param driverId
+  * @param driver
+  * submitRequest() will send a request email to the driver from the specific
+  * user who is logged in. After the user is clickes the request button, a confirmation
+  * message will appear for 2 seconds stating that the request has been sent to the specific
+  * driver chosen.
+  */
+
   submitRequest(driverId: string, driver: string) {
     let parseDriverId = parseInt(driverId);
     let userId = parseInt(sessionStorage.getItem('userid'));
@@ -97,6 +127,15 @@ export class DriverListComponent implements OnInit {
     });
   }
 
+ /**
+  *
+  * @param origin
+  * @param destination
+  * @param service
+  * @param display
+  * displayRoute() will display the Route on the map for the user to view. If there was
+  * an error and the route is not displayed, an alert will notify the user with a status code.
+  */
   displayRoute(origin, destination, service, display) {
     service.route(
       {
@@ -115,12 +154,24 @@ export class DriverListComponent implements OnInit {
     );
   }
 
+
+  /**
+   *
+   * @param origin
+   * @param drivers
+   * displayDriverList will display the dirvers with the distance and time needed
+   * in the table on the drivers page. if the user who is logged in is a driver, their
+   * name will not be displayed because they can't request a ride from themselves. The data
+   * in this list is sorted by distance, so the closest driver to the user will be displayed on
+   * top of the list.
+   */
+
   displayDriversList(origin, drivers) {
     let origins = [];
     //set origin
     origins.push(origin);
 
-    var outputDiv = document.getElementById('output');
+
     drivers.forEach((element) => {
       var service = new google.maps.DistanceMatrixService();
       service.getDistanceMatrix(
@@ -132,6 +183,7 @@ export class DriverListComponent implements OnInit {
           avoidHighways: false,
           avoidTolls: false,
         },
+
         (response, status) => {
           if (status !== 'OK') {
             alert('Error was: ' + status);
@@ -149,10 +201,11 @@ export class DriverListComponent implements OnInit {
               Duration: results[0].duration.text,
             };
 
+            // driver won't be able to view himself in the driversList.
             if (myobj.Id != sessionStorage.getItem('userid')) {
               this.googleDrivers.push(myobj);
             }
-
+            // sorting the drivers list by distance
             this.googleDrivers.sort((a, b) =>
               parseFloat(a.Distance.split()[0]) >
               parseFloat(b.Distance.split()[0])
