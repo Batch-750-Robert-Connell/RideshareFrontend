@@ -42,6 +42,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { DriverRequestManagerComponent } from './components/driver-request-manager/driver-request-manager.component';
 
 
 
@@ -70,6 +71,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     DriverListComponent,
     UserRegisterComponent,
     HomePageComponent,
+    DriverRequestManagerComponent,
 
 
   ],
