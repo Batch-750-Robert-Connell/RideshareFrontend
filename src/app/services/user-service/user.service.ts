@@ -70,8 +70,8 @@ export class UserService {
    * @param role
    */
   createDriver(user: User, role) {
-    user.active = true;
-    user.driver = false;
+    user.isActive = true;
+    user.isDriver = false;
     user.isAcceptingRides = false;
     console.log(user);
 
@@ -115,8 +115,8 @@ export class UserService {
     this.getUserById(userId)
       .then((response) => {
         this.user = response;
-        this.user.driver = isDriver;
-        this.user.isAcceptingRides = this.user.active && isDriver;
+        this.user.isDriver = isDriver;
+        this.user.isAcceptingRides = this.user.isActive && isDriver;
 
         this.http.put(this.url + userId, this.user).subscribe(
           (response) => {

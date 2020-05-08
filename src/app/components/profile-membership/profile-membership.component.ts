@@ -19,13 +19,13 @@ export class ProfileMembershipComponent implements OnInit {
     this.getAllBatches();
   }
   ngOnInit() {
-    
+
     this.userService.getUserById2(sessionStorage.getItem("userid")).subscribe((response)=>{
       console.log(response);
       this.user = response;
       this.membershipForm = this.formBuilder.group({
-        driver: [this.user.driver, Validators.required],
-        active: [this.user.active, Validators.required],
+        driver: [this.user.isDriver, Validators.required],
+        active: [this.user.isActive, Validators.required],
         batch: [this.user.batch, Validators.required]
       });
     });

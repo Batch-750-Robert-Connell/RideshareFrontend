@@ -46,7 +46,7 @@ export class DriverInfoComponent implements OnInit {
 
   noUserFound: boolean = false;
   /**
-   * A constructor 
+   * A constructor
    * @param carService A car service is injected.
    * @param authService An auth service is injected.
    * @param router  A router service is injected.
@@ -65,7 +65,7 @@ export class DriverInfoComponent implements OnInit {
     } else {
       this.carService.getAllCars().subscribe(
         data => {
-          this.allAvailableCars = data.filter(car => car.user.isAcceptingRides && car.user.active);
+          this.allAvailableCars = data.filter(car => car.user.isAcceptingRides && car.user.isActive);
           this.orderByLocation();
         }
       )
@@ -129,14 +129,14 @@ export class DriverInfoComponent implements OnInit {
    */
 
   searchDriverByLocation() {
-    this.availableCars = this.allAvailableCars.filter(car => 
+    this.availableCars = this.allAvailableCars.filter(car =>
      car.user.batch.batchLocation.toLowerCase().includes(this.searchLocation.toLowerCase()))
     }
   /**
    * A function that filters by location
    *
    */
-  
+
   filterDriverByLocation(event) {
     this.noUserFound = false;
     this.availableCars = this.allAvailableCars.filter(car => car.user.batch.batchLocation == event.target.value);

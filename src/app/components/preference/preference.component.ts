@@ -17,7 +17,7 @@ export class PreferenceComponent implements OnInit {
 
   /**
    * Once the component is initialzed, an user object is created.
-   * 
+   *
    */
 
   user: User = new User();
@@ -66,18 +66,18 @@ export class PreferenceComponent implements OnInit {
 
 
   toggleActive() {
-    if (this.user.active) {
+    if (this.user.isActive) {
       let text = prompt("Your Account Will Be Banned. Type 'Confirm' To Continued");
       if (text === 'Confirm') {
-        this.user.active = !this.user.active;
+        this.user.isActive = !this.user.isActive;
         this.user.isAcceptingRides = false;
-        this.userService.updatePreference('active', this.user.active, this.user.userId);
+        this.userService.updatePreference('active', this.user.isActive, this.user.userId);
       }
     } else {
-      this.user.active = !this.user.active;
-      this.userService.updatePreference('active', this.user.active, this.user.userId);
+      this.user.isActive = !this.user.isActive;
+      this.userService.updatePreference('active', this.user.isActive, this.user.userId);
     }
-    
+
   }
  /**
    * @function
