@@ -21,9 +21,6 @@ export class ProfileCarComponent implements OnInit {
   constructor(private carService: CarService,private formBuilder: FormBuilder,private snackBar: MatSnackBar) {
     this.carService.getCarByUserId2(sessionStorage.getItem("userid")).subscribe((response)=>{
       console.log(response);
-      this.car = response;
-
-      
       this.CarForm = this.formBuilder.group({
         make: [this.car.make, Validators.required],
         model: [this.car.model, Validators.required],
