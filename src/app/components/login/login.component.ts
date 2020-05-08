@@ -202,7 +202,7 @@ export class LoginComponent implements OnInit {
 				if (!user.length) {
 					this.loginFailed();
 				}
-				else if(this.chosenUser.active == false){
+				else if(this.chosenUser.isActive == false){
 					this.loginBanned();
 				}
 				else {
