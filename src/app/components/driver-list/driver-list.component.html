@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="container">
   <div class="row">
     <div class="col-lg-5">
@@ -18,8 +19,7 @@
       <h4>Driver's List</h4>
 
       <table class="table table-striped" aria-describedby="table of drivers">
-
-      <thead class="thead-dark">
+        <thead class="thead-dark">
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Distance</th>
@@ -32,8 +32,14 @@
             <td>{{ driver.Name }}</td>
             <td>{{ driver.Distance }}</td>
             <td>{{ driver.Duration }}</td>
-            <td><input type="hidden" value="{{driver.Id}}"><button (click)="submitRequest(driver.Id, driver.Name)"
-                class="btn btn-light btn-sm">Request</button></td>
+            <td>
+              <input type="hidden" value="{{ driver.Id }}" /><button
+                (click)="submitRequest(driver.Id, driver.Name)"
+                class="btn btn-light btn-sm"
+              >
+                Request
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
