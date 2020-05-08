@@ -1,103 +1,20 @@
 @import "../../../custom-theme.scss";
 
-
-/* Container holding the image and the text */
-.centerMe {
-    position: relative;
-    text-align: center;
-    color: white;
-  } 
-  
-i{
-  padding-top:5px;
+::-webkit-scrollbar {
+  width: 10px;
+ 
 }
 
-  /* Bottom left text */
-  .bottom-left {
-    position: absolute;
-    bottom: 8px;
-    left: 16px;
-  }
-  
-  /* Top left text */
-  .top-left {
-    position: absolute;
-    top: 8px;
-    left: 16px;
-  }
-  
-  /* Top right text */
-  .top-right {
-    position: absolute;
-    top: 8px;
-    right: 16px;
-  }
-  
-  /* Bottom right text */
-  .bottom-right {
-    position: absolute;
-    bottom: 8px;
-    right: 16px;
-  }
-  
-  /* Centered text */
-  .centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: "Overpass",sans-serif;
-  }
-/* 
-  .orangeText {
-      color: black;
-  } */
-
-.blackFade{
-    background-color: rgba(0, 0, 0, 1);
-    border:1px outset black;
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
 }
-
-#loginbutton{
-  margin-top:10px;
-  background-color: #F26925;
-  color:white;
-  width:300px;
-  font-family:"Overpass";
-  font-weight:bold;
-  font-size:22px;
-  border-radius:27px;
-  letter-spacing:1px;
-  height:45px;
-  display:inline-block;
+::-webkit-scrollbar-thumb {
+  background:  $primary; 
+  border-radius: 50px;
+  border: #c35901 solid 1px;
 }
-
-#loginbutton:hover{
-  background-color:white;
-  color:#F26925;
-  border: 2px solid #F26925;
-  border-radius: 22px ;
-  font-family:"Overpass";
-  font-size:23px;
-}
-
-.center1{
-margin: 0 auto;
-}
-.cBorder{
-  margin-top: 15px;
-}
-
-.mBot{
-  margin-bottom: 15px;
-}
-
-.card{
-  box-shadow: 2px 2px 5px black;
-}
-
-.card-body{
-  font-family: "Overpass",sans-serif;
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }
 
 /*******************************************************************************************/
@@ -232,6 +149,24 @@ margin: 0 auto;
     opacity: .8;
     border-radius: 0 20px 20px 0;
   }
+  #layer-success{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: green;
+    opacity: .8;
+    border-radius: 0 20px 20px 0;
+  }
+  #layer-failure{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: red;
+    opacity: .8;
+    border-radius: 0 20px 20px 0;
+  }
   #slides{
     color: white;
     z-index: 2;
@@ -257,4 +192,43 @@ margin: 0 auto;
     }
   }
 }
+.text-anime{
+  animation: text-anime 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0s both;
+}
+.login-success, .login-failure{
+  position: absolute;
+    line-height: 500px;
+    width: 100%;
+    color: white;
+    z-index: 2;
+    text-align: center;
+    white-space: pre;
+    font-size: 20px;
+}
 
+/*******************ANIME****************************/
+
+@-webkit-keyframes text-anime {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes text-anime {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}

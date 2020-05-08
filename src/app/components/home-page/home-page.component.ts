@@ -5,7 +5,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user-service/user.service';
 declare var $;
+declare var Cleave;
 
 @Component({
   selector: 'app-home-page',
@@ -19,6 +21,10 @@ export class HomePageComponent implements OnInit {
   loginForm:FormGroup;
   username:string;
   password:string;
+  isWelcome:boolean = true;
+  isLoginSuccess:boolean = false;
+  isRegisterSuccess:boolean = false;
+  isLoginFailure:boolean = false;
   user:User = {
     userId:0,
     userName: "",
@@ -44,7 +50,7 @@ export class HomePageComponent implements OnInit {
     wZip: null,
   }
 
-  constructor(private batchService:BatchService, private formBuilder:FormBuilder,private authService:AuthService,private router:Router) {
+  constructor(private batchService:BatchService, private formBuilder:FormBuilder,private authService:AuthService,private router:Router,private userService:UserService) {
     this.batchService.getAllBatchesByLocation1().subscribe(
       res => {
          this.batches = res;
@@ -58,8 +64,8 @@ export class HomePageComponent implements OnInit {
         password: [this.user.password, Validators.required],
         firstName: [this.user.firstName, Validators.required],
         lastName: [this.user.lastName, Validators.required],
-        email: [this.user.email, Validators.required],
-        phoneNumber: [this.user.phoneNumber, Validators.required],
+        email: [this.user.email, Validators.email],
+        phoneNumber: [this.user.phoneNumber, Validators.pattern(/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/)],
         driver: [true, Validators.required],
         hState: [this.user.hState, Validators.required],
         hAddress: [this.user.hAddress, Validators.required],
@@ -71,6 +77,8 @@ export class HomePageComponent implements OnInit {
         username: [this.username, Validators.required],
         password: [this.password, Validators.required],
       });
+
+
   }
   
 
@@ -85,8 +93,10 @@ export class HomePageComponent implements OnInit {
     this.registerForm.value.wCity = this.registerForm.value.hCity;
     this.registerForm.value.wState = this.registerForm.value.hState;
     this.registerForm.value.wZip = this.registerForm.value.hZip;
-
     console.log(this.registerForm.value);
+    this.userService.addUser(this.registerForm.value).subscribe((resp)=>{
+      console.log(resp);
+    })
   }
 
   login() {
@@ -94,16 +104,50 @@ export class HomePageComponent implements OnInit {
       this.authService.authMe(this.username,this.password).then((resp)=>{
       console.log(resp);
       if(resp["userid"] != undefined){
-        sessionStorage.setItem("userid",resp["userid"][0]);
-        this.router.navigate(["/landingPage"]);
+        setTimeout(() => {
+          sessionStorage.setItem("userid",resp["userid"][0]);
+          this.router.navigate(["/landingPage"]);
+        }, 2000);
+        this.successLogin();
+      } else{
+        this.failureLogin();
       }
     });
   }
-	}
+  }
+  
+  successLogin(){
+    this.isWelcome = false;
+    this.isLoginSuccess = true;
+    this.isRegisterSuccess = false;
+    this.isLoginFailure = false;
+  }
+  failureLogin(){
+    this.isWelcome = false;
+    this.isLoginSuccess = false;
+    this.isRegisterSuccess = false;
+    this.isLoginFailure = true;
+  }
+  successRegister(){
+    this.isWelcome = false;
+    this.isLoginSuccess = true;
+    this.isRegisterSuccess = false;
+    this.isLoginFailure = false;
+  }
 
 
   toggle(){
     this.isLogin = !this.isLogin;
+    if(!this.isLogin) {
+      console.log("ok");
+      setTimeout(() => {
+        new Cleave('#phone', {
+          phone: true,
+          phoneRegionCode: 'us',
+          delimiter: '-'
+      });
+      }, 1000);
+    }
     console.log(this.isLogin);
   }
 
