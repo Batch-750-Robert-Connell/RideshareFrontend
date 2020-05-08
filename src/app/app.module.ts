@@ -24,7 +24,6 @@ import { PreferenceComponent } from './components/preference/preference.componen
 import { ValidationService } from './services/validation-service/validation.service';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { DriverInfoComponent } from './components/driver-info/driver-info.component';
-import { LandingComponent } from './components/landing/landing.component';
 import { SignupModalComponent } from './components/sign-up-modal/sign-up-modal.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { ProfileContactComponent } from './components/profile-contact/profile-contact.component';
@@ -36,7 +35,6 @@ import { DriverListComponent } from './components/driver-list/driver-list.compon
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { UserRegisterComponent } from './components/user-register/user-register.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
-import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
@@ -62,7 +60,6 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     PreferenceComponent,
     AdminLoginComponent,
     DriverInfoComponent,
-    LandingComponent,
     SignupModalComponent,
     LandingPageComponent,
     ProfileContactComponent,
@@ -73,9 +70,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     DriverListComponent,
     UserRegisterComponent,
     HomePageComponent,
-    BsNavbarComponent,
-    
-    
+
+
   ],
   imports: [
     BrowserModule,

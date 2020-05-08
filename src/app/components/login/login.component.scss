@@ -44,7 +44,7 @@ p {
 .dropdown-content p:hover {
     background-color: whitesmoke;
 }
-  
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -57,7 +57,7 @@ p {
     min-width: 208px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-}  
+}
 
 img {
     width: 50%;
@@ -83,9 +83,9 @@ img {
     letter-spacing:1px;
     height:45px;
     display:inline-block;
-    
+
 }
- 
+
 .btn:hover{
     background-color:white;
     color:#F26925;
@@ -97,14 +97,81 @@ img {
 
 
 .error {
-    border-radius: 5px;
     /*background-color: #dd1616;
     color: white;*/
-    width: 30%; 
+    width: 30%;
     margin-left: 150px;
     margin-top: 8px;
     border-radius: 5px;
     color: red;
     font-size: 16px;
-  } 
+  }
+
+/*-------------------------Media Queries---------------------------------*/
+
+@media only screen and (max-width:780px){
+    #login-form{
+        border:none;
+        box-shadow:none;
+    }
+}
+
+@media only screen and (max-width:764px){
+    .btn{
+        width:150px;
+        font-size:20px;
+    }
+}
+
+@media only screen and (max-width:560px){
+    .btn{
+        width:100px;
+        font-size:18px;
+        border-radius:10px;
+        height:40px;
+    }
+    .btn:hover{
+        width:100px;
+        font-size:18px;
+        border-radius:10px;
+        height:40px;
+    }
+
+    input{
+        width:100%;
+        font-size:14px;
+    }
+}
+
+@media only screen and (max-width:356px){
+    .btn{
+        width:80px;
+        font-size:15px;
+        border-radius:10px;
+        height:35px;
+    }
+
+    input{
+        font-size:13px;
+    }
+}
+
+@media only screen and (max-width:333px){
+    .btn{
+        width:80px;
+        font-size:15px;
+        border-radius:10px;
+        height:35px;
+    }
+
+    input{
+        font-size:11px;
+    }
+}
+
+@media only screen and (max-width:457px){
+    label{
+        font-size:18px;
+    }
+}
 

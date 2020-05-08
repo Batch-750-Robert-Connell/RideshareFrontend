@@ -3,13 +3,13 @@
     <div class="centered">
         <h1 class="orangeText">RideForce</h1>
         <p class="orangeText"><strong>Introducing Revature employees to their forever rides.</strong></p>
-        
+
      <div class="btn-group" role="group" aria-label="Button group">
          <button class="btn btn-lg btn-outline-light"><app-login></app-login></button>
          <button class="btn btn-lg btn-outline-light"><signupmodal></signupmodal></button>
      </div>
 
- 
+
     </div>
   </div>
   <div class="container mBot">
@@ -65,7 +65,7 @@
             <input type="password" matInput formControlName="password" [(ngModel)]="password" >
             <mat-icon fontSet="fa" fontIcon="fa-key"></mat-icon>
           </mat-form-field>
-     
+
 
           <button mat-raised-button color="primary" class="mt-3" value="Login">Login</button>
         </form>
@@ -74,7 +74,7 @@
 
         <div *ngIf="!isLogin" id="register-container">
           <form [formGroup]="registerForm" (submit)="register()">
-          
+
             <mat-form-field class="w-100">
               <mat-label>Firstname</mat-label>
               <input type="text" matInput formControlName="firstName" [(ngModel)]="user.firstName" required>
@@ -112,7 +112,7 @@
             <mat-form-field class="w-100">
               <mat-label>Select a state</mat-label>
               <mat-select id="state" formControlName="hState" [(ngModel)]="user.hState" required>
-  
+
                 <mat-option value="" selected disabled>Select a state</mat-option>
                 <mat-option value="AL">Alabama</mat-option>
                 <mat-option value="AK">Alaska</mat-option>
@@ -180,13 +180,13 @@
               <mat-button-toggle [value]="false">Rider</mat-button-toggle>
               <mat-button-toggle [value]="true">Driver</mat-button-toggle>
             </mat-button-toggle-group>
-  
+
             <button mat-raised-button color="primary" class="mt-3">Sign Up</button>
           </form>
           <div id="no-account">You have an account ? <span (click)="isLogin = !isLogin">Login now !</span></div>
           </div>
 
-      
+
 
       </div>
       <div class="col-6 p-0 right">
@@ -203,7 +203,7 @@
                 <i class="fa fa-group  fa-3x center1" aria-hidden="true"></i>
                   <h5 class="title">Gain Relationships</h5>
                   <p class="text">Meet fellow Revature employees.</p>
-        
+
               </div>
               <div class="carousel-item" data-interval="1000">
                 <i class="fa fa-cc-mastercard" aria-hidden="true"></i>
