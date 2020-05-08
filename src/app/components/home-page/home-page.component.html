@@ -176,7 +176,7 @@
               <input type="phone" id="phone" matInput formControlName="phoneNumber"  [(ngModel)]="user.phoneNumber" required>
             </mat-form-field>
 
-            <mat-button-toggle-group formControlName="driver" [(ngModel)]="user.driver">
+            <mat-button-toggle-group formControlName="driver" [(ngModel)]="user.isDriver">
               <mat-button-toggle [value]="false">Rider</mat-button-toggle>
               <mat-button-toggle [value]="true">Driver</mat-button-toggle>
             </mat-button-toggle-group>
@@ -190,7 +190,7 @@
 
       </div>
       <div class="col-6 p-0 right">
-        <img id="background" src="../../../assets/carpool.jpg"/>
+        <img id="background" src="../../../assets/carpool.jpg" alt="Carpool Image"/>
         <div *ngIf="isWelcome">
           <div id="slides" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
