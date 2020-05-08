@@ -5,12 +5,16 @@
 .userimg {
     width: 7%;
     height: 7%;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 .imageLogo {
-    height:60px;
-    width:140px;
+  height: 70px;
+    width: 160px;
+    margin-bottom: 5px;
+    left: 34px;
+    position: absolute;
+    top: 1px;
 }
 
 #logout-btn, a {
@@ -18,15 +22,18 @@
 }
 
 nav {
-    background-color: rgb(255, 255, 255); 
+    background-color: rgb(255, 255, 255);
 }
 
 .navbar {
      padding-left: 7%;
      padding-right: 7%;
-    line-height: 42px;
+    /* line-height: 42px; */
+    height: 81px;
     font-size: -2.7rem;
     font-weight: 800;
+    /* background-color: #F26925; */
+    background-image: linear-gradient(#F26925, rgb(211, 79, 12));
 
 }
 
@@ -37,8 +44,15 @@ a.nav-link{
 .nav-link{
     padding: 0;
 }
+
+
+.borderbottom{
+  color:white;
+}
+
 .borderbottom:hover{
-    border-bottom: 2px solid #F26925;
+    border-bottom: 2px solid rgb(255, 255, 255);
+    /* transform: translateY(-3px); */
 }
 
 .mainnav{
@@ -53,12 +67,13 @@ a.nav-link{
 .mt-lg-0, .my-lg-0 {
     margin-left: 100px;
 }
+
 .loginbutton{
     margin-top:10px;
     background-color: #F26925;
     color:white;
     width:150px;
-    font-family:"Overpass";
+    font-family:"Overpass", sans-serif;
     font-weight:bold;
     font-size:22px;
     border-radius:27px;
@@ -66,24 +81,27 @@ a.nav-link{
     height:45px;
     display:inline-block;
 }
- 
+
 .loginbutton:hover{
     background-color:white;
     color:#F26925;
     border: 2px solid #F26925;
     border-radius: 22px ;
-    font-family:"Overpass";
+    font-family:"Overpass", sans-serif;
     font-size:23px;
 }
+
 .dropdown-item {
     padding: 0.25rem 4.5rem;
 }
+
 .dropdown-item:hover{
     border: 3px solid #F26925;
     background-color: rgb(212, 113, 64);
     color:white;
     font-weight:bold;
 }
+
 #user-dropa{
     padding-left:10px;
 }
@@ -93,7 +111,6 @@ a.nav-link{
         width: 40%;
     }
 }
-
 
 @media (min-width:993px){
     .navbar-collapse {
@@ -109,8 +126,4 @@ a.nav-link{
         height: 20%;
     }
 
-    /* .myDropDown{
-        width: 70%;
-        background-color: coral;
-    } */
 }

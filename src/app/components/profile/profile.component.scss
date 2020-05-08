@@ -1,0 +1,47 @@
+
+ @import "../../../custom-theme.scss";
+ #list-container {
+    margin: 50px 15px 0 15px;
+    padding: 20px 0px;
+    border-radius: 20px;
+    background-color: rgb(247, 247, 247);
+    text-align: left !important;
+    //cursor: pointer;
+    .item {
+      color: #6a5446;
+      text-align: left;
+      padding: 10px;
+      outline: 0;
+      cursor: pointer;
+      i {
+        font-size: 16px;
+        margin: 10px 20px 10px 20px;
+      }
+      div {
+        font-size: 16px;
+        display: inline-block;
+      }
+    }
+    .item:hover {
+      background-color: #fffbe9;
+      color: $primary;
+    }
+
+    .active {
+      position: relative;
+      color: $primary;
+      background-color: #fffbe9;
+      font-weight: 700;
+      outline: 0;
+      .indicator {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 4px;
+        height: 40px;
+        background-color: $primary;
+        border-radius: 50px;
+        height: 55px;
+      }
+    }
+  }

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
   constructor( private router: Router) { }
@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   membership :string = '';
 
   ngOnInit() {
+    this.router.navigateByUrl('/profile/(my:contact)');
     this.showCont = true;
   /**
    * A GET method that retrieves user's information

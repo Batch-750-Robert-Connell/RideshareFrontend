@@ -1,0 +1,31 @@
+@import "../../../custom-theme.scss";
+
+
+
+.mainContainer {
+ 
+    border:1px solid rgb(226, 226, 226);
+    background-color:rgb(252, 252, 252);
+    border-radius: 20px;
+}
+
+
+
+
+#container{
+    padding: 40px;
+    width: 75%;
+    display: block;
+    margin: 20px auto;
+}
+#container button{
+    display: block;
+    margin: auto;
+    border: solid 1px $primary;
+}
+
+#container button:hover{
+    background-color: white;
+    color: $primary;
+    border: solid 1px $primary;
+}
