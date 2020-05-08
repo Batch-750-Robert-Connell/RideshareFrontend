@@ -24,20 +24,22 @@ export class ProfileContactComponent implements OnInit {
         email: [this.user.email, Validators.email],
         phone: [this.user.phoneNumber, Validators.pattern(/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/)]
       });
-      var cleave = new Cleave('#phone', {
-        phone: true,
-        phoneRegionCode: 'us',
-        delimiter: '-'
-    });
+      
     });
 
 
 
   }
 
-  ngOnInit() {
 
-
+  ngOnInit(){
+    setTimeout(() => {
+      new Cleave('#phone', {
+        phone: true,
+        phoneRegionCode: 'us',
+        delimiter: '-'
+    });
+    }, 1000);
   }
 
   updatesContactInfo(){
