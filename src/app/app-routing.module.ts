@@ -21,58 +21,59 @@ import { DriverListComponent } from './components/driver-list/driver-list.compon
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
-
 const routes: Routes = [
-  {path: 'home/drivers', component: DriverInfoComponent},
-  {path: 'home/riders', component: DriverComponent},
-  {path: 'all-drivers', component: DriverInfoComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'login/admin', component: AdminLoginComponent},
-  {path: 'login/adminhome', component: AdminComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'new/car', component: CarRegisterComponent},
-  {path: 'car', component: MyCarComponent},
-  {path: 'preference', component: PreferenceComponent},
-  {path: 'signup', component: SignupModalComponent},
-  {path: 'landingPage', component: LandingPageComponent},
-  {path: 'drivers', component: DriverListComponent},
-{path: 'profile/contact', component: ProfileContactComponent},
-{path: 'profile/car', component: ProfileCarComponent},
-{path: 'profile/membership', component: ProfileMembershipComponent},
-{path: 'profile/location', component: ProfileLocationComponent},
-{path: 'driver', component: DriverContactModalComponent},
-{path: 'navbar', component: NavbarComponent},
-{path: '', component: HomePageComponent},
-{path: 'profile', component: ProfileComponent,
-children: [
+  { path: 'home/drivers', component: DriverInfoComponent },
+  { path: 'home/riders', component: DriverComponent },
+  { path: 'all-drivers', component: DriverInfoComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'login/admin', component: AdminLoginComponent },
+  { path: 'login/adminhome', component: AdminComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'new/car', component: CarRegisterComponent },
+  { path: 'car', component: MyCarComponent },
+  { path: 'preference', component: PreferenceComponent },
+  { path: 'signup', component: SignupModalComponent },
+  { path: 'landingPage', component: DriverListComponent },
+  { path: 'drivers', component: DriverListComponent },
+  { path: 'profile/contact', component: ProfileContactComponent },
+  { path: 'profile/car', component: ProfileCarComponent },
+  { path: 'profile/membership', component: ProfileMembershipComponent },
+  { path: 'profile/location', component: ProfileLocationComponent },
+  { path: 'driver', component: DriverContactModalComponent },
+  { path: 'navbar', component: NavbarComponent },
+  { path: '', component: HomePageComponent },
   {
-    path: 'contact',
-    component: ProfileContactComponent,
-    outlet: 'my',
+    path: 'profile',
+    component: ProfileComponent,
+    children: [
+      {
+        path: 'contact',
+        component: ProfileContactComponent,
+        outlet: 'my',
+      },
+      {
+        path: 'location',
+        component: ProfileLocationComponent,
+        outlet: 'my',
+      },
+      {
+        path: 'membership',
+        component: ProfileMembershipComponent,
+        outlet: 'my',
+      },
+      {
+        path: 'car',
+        component: ProfileCarComponent,
+        outlet: 'my',
+      },
+    ],
   },
-  {
-    path: 'location',
-    component: ProfileLocationComponent,
-    outlet: 'my',
-  },
-  {
-    path: 'membership',
-    component: ProfileMembershipComponent,
-    outlet: 'my',
-  },
-  {
-    path: 'car',
-    component: ProfileCarComponent,
-    outlet: 'my',
-  },
-],
-},
 
-{path: '**', pathMatch: 'full', redirectTo: ''}];
-
+  { path: '**', pathMatch: 'full', redirectTo: '' },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

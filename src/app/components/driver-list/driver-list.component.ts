@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./driver-list.component.css'],
 })
 export class DriverListComponent implements OnInit {
-  location: string = 'Morgantown, WV';
+  location = 'Morgantown, WV';
   mapProperties: {};
   availableCars: Array<any> = [];
   drivers: Array<any> = [];
@@ -55,9 +55,9 @@ export class DriverListComponent implements OnInit {
         this.mapElement.nativeElement,
         this.mapProperties
       );
-      //get all routes
+      // get all routes
       this.displayDriversList(this.location, this.drivers);
-      //show drivers on map
+      // show drivers on map
       this.showDriversOnMap(this.location, this.drivers);
     });
   }
@@ -103,7 +103,7 @@ export class DriverListComponent implements OnInit {
         origin: origin,
         destination: destination,
         travelMode: 'DRIVING',
-        //avoidTolls: true
+        // avoidTolls: true
       },
       function (response, status) {
         if (status === 'OK') {
@@ -117,7 +117,7 @@ export class DriverListComponent implements OnInit {
 
   displayDriversList(origin, drivers) {
     let origins = [];
-    //set origin
+    // set origin
     origins.push(origin);
 
     var outputDiv = document.getElementById('output');

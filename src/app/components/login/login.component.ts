@@ -60,8 +60,12 @@ export class LoginComponent implements OnInit {
   ) {}
 
   /**
+<<<<<<< Updated upstream
    * When the component is initialized, the system checks for the session storage to validate.
    * Once validated, the user service is called to retrieve all users.
+=======
+   * When the component is initialized, the system checks for the session storage to validate. Once validated, the user service is called to retrieve all users.
+>>>>>>> Stashed changes
    */
   ngOnInit() {
     this.userService.getAllUsers().subscribe((allUsers) => {
@@ -83,7 +87,11 @@ export class LoginComponent implements OnInit {
     this.totalPage = Math.ceil(this.allUsers.length / 5);
     this.users = this.allUsers.slice(this.curPage * 5 - 5, this.curPage * 5);
     this.chosenUserFullName = `${user.firstName} ${user.lastName}: ${
+<<<<<<< Updated upstream
       user.driver ? 'Driver' : 'Rider'
+=======
+      user.isDriver ? 'Driver' : 'Rider'
+>>>>>>> Stashed changes
     }`;
     this.chosenUser = user;
   }
@@ -132,7 +140,10 @@ export class LoginComponent implements OnInit {
   /**
    * Set next page
    */
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
   nextPage() {
     this.curPage++;
     this.users = this.allUsers.slice(this.curPage * 5 - 5, this.curPage * 5);
@@ -179,6 +190,10 @@ export class LoginComponent implements OnInit {
       )
       .subscribe((response) => {
         console.log('look here');
+<<<<<<< Updated upstream
+=======
+        console.log(response['userid']);
+>>>>>>> Stashed changes
         console.log(response);
         if (response['userName'] != undefined) {
           this.usernameError = response['userName'][0];

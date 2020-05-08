@@ -5,26 +5,29 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-profile-membership',
   templateUrl: './profile-membership.component.html',
-  styleUrls: ['./profile-membership.component.scss']
+  styleUrls: ['./profile-membership.component.scss'],
 })
 export class ProfileMembershipComponent implements OnInit {
-  user : User;
-  membershipForm:FormGroup
+  user: User;
+  membershipForm: FormGroup;
 
-  constructor(private userService: UserService,private formBuilder: FormBuilder) { }
+  constructor(
+    private userService: UserService,
+    private formBuilder: FormBuilder
+  ) {}
   ngOnInit() {
-    this.userService.getUserById2(sessionStorage.getItem("userid")).subscribe((response)=>{
-      console.log(response);
-      this.user = response;
-      this.membershipForm = this.formBuilder.group({
-        driver: [this.user.driver, Validators.required],
-        active: [this.user.active, Validators.required]
-       
+    this.userService
+      .getUserById2(sessionStorage.getItem('userid'))
+      .subscribe((response) => {
+        console.log(response);
+        this.user = response;
+        this.membershipForm = this.formBuilder.group({
+          driver: [this.user.isDriver, Validators.required],
+          active: [this.user.isActive, Validators.required],
+        });
       });
-    });
   }
-  updatesMembershipInfo(){
-
+  updatesMembershipInfo() {
     this.userService.updateUserInfo(this.user);
   }
 }

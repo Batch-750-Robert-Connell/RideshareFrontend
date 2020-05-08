@@ -1,16 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DriverListComponent } from './driver-list.component';
-
+import { instance, reset } from 'ts-mockito';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 describe('DriverListComponent', () => {
   let component: DriverListComponent;
   let fixture: ComponentFixture<DriverListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DriverListComponent ]
-    })
-    .compileComponents();
+      imports: [MatDialogModule],
+      declarations: [ DriverListComponent ],
+      providers: [{
+        provide: MatDialog,
+        useValue: instanceof (MockedMatDialog)
+      }]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,5 +26,9 @@ describe('DriverListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  afterEach(() => {
+    reset(MockedMatDialog);
   });
 });

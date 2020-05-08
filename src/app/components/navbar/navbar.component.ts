@@ -4,28 +4,26 @@ import { UserService } from 'src/app/services/user-service/user.service';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { User } from 'src/app/models/user';
 import { Admin } from 'src/app/models/admin';
-import {SignupModalComponent} from '../sign-up-modal/sign-up-modal.component';
+import { SignupModalComponent } from '../sign-up-modal/sign-up-modal.component';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 
-  /**
-   * The Navbar component
-   */
-
+/**
+ * The Navbar component
+ */
 export class NavbarComponent implements OnInit {
-  modal :SignupModalComponent;
+  modal: SignupModalComponent;
   /**
    * This is a name string.
    */
 
-  name: string = '';
-  admin: string = '';
-
-  currentUser: string = '';
+  name = '';
+  admin = '';
+  currentUser = '';
 
   /**
    * This is a constructor
@@ -34,7 +32,11 @@ export class NavbarComponent implements OnInit {
    * @param authService A dependency of an auth service is injected.
    */
 
-  constructor(private router: Router, private userService: UserService, public authService: AuthService) { }
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    public authService: AuthService
+  ) {}
 
   /**
    * This is an OnInit function that sets the token to the parsed token string.
@@ -44,16 +46,17 @@ export class NavbarComponent implements OnInit {
    */
 
   ngOnInit() {
-
-    if(sessionStorage.getItem("userid") != null){
-      this.currentUser =sessionStorage.getItem("name");
-    }else{
-      this.currentUser ='';
+    if (sessionStorage.getItem('userid') != null) {
+      this.currentUser = sessionStorage.getItem('name');
+    } else {
+      this.currentUser = '';
     }
     if (this.authService.user.userId) {
-      this.userService.getUserById(this.authService.user.userId).then((response)=>{
-        this.name = response.firstName;
-      })
+      this.userService
+        .getUserById(this.authService.user.userId)
+        .then((response) => {
+          this.name = response.firstName;
+        });
     }
 
     this.authService.getEmitter().subscribe((user: any) => {
@@ -69,14 +72,12 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-   /**
-   * Function that takes no parameters. 
+  /**
+   * Function that takes no parameters.
    * It will clear the sesssion storage.
-   * @return {void} 
-   * 
+   * @return {void}
    */
 
-   
   logout() {
     this.authService.user = {};
     this.authService.admin = new Admin();
@@ -84,13 +85,15 @@ export class NavbarComponent implements OnInit {
     this.name = '';
     this.admin = '';
     this.currentUser = '';
-    sessionStorage.removeItem("name");
-    sessionStorage.removeItem("userid");
-    //sessionStorage.clear(); 
+    sessionStorage.removeItem('name');
+    sessionStorage.removeItem('userid');
+    //sessionStorage.clear();
     this.router.navigate(['']);
   }
 
   redirectToHome() {
-    this.authService.user.driver ? this.router.navigate(['home/riders']) : this.router.navigate(['home/drivers']);
+    this.authService.user.isDriver
+      ? this.router.navigate(['home/riders'])
+      : this.router.navigate(['home/drivers']);
   }
 }

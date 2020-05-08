@@ -42,8 +42,8 @@
       <td>{{get.phoneNumber}}</td>
       <td *ngIf="get.batch">{{get.batch.batchNumber}}</td>
       <td>{{get.batch.batchLocation}}</td>
-      <td *ngIf="get.active===true"><img src=".\assets\yesno.jpg" width="15" height="15" alt="Green Check"></td>
-      <td *ngIf="get.active===false"><img src=".\assets\no.jpg" width="15" height="15" alt="Red X"></td>
+      <td *ngIf="get.isActive===true"><img src=".\assets\yesno.jpg" width="15" height="15" alt="Green Check"></td>
+      <td *ngIf="get.isActive===false"><img src=".\assets\no.jpg" width="15" height="15" alt="Red X"></td>
       <td *ngIf="get.isDriver===false">Rider</td>
       <td *ngIf="get.isDriver===true">Driver</td>
 
