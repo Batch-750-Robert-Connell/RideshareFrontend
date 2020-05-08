@@ -45,3 +45,34 @@ button{
   background-color: rgb(143, 1, 1) !important;
   width: 100%;
 }
+
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: $primary !important;
+} 
+
+::ng-deep.mat-form-field-ripple {
+ /*change color of underline when focused*/
+ background-color: $primary !important;;
+}
+
+mat-button-toggle-group {
+  width: 100%;
+  outline: none;
+}
+mat-button-toggle {
+  padding: 0 20px !important;
+  width: 100%;
+  outline: none;
+  button{
+    outline: none !important;
+  }
+}
+
+.mat-button-toggle-checked {
+  outline: none;
+  box-shadow: 0 0 30px rgb(185, 185, 185) !important;
+  border-radius: 5px !important;
+  background-color: $primary !important;
+  color: white !important;
+}

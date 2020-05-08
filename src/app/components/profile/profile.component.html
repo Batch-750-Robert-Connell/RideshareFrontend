@@ -2,26 +2,52 @@
 <div class=" profile-container">
       <div class="row m-0 p-0">
       <div class="col-3 p-0">
-            <div class="btn-group-vertical" role="group" aria-label="Basic example">
+            <div id="list-container">
+                  <div
+                    class="item"
+                    [routerLink]="[{ outlets: { my: ['contact'] } }]"
+                    [routerLinkActive]="['active']"
+                  >
+                    <i class="fa fa-user"></i>
+                    <div>Contact information</div>
+                    <div class="indicator"></div>
+                  </div>
+                  <div
+                    class="item"
+                    [routerLink]="[{ outlets: { my: ['location'] } }]"
+                    [routerLinkActive]="['active']"
+                  >
+                    <i class="fa fa-home"></i>
+                    <div>Location</div>
+                    <div class="indicator"></div>
+                  </div>
+                  <div
+                    class="item"
+                    [routerLink]="[{ outlets: { my: ['membership'] } }]"
+                    [routerLinkActive]="['active']"
+                  >
+                    <i class="fa fa-users"></i>
+                    <div>Membership</div>
+                    <div class="indicator"></div>
+                  </div>
+                  <div  class="item"
+                  [routerLink]="[{ outlets: { my: ['car'] } }]"
+                  [routerLinkActive]="['active']">
+                    <i class="fa fa-car"></i>
+                    <div>Car Information</div>
+                    <div class="indicator"></div>
+                  </div>
+                </div>
+
+            <!-- <div class="btn-group-vertical" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-outline-warning btn-lg" (click)="showContact()">Contact Information</button>
                   <button type="button" class="btn btn-outline-warning btn-lg" (click)="showLoc()">Location</button>
                   <button type="button" class="btn btn-outline-warning btn-lg" (click)="showMembership()">Membership</button>
                   <button type="button" class="btn btn-outline-warning btn-lg" (click)="showCarInfo()">Car Information</button>
-                </div>
+                </div> -->
       </div>
       <div class="col-9 p-0">
-    <div *ngIf='showCont'>
-        <app-profile-contact></app-profile-contact>
-    </div>
-    <div *ngIf='showCar'>
-          <app-profile-car></app-profile-car>
-    </div>
-    <div *ngIf='showMemberInfo'>
-          <app-profile-membership></app-profile-membership>
-    </div>
-    <div *ngIf='showLocation'>
-          <app-profile-location></app-profile-location>
-      </div>
+          <router-outlet name="my"></router-outlet>
       </div>
 </div>
 

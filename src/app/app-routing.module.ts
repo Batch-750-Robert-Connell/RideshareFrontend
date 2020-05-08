@@ -32,7 +32,6 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'new/car', component: CarRegisterComponent},
   {path: 'car', component: MyCarComponent},
-  {path: 'profile', component: ProfileComponent},
   {path: 'preference', component: PreferenceComponent},
   {path: 'signup', component: SignupModalComponent},
   {path: 'landingPage', component: LandingPageComponent},
@@ -44,6 +43,31 @@ const routes: Routes = [
 {path: 'driver', component: DriverContactModalComponent},
 {path: 'navbar', component: NavbarComponent},
 {path: '', component: HomePageComponent},
+{path: 'profile', component: ProfileComponent,
+children: [
+  {
+    path: 'contact',
+    component: ProfileContactComponent,
+    outlet: 'my',
+  },
+  {
+    path: 'location',
+    component: ProfileLocationComponent,
+    outlet: 'my',
+  },
+  {
+    path: 'membership',
+    component: ProfileMembershipComponent,
+    outlet: 'my',
+  },
+  {
+    path: 'car',
+    component: ProfileCarComponent,
+    outlet: 'my',
+  },
+],
+},
+
 {path: '**', pathMatch: 'full', redirectTo: ''}];
 
 

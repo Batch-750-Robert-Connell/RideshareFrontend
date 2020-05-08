@@ -1,7 +1,7 @@
 
-<form id="container" class="container mainContainer" [formGroup]="profilForm" (submit)="updatesContactInfo()">
+<form id="container" *ngIf="user" class="container mainContainer" [formGroup]="profilForm" (submit)="updatesContactInfo()">
     
-   <!-- <i class="fa fa-user" style="font-family:'FontAwesome';"></i>  -->
+    <i class="fa fa-user" style="font-family:'FontAwesome';"></i> 
        
         <h4>Contact Information:</h4>
 

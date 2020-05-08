@@ -30,7 +30,7 @@
     "@types/bootstrap": "^4.3.1",
     "@types/googlemaps": "^3.39.2",
     "@types/jest": "^24.9.1",
-    "@types/jquery": "^3.3.31",
+    "@types/jquery": "^3.3.38",
     "@types/mocha": "^5.2.7",
     "bootstrap": "^4.4.1",
     "cleave.js": "^1.5.10",
