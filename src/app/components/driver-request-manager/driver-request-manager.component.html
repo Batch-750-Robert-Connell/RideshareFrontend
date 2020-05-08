@@ -1,0 +1,23 @@
+<table class="table table-striped" aria-describedby="table of drivers">
+
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Distance</th>
+      <th scope="col">Time</th>
+      <th scope="col">Approve</th>
+      <th scope="col">Deny</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Bob Barker</td>
+      <td>5 miles</td>
+      <td></td>
+      <td><button (click)="approveRequest()" class="btn btn-light btn-sm"><i class="fa fa-check-square"></i></button>
+      </td>
+      <td><button (click)="denyRequest()" class="btn btn-light btn-sm"><i class="fa fa-window-close"></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
