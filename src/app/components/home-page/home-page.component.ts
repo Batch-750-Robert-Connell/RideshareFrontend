@@ -96,7 +96,8 @@ export class HomePageComponent implements OnInit {
     console.log(this.registerForm.value);
     this.userService.addUser(this.registerForm.value).subscribe((resp)=>{
       console.log(resp);
-    })
+      this.successRegister();
+    });
   }
 
   login() {
@@ -130,9 +131,10 @@ export class HomePageComponent implements OnInit {
   }
   successRegister(){
     this.isWelcome = false;
-    this.isLoginSuccess = true;
-    this.isRegisterSuccess = false;
+    this.isLoginSuccess = false;
+    this.isRegisterSuccess = true;
     this.isLoginFailure = false;
+    this.isLogin = true;
   }
 
 
@@ -150,11 +152,5 @@ export class HomePageComponent implements OnInit {
     }
     console.log(this.isLogin);
   }
-
-
-
-
-
-
 
 }
