@@ -55,9 +55,9 @@ export class DriverListComponent implements OnInit {
         this.mapElement.nativeElement,
         this.mapProperties
       );
-      //get all routes
+      // get all routes
       this.displayDriversList(this.location, this.drivers);
-      //show drivers on map
+      // show drivers on map
       this.showDriversOnMap(this.location, this.drivers);
     });
   }
@@ -68,8 +68,8 @@ export class DriverListComponent implements OnInit {
 
   showDriversOnMap(origin, drivers) {
     drivers.forEach((element) => {
-      var directionsService = new google.maps.DirectionsService();
-      var directionsRenderer = new google.maps.DirectionsRenderer({
+      const directionsService = new google.maps.DirectionsService();
+      const directionsRenderer = new google.maps.DirectionsRenderer({
         draggable: true,
         map: this.map,
       });
@@ -82,9 +82,12 @@ export class DriverListComponent implements OnInit {
     });
   }
 
+  /**
+   * User requests for a desired driver from the driver's List table
+   */
   submitRequest(driverId: string, driver: string) {
-    let parseDriverId = parseInt(driverId);
-    let userId = parseInt(sessionStorage.getItem('userid'));
+    const parseDriverId = parseInt(driverId);
+    const userId = parseInt(sessionStorage.getItem('userid'));
     this.userService.sendEmail(userId, parseDriverId).then((data) => {
       this.snackBar.open('Request has been sent to ' + driver, '', {
         duration: 2000,
@@ -100,12 +103,12 @@ export class DriverListComponent implements OnInit {
   displayRoute(origin, destination, service, display) {
     service.route(
       {
-        origin: origin,
-        destination: destination,
+        origin,
+        destination,
         travelMode: 'DRIVING',
-        //avoidTolls: true
+        // avoidTolls: true
       },
-      function (response, status) {
+      (response, status) => {
         if (status === 'OK') {
           display.setDirections(response);
         } else {
@@ -116,16 +119,15 @@ export class DriverListComponent implements OnInit {
   }
 
   displayDriversList(origin, drivers) {
-    let origins = [];
-    //set origin
+    const origins = [];
+    // set origin
     origins.push(origin);
 
-    var outputDiv = document.getElementById('output');
     drivers.forEach((element) => {
-      var service = new google.maps.DistanceMatrixService();
+      const service = new google.maps.DistanceMatrixService();
       service.getDistanceMatrix(
         {
-          origins: origins,
+          origins,
           destinations: [element.origin],
           travelMode: google.maps.TravelMode.DRIVING,
           unitSystem: google.maps.UnitSystem.IMPERIAL,
@@ -138,11 +140,11 @@ export class DriverListComponent implements OnInit {
           } else {
             var originList = response.originAddresses;
             var destinationList = response.destinationAddresses;
-            var results = response.rows[0].elements;
+            let results = response.rows[0].elements;
 
-            var name = element.name;
+            const name = element.name;
 
-            let myobj = {
+            const myobj = {
               Id: element.id,
               Name: name,
               Distance: results[0].distance.text,
