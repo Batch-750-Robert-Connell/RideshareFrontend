@@ -11,6 +11,9 @@ declare var Cleave;
   templateUrl: './profile-contact.component.html',
   styleUrls: ['./profile-contact.component.scss']
 })
+/**
+ * ProfileContactComponent works with the contact information of each user.
+ */
 export class ProfileContactComponent implements OnInit {
   profilForm: FormGroup;
   user : User;
@@ -18,13 +21,18 @@ export class ProfileContactComponent implements OnInit {
   constructor(private router: Router, private userService: UserService,private formBuilder: FormBuilder,private snackBar: MatSnackBar) {
     this.userService.getUserById2(sessionStorage.getItem("userid")).subscribe((response)=>{
       this.user = response;
+      /**
+       * profilForm is what the user uses to enter thier information while updating their profile.
+       * It uses validation to make sure all fields are filled by the user.
+       */
+
       this.profilForm = this.formBuilder.group({
         firstName: [this.user.firstName, Validators.required],
         lastName: [this.user.lastName, Validators.required],
         email: [this.user.email, Validators.email],
         phone: [this.user.phoneNumber, Validators.pattern(/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/)]
       });
-      
+
     });
 
 
@@ -34,6 +42,7 @@ export class ProfileContactComponent implements OnInit {
 
   ngOnInit(){
     setTimeout(() => {
+      //phone format when user enters their phone number.
       new Cleave('#phone', {
         phone: true,
         phoneRegionCode: 'us',
@@ -41,7 +50,10 @@ export class ProfileContactComponent implements OnInit {
     });
     }, 1000);
   }
-
+  /**
+   * updatesContactInfo is used to update the information of each contact. It uses
+   * validation to make sure that all the fields are required.
+   */
   updatesContactInfo(){
     console.log("ok");
     console.log(this.profilForm);
