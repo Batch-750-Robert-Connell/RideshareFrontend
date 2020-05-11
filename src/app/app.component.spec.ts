@@ -2,7 +2,6 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { APP_BASE_HREF } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 describe('AppComponent', () => {
@@ -30,5 +29,5 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('rideshare-frontend');
   });
 
- 
+
 });

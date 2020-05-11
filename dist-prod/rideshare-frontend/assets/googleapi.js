@@ -33,16 +33,16 @@ function initMap() {
         deleteMarkers(markersArray);
         var showGeocodedAddressOnMap = function(asDestination) {
           var icon = asDestination ? destinationIcon : originIcon;
-          return function(results, status) {
-            if (status === 'OK') {
-              map.fitBounds(bounds.extend(results[0].geometry.location));
+          return function(results2, status2) {
+            if (status2 === 'OK') {
+              map.fitBounds(bounds.extend(results2[0].geometry.location));
               markersArray.push(new google.maps.Marker({
                 map: map,
-                position: results[0].geometry.location,
+                position: results2[0].geometry.location,
                 icon: icon
               }));
             } else {
-              alert('Geocode was not successful due to: ' + status);
+              alert('Geocode was not successful due to: ' + status2);
             }
           };
         };
@@ -65,5 +65,5 @@ function initMap() {
     for (var i = 0; i < markersArray.length; i++) {
       markersArray[i].setMap(null);
     }
-    markersArray = [];
+   // markersArray = [];
   }
