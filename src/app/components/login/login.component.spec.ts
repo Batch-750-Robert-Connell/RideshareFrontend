@@ -38,7 +38,7 @@ describe('LoginComponent', () => {
         RouterTestingModule,
       ],
       schemas: [NO_ERRORS_SCHEMA],
-      //imports: [HttpClientModule, AppRoutingModule, FormsModule],
+      // imports: [HttpClientModule, AppRoutingModule, FormsModule],
       providers: [{ provide: APP_BASE_HREF, useValue: '/my/app' }],
     }).compileComponents();
   }));
