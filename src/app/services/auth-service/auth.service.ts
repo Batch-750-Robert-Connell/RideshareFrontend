@@ -14,7 +14,7 @@ export class AuthService {
    */
 
   @Output() fireIsLoggedIn: EventEmitter<any> = new EventEmitter<any>();
-  loggedIn: boolean = false;
+  loggedIn = false;
 
   /**
    * This is the constructor
@@ -67,7 +67,7 @@ export class AuthService {
     return this.fireIsLoggedIn;
   }
 
-  public authMe(username: String, password: String) {
+  public authMe(username: string, password: string) {
     return this.http
       .get(`${environment.loginUri}?userName=${username}&passWord=${password}`)
       .toPromise();
