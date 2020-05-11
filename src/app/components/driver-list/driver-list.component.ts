@@ -43,7 +43,7 @@ export class DriverListComponent implements OnInit {
     this.drivers = [];
     this.googleDrivers = [];
 
-    this.userService.getRidersForLocation1(this.location).subscribe((res) => {
+    this.userService.getRidersForLocation(this.location).subscribe((res) => {
       res.forEach((element) => {
         this.drivers.push({
           id: element.userId,

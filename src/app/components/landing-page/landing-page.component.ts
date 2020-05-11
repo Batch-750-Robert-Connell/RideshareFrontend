@@ -72,7 +72,7 @@ export class LandingPageComponent implements OnInit {
       this.mapProperties
     );
     this.userService
-      .getRidersForLocation1(this.location_s)
+      .getRidersForLocation(this.location_s)
       .subscribe((response) => {
         response.forEach((element) => {
           var directionsService = new google.maps.DirectionsService();

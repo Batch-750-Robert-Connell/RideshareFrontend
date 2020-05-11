@@ -11,10 +11,9 @@ import { AuthService } from 'src/app/services/auth-service/auth.service';
 @Component({
   selector: 'app-preference',
   templateUrl: './preference.component.html',
-  styleUrls: ['./preference.component.css']
+  styleUrls: ['./preference.component.css'],
 })
 export class PreferenceComponent implements OnInit {
-
   /**
    * Once the component is initialzed, an user object is created.
    *
@@ -22,8 +21,8 @@ export class PreferenceComponent implements OnInit {
 
   user: User = new User();
 
-  truthy: string = 'btn btn-success';
-  falsy: string = 'btn btn-danger';
+  truthy = 'btn btn-success';
+  falsy = 'btn btn-danger';
 
   /**
    * This is the constructor
@@ -32,10 +31,14 @@ export class PreferenceComponent implements OnInit {
    * @param authService An auth service is created
    */
 
-  constructor(private router: Router, private userService: UserService, private authService: AuthService) { }
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
-    this.user.userId = this.authService.user.userId;;
+    this.user.userId = this.authService.user.userId;
     if (!this.user.userId) {
       this.router.navigate(['']);
     } else {
@@ -49,43 +52,55 @@ export class PreferenceComponent implements OnInit {
    */
 
   getPreference() {
-    this.userService.getUserById(this.user.userId).then(response => {
+    this.userService.getUserById(this.user.userId).then((response) => {
       if (response) {
         this.user = response;
       } else {
         this.authService.user = {};
         this.router.navigate(['']);
       }
-    })
+    });
   }
 
- /**
+  /**
    * @function
    * this function changes the account from activate to inactive
    */
 
-
   toggleActive() {
     if (this.user.isActive) {
-      let text = prompt("Your Account Will Be Banned. Type 'Confirm' To Continued");
+      let text = prompt(
+        'Your Account Will Be Banned. Type \'Confirm\' To Continued'
+      );
       if (text === 'Confirm') {
         this.user.isActive = !this.user.isActive;
         this.user.isAcceptingRides = false;
-        this.userService.updatePreference('active', this.user.isActive, this.user.userId);
+        this.userService.updatePreference(
+          'active',
+          this.user.isActive,
+          this.user.userId
+        );
       }
     } else {
       this.user.isActive = !this.user.isActive;
-      this.userService.updatePreference('active', this.user.isActive, this.user.userId);
+      this.userService.updatePreference(
+        'active',
+        this.user.isActive,
+        this.user.userId
+      );
     }
-
   }
- /**
+  /**
    * @function
    * this function changes the driver account from accepting rides to not accepting rides.
    */
 
   toggleAcceptRider() {
     this.user.isAcceptingRides = !this.user.isAcceptingRides;
-    this.userService.updatePreference('acceptingRides', this.user.isAcceptingRides, this.user.userId);
+    this.userService.updatePreference(
+      'acceptingRides',
+      this.user.isAcceptingRides,
+      this.user.userId
+    );
   }
 }
