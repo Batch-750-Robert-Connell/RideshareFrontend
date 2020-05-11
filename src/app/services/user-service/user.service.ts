@@ -28,15 +28,6 @@ export class UserService {
   user: User = new User();
 
   /**
-   * body to send update data
-   */
-  private body: string;
-  private httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-    observe: 'response' as 'body',
-  };
-
-  /**
    * Constructor
    * @param http An HTTP client object
    * @param router A router
@@ -109,6 +100,7 @@ export class UserService {
   /**
    * This function returns the fireIsLoggedIn variable
    */
+
   getEmitter() {
     return this.fireIsLoggedIn;
   }
@@ -118,12 +110,14 @@ export class UserService {
    * @param isDriver
    * @param userId
    */
+
   updateIsDriver(isDriver, userId) {
     this.getUserById(userId)
       .then((response) => {
         this.user = response;
         this.user.isDriver = isDriver;
         this.user.isAcceptingRides = this.user.isActive && isDriver;
+
         this.http.put(this.url + userId, this.user).subscribe(
           (response) => {
             this.authService.user = response;
@@ -169,14 +163,16 @@ export class UserService {
    * A PUT method that updates user's information
    * @param user
    */
-  updateUserInfo(user: User) {
-    return this.http.put(this.url, user).toPromise();
-  }
 
+  updateUserInfo(user: User) {
+    //console.log(user);
+    return this.http.put(this.url + user.userId, user).toPromise();
+  }
   /**
    * A GET method that retrieves a driver by Id
    * @param id
    */
+
   getDriverById(id: number): Observable<any> {
     return this.http.get(this.url + id);
   }
@@ -185,15 +181,12 @@ export class UserService {
    * A PUT method that changes the isAcceptingRide variable
    * @param data
    */
+
   changeDriverIsAccepting(data) {
     let id = data.userId;
     return this.http.put(this.url + id, data).toPromise();
   }
 
-  /**
-   * Gets rider's location
-   * @param location
-   */
   getRidersForLocation(location: string): Observable<any> {
     return this.http.get(this.url + '?is-driver=false&location=' + location);
   }
@@ -205,6 +198,16 @@ export class UserService {
   }
 
   /**
+   * body to send update data
+   */
+  private body: string;
+
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    observe: 'response' as 'body',
+  };
+
+  /**
    * A function that bans users.
    */
   banUser(user: User) {
@@ -214,9 +217,10 @@ export class UserService {
       .subscribe();
   }
 
-  /**
-   * Rider email request-notification to his/her desired driver
-   */
+  getRidersForLocation1(location: string): Observable<any> {
+    return this.http.get(this.url + 'driver/' + location);
+  }
+
   sendEmail(userId: number, driverId: number): Promise<any> {
     return this.http
       .get(this.url + 'email/' + driverId + '/' + userId, {
