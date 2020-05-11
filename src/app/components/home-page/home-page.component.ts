@@ -84,6 +84,7 @@ export class HomePageComponent implements OnInit {
 
 
   ngOnInit() {
+    sessionStorage.getItem("userid") == null ? "": this.router.navigateByUrl('/');
     $('#slides').carousel({
       interval: 3000
     });

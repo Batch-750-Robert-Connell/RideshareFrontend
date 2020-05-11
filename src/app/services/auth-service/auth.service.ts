@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
   	providedIn: 'root'
 })
 export class AuthService {
+	isAuthenticated:boolean;
 	/**
 	 * This is the Authorization Service
 	 */
@@ -75,4 +76,12 @@ export class AuthService {
 		return this.http.get(`${environment.loginUri}?userName=${username}&passWord=${password}`)
 		 .toPromise();
 	   }
+
+
+	   public isAuthenticatedFunc(): boolean {
+		JSON.parse(sessionStorage.getItem('userid')) == null
+		  ? (this.isAuthenticated = false)
+		  : (this.isAuthenticated = true);
+		return this.isAuthenticated;
+	  }
 }
