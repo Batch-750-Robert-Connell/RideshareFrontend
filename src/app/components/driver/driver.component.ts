@@ -52,7 +52,7 @@ export class DriverComponent implements OnInit {
    * @param userdriver
    */
   changeAcceptingRides(userdriver) {
-    if (userdriver.acceptingRides == true) {
+    if (userdriver.acceptingRides === true) {
       userdriver.acceptingRides = false;
       this.userService.updateUserInfo(this.userDriver);
     } else {
