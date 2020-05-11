@@ -17,7 +17,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
  *
  */
 export class DriverListComponent implements OnInit {
-  location: string = 'Morgantown, WV';
+  location = 'Morgantown, WV';
   mapProperties: {};
   availableCars: Array<any> = [];
   drivers: Array<any> = [];
@@ -43,7 +43,7 @@ export class DriverListComponent implements OnInit {
     this.drivers = [];
     this.googleDrivers = [];
 
-    this.userService.getRidersForLocation(this.location).subscribe((res) => {
+    this.userService.getRidersForLocation1(this.location).subscribe((res) => {
       res.forEach((element) => {
         this.drivers.push({
           id: element.userId,
