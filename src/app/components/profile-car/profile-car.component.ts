@@ -21,9 +21,10 @@ export class ProfileCarComponent implements OnInit {
   constructor(private carService: CarService,private formBuilder: FormBuilder,private snackBar: MatSnackBar) {
     this.carService.getCarByUserId2(sessionStorage.getItem("userid")).subscribe((response)=>{
       console.log(response);
-      this.car = response;
-
-      
+      /**
+       * CarForm is used to change the information abou the car that the user is driving. It
+       * uses validation to ake sure that all fields are filled.
+       */
       this.CarForm = this.formBuilder.group({
         make: [this.car.make, Validators.required],
         model: [this.car.model, Validators.required],
@@ -37,7 +38,9 @@ export class ProfileCarComponent implements OnInit {
 
 
   }
-
+  /**
+   * updates can information such as number of seats, make, and model.
+   */
   updatesCarInfo(){
     //console.log(this.currentUser);
     console.log(this.car);

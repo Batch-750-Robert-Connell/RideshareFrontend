@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './profile-location.component.html',
   styleUrls: ['./profile-location.component.scss']
 })
+
 export class ProfileLocationComponent implements OnInit {
   locationForm:FormGroup
   user:User;
@@ -20,7 +21,10 @@ export class ProfileLocationComponent implements OnInit {
    this.userService.getUserById2(sessionStorage.getItem("userid")).subscribe((response)=>{
      console.log(response);
       this.user = response;
-
+      /**
+       * locationForm is used by the user to enter their location inforation, It uses
+       * validation to ensure that all fields are filled when updating the info.
+       */
       this.locationForm = this.formBuilder.group({
         address: [this.user.hAddress, Validators.required],
         city: [this.user.wCity, Validators.required],
@@ -30,7 +34,9 @@ export class ProfileLocationComponent implements OnInit {
 
     });
   }
-
+  /**
+   * updates the location of the user.
+   */
   updatesContactInfo(){
 
     //console.log(this.currentUser);
@@ -51,6 +57,6 @@ export class ProfileLocationComponent implements OnInit {
       });
 
     }
-   
+
   }
 }

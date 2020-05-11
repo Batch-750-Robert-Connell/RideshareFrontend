@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 @Component({
@@ -5,6 +6,10 @@ import { Router } from '@angular/router';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
+/**
+ * This component works with router and contains profile-contact, profile-location,
+ * and profile-membership.
+ */
 export class ProfileComponent implements OnInit {
   constructor( private router: Router) { }
   showCont :boolean = false;
@@ -18,6 +23,7 @@ export class ProfileComponent implements OnInit {
   membership :string = '';
 
   ngOnInit() {
+    this.router.navigateByUrl('/profile/(my:contact)');
     this.showCont = true;
   /**
    * A GET method that retrieves user's information
@@ -28,7 +34,7 @@ export class ProfileComponent implements OnInit {
     this.showCar = false;
     this.showLocation = false;
     this.showMemberInfo = false;
-    
+
     this.contact = 'profileBtn';
     this.car = '';
     this.location = '';
@@ -41,7 +47,7 @@ export class ProfileComponent implements OnInit {
     this.showCar = false;
     this.showLocation = true;
     this.showMemberInfo = false;
-    
+
     this.contact = '';
     this.car = '';
     this.location = 'profileBtn';
@@ -53,7 +59,7 @@ export class ProfileComponent implements OnInit {
     this.showCar = false;
     this.showLocation = false;
     this.showMemberInfo = true;
-    
+
     this.contact = '';
     this.car = '';
     this.location = '';
@@ -65,10 +71,10 @@ export class ProfileComponent implements OnInit {
     this.showCar = true;
     this.showLocation = false;
     this.showMemberInfo = false;
-    
+
     this.contact = '';
     this.car = 'profileBtn';
-    this.location = ''; 
+    this.location = '';
     this.membership = '';
 
   }
@@ -163,7 +169,7 @@ export class ProfileComponent implements OnInit {
 
 //   /**
 //    * A function that changes the batch location
-//    * @param event 
+//    * @param event
 //    */
 
 //   changeLocation(event) {
@@ -175,7 +181,7 @@ export class ProfileComponent implements OnInit {
 //   /**
 //    * A function that update the profile
 //    */
-  
+
 //   updateProfile() {
 //     if (this.validationService.validateUserName(this.newUser.userName) && this.validationService.validateName(this.newUser.firstName) && this.validationService.validateName(this.newUser.lastName) && this.validationService.validateEmail(this.newUser.email) && this.validationService.validatePhone(this.newUser.phoneNumber)) {
 //       this.editable = '';
@@ -192,7 +198,7 @@ export class ProfileComponent implements OnInit {
 
 //         this.userService.updateUserInfo(this.newUser).then(response => {
 //           this.authService.user = response;
-//           this.log.info("updated user info: " + '\n' + JSON.stringify(response));          
+//           this.log.info("updated user info: " + '\n' + JSON.stringify(response));
 //           this.getUserInfo();
 //           this.updateSuccess = true;
 //           setTimeout(() => this.updateSuccess = false, 5000);
@@ -207,7 +213,7 @@ export class ProfileComponent implements OnInit {
 
 //   /**
 //    * A method that allow edits on the attribute
-//    * @param attribute 
+//    * @param attribute
 //    */
 
 //   edit(attribute) {

@@ -33,11 +33,11 @@ export class User {
     /**
      * Set active as a boolean
      */
-    active: boolean;
+    isActive: boolean;
     /**
      * Set driver as a boolean
      */
-    driver: boolean;
+    isDriver: boolean;
     /**
      * Set accepting ride as a boolean
      */

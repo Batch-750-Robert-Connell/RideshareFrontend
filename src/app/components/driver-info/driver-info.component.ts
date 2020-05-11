@@ -61,7 +61,7 @@ export class DriverInfoComponent implements OnInit {
     } else {
       this.carService.getAllCars().subscribe(
         data => {
-          this.allAvailableCars = data.filter(car => car.user.isAcceptingRides && car.user.active);
+          this.allAvailableCars = data.filter(car => car.user.isAcceptingRides && car.user.isActive);
           this.orderByLocation();
         }
       )
