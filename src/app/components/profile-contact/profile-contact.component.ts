@@ -3,7 +3,6 @@ import { UserService } from 'src/app/services/user-service/user.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { ValidationService } from 'src/app/services/validation-service/validation.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 declare var Cleave;
 @Component({

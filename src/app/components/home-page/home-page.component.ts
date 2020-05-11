@@ -6,7 +6,7 @@ import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user-service/user.service';
-import { ValidationService } from 'src/app/services/validation-service/validation.service';
+// import { ValidationService } from 'src/app/services/validation-service/validation.service';
 declare var $;
 declare var Cleave;
 
