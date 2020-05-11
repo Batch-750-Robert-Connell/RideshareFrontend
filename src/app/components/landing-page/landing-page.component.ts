@@ -11,7 +11,7 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./landing-page.component.css'],
 })
 export class LandingPageComponent implements OnInit {
-  location_s: string = ''; //sample: Morgantown, WV
+  location_s = ''; // sample: Morgantown, WV
 
   @ViewChild('map', { static: true }) mapElement: any;
   map: google.maps.Map;
@@ -19,11 +19,11 @@ export class LandingPageComponent implements OnInit {
   mapProperties: {};
 
   constructor(private http: HttpClient, private userService: UserService) {
-    //load google map api
+    // load google map api
   }
 
   ngOnInit(): void {
-    //load google map  api
+    // load google map  api
 
     // this.getGoogleApi();
 
@@ -65,14 +65,14 @@ export class LandingPageComponent implements OnInit {
   //  }
 
   searchDriver() {
-    //call service search algorithm ()
-    //console.log(this.location_s);
+    // call service search algorithm ()
+    // console.log(this.location_s);
     this.map = new google.maps.Map(
       this.mapElement.nativeElement,
       this.mapProperties
     );
     this.userService
-      .getRidersForLocation(this.location_s)
+      .getRidersForLocation1(this.location_s)
       .subscribe((response) => {
         response.forEach((element) => {
           var directionsService = new google.maps.DirectionsService();
@@ -96,9 +96,9 @@ export class LandingPageComponent implements OnInit {
       {
         origin: origin,
         destination: destination,
-        //waypoints: [{location: 'Adelaide, SA'}, {location: 'Broken Hill, NSW'}],
+        // waypoints: [{location: 'Adelaide, SA'}, {location: 'Broken Hill, NSW'}],
         travelMode: 'DRIVING',
-        //avoidTolls: true
+        // avoidTolls: true
       },
       function (response, status) {
         if (status === 'OK') {
