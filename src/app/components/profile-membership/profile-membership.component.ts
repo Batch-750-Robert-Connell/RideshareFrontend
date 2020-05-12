@@ -8,61 +8,73 @@ import { Batch } from 'src/app/models/batch';
 @Component({
   selector: 'app-profile-membership',
   templateUrl: './profile-membership.component.html',
-  styleUrls: ['./profile-membership.component.scss']
+  styleUrls: ['./profile-membership.component.scss'],
 })
 export class ProfileMembershipComponent implements OnInit {
-  user : User;
-  batches:Batch[];
-  membershipForm:FormGroup
+  user: User;
+  batches: Batch[];
+  membershipForm: FormGroup;
 
-  constructor(private userService: UserService,private formBuilder: FormBuilder,private snackBar:MatSnackBar,private batchService:BatchService) {
+  constructor(
+    private userService: UserService,
+    private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar,
+    private batchService: BatchService
+  ) {
     this.getAllBatches();
   }
   ngOnInit() {
-
-    this.userService.getUserById2(sessionStorage.getItem("userid")).subscribe((response)=>{
-      console.log(response);
-      this.user = response;
-      /**
-       * membershipForm is used to update the information of the user. It uses validation
-       * to ensure that all fields are filled.
-       */
-      this.membershipForm = this.formBuilder.group({
-        driver: [this.user.isDriver, Validators.required],
-        active: [this.user.isActive, Validators.required],
-        batch: [this.user.batch, Validators.required]
+    this.userService
+      .getUserById2(sessionStorage.getItem('userid'))
+      .subscribe((response) => {
+        this.user = response;
+        /**
+         * membershipForm is used to update the information of the user. It uses validation
+         * to ensure that all fields are filled.
+         */
+        this.membershipForm = this.formBuilder.group({
+          driver: [this.user.driver, Validators.required],
+          active: [this.user.active, Validators.required],
+          batch: [this.user.batch, Validators.required],
+        });
       });
-    });
   }
   /**
    * updatesMembershipInfo is used when a user updates their information such as batch,
    * state (active or disabled) and status (driver or rider).
    */
-  updatesMembershipInfo(){
-    if(this.membershipForm.valid){
-      this.userService.updateUserInfo(this.user);
-      this.snackBar.open("success", "", {
-        duration: 2000,
-        verticalPosition: 'top',
-        panelClass: ['success']
-      });
+  updatesMembershipInfo() {
+    if (this.membershipForm.valid) {
+      this.userService
+        .updateUserInfo(this.user)
+        .then((data) => {
+          this.snackBar.open('success', '', {
+            duration: 2000,
+            verticalPosition: 'top',
+            panelClass: ['success'],
+          });
+        })
+        .catch((e) => {
+          this.snackBar.open('failure', '', {
+            duration: 2000,
+            verticalPosition: 'top',
+            panelClass: ['failure'],
+          });
+        });
     } else {
-      this.snackBar.open("failure", "", {
+      this.snackBar.open('failure', '', {
         duration: 2000,
         verticalPosition: 'top',
-        panelClass: ['failure']
+        panelClass: ['failure'],
       });
     }
   }
   /**
    * get all batches for user to choose from in the dropdown menu.
    */
-  getAllBatches(){
-    this.batchService.getAllBatchesByLocation1().subscribe(
-      res => {
-         this.batches = res;
-         console.log(this.batches);
-          },
-      );
+  getAllBatches() {
+    this.batchService.getAllBatchesByLocation1().subscribe((res) => {
+      this.batches = res;
+    });
   }
 }

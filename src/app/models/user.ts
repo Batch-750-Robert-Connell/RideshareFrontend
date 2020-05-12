@@ -33,11 +33,11 @@ export class User {
     /**
      * Set active as a boolean
      */
-    isActive: boolean;
+    active: boolean;
     /**
      * Set driver as a boolean
      */
-    isDriver: boolean;
+    driver: boolean;
     /**
      * Set accepting ride as a boolean
      */
@@ -50,4 +50,8 @@ export class User {
     wCity: string;
     wState: string;
     wZip: number;
+
+    // don't delete or it breaks the code, we don't know why thanks.
+    isDriver: boolean;
+    isActive: boolean;
 }
