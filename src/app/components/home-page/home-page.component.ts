@@ -13,7 +13,7 @@ declare var particlesJS;
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss']
+  styleUrls: ['./home-page.component.scss'],
 })
 
 /**
@@ -23,7 +23,7 @@ declare var particlesJS;
  * register as a driver or a rider.
  */
 export class HomePageComponent implements OnInit {
-  isAnime:boolean = true;
+  isAnime: boolean = true;
   isLogin = true;
   batches: Batch[];
   registerForm: FormGroup;
@@ -41,7 +41,7 @@ export class HomePageComponent implements OnInit {
     password: '',
     batch: {
       batchNumber: 0,
-      batchLocation: ''
+      batchLocation: '',
     },
     firstName: '',
     lastName: '',
@@ -51,7 +51,7 @@ export class HomePageComponent implements OnInit {
     isDriver: false,
     active: false,
     driver: false,
-    isAcceptingRides: false ,
+    isAcceptingRides: false,
     hState: '',
     hAddress: '',
     hCity: '',
@@ -62,57 +62,65 @@ export class HomePageComponent implements OnInit {
     wZip: null,
   };
 
-  constructor(private batchService: BatchService, private formBuilder: FormBuilder,
-              private authService: AuthService, private router: Router, private userService: UserService) {
-                setTimeout(() => {
-                  this.isAnime = false;
-                }, 3500);
-     // gets a list of all the batch by their location.
-    this.batchService.getAllBatchesByLocation1().subscribe(
-      res => {
-         this.batches = res;
-         console.log(this.batches);
-          },
-      );
-      /**
-       * registration form which requires some of the fields to be required using
-       * form validation
-       */
+  constructor(
+    private batchService: BatchService,
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private userService: UserService
+  ) {
+    setTimeout(() => {
+      this.isAnime = false;
+    }, 3500);
+    // gets a list of all the batch by their location.
+    this.batchService.getAllBatchesByLocation1().subscribe((res) => {
+      this.batches = res;
+    });
+    /**
+     * registration form which requires some of the fields to be required using
+     * form validation
+     */
     this.registerForm = this.formBuilder.group({
-        userId: [0],
-        batch: [this.user.batch],
-        userName: [this.user.userName, Validators.required],
-        password: [this.user.password, Validators.required],
-        firstName: [this.user.firstName, Validators.required],
-        lastName: [this.user.lastName, Validators.required],
-        email: [this.user.email, Validators.email],
-        phoneNumber: [this.user.phoneNumber, Validators.pattern(/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/)],
-        driver: [true, Validators.required],
-        hState: [this.user.hState, Validators.required],
-        hAddress: [this.user.hAddress, Validators.required],
-        hCity: [this.user.hCity, Validators.required],
-        hZip: [this.user.hZip, Validators.required],
-      });
-      /**
-       * login form which requires the username and password.
-       */
+      userId: [0],
+      batch: [this.user.batch],
+      userName: [this.user.userName, Validators.required],
+      password: [this.user.password, Validators.required],
+      firstName: [this.user.firstName, Validators.required],
+      lastName: [this.user.lastName, Validators.required],
+      email: [this.user.email, Validators.email],
+      phoneNumber: [
+        this.user.phoneNumber,
+        Validators.pattern(/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/),
+      ],
+      driver: [true, Validators.required],
+      hState: [this.user.hState, Validators.required],
+      hAddress: [this.user.hAddress, Validators.required],
+      hCity: [this.user.hCity, Validators.required],
+      hZip: [this.user.hZip, Validators.required],
+    });
+    /**
+     * login form which requires the username and password.
+     */
     this.loginForm = this.formBuilder.group({
-        username: [this.username, Validators.required],
-        password: [this.password, Validators.required],
-      });
-
-
+      username: [this.username, Validators.required],
+      password: [this.password, Validators.required],
+    });
   }
 
   /**
    * slides animation in the login page.
    */
   ngOnInit() {
-    particlesJS.load('background', 'assets/particlesjs-config.json', function() {
-    });
-    sessionStorage.getItem("userid") == null ? "": this.router.navigateByUrl('/');
+    particlesJS.load(
+      'background',
+      'assets/particlesjs-config.json',
+      function () {}
+    );
+    sessionStorage.getItem('userid') == null
+      ? ''
+      : this.router.navigateByUrl('/');
     $('#slides').carousel({
-      interval: 3000
+      interval: 3000,
     });
   }
   /**
@@ -123,10 +131,8 @@ export class HomePageComponent implements OnInit {
     this.registerForm.value.wCity = this.registerForm.value.hCity;
     this.registerForm.value.wState = this.registerForm.value.hState;
     this.registerForm.value.wZip = this.registerForm.value.hZip;
-    console.log(this.registerForm.value);
     if (this.loginForm.valid) {
       this.userService.addUser(this.registerForm.value).subscribe((resp) => {
-        console.log(resp);
         this.successRegister();
       });
     }
@@ -139,18 +145,17 @@ export class HomePageComponent implements OnInit {
   login() {
     if (this.loginForm.valid) {
       this.authService.authMe(this.username, this.password).then((resp) => {
-      console.log(resp);
-      if (resp["userid"] != undefined) {
-        setTimeout(() => {
-          sessionStorage.setItem('userid', resp["userid"][0]);
-          this.router.navigate(['/landingPage']);
-        }, 2000);
-        this.successLogin();
-      } else {
-        this.failureLogin();
-      }
-    });
-  }
+        if (resp['userid'] != undefined) {
+          setTimeout(() => {
+            sessionStorage.setItem('userid', resp['userid'][0]);
+            this.router.navigate(['/landingPage']);
+          }, 2000);
+          this.successLogin();
+        } else {
+          this.failureLogin();
+        }
+      });
+    }
   }
   // when credentials are verifired, this fucntion is called and produces the success message.
   successLogin() {
@@ -183,16 +188,13 @@ export class HomePageComponent implements OnInit {
   toggle() {
     this.isLogin = !this.isLogin;
     if (!this.isLogin) {
-      console.log('ok');
       setTimeout(() => {
         new Cleave('#phone', {
           phone: true,
           phoneRegionCode: 'us',
-          delimiter: '-'
-      });
+          delimiter: '-',
+        });
       }, 1000);
     }
-    console.log(this.isLogin);
   }
-
 }
