@@ -25,6 +25,7 @@ export class UserService {
    */
   url: string = environment.userUri;
   user: User = new User();
+  emailUrl: string = environment.emailUri;
 
   /**
    * body to send update data
@@ -206,7 +207,6 @@ export class UserService {
     return this.http.get(this.url);
   }
 
-
   /**
    * A function that bans users.
    */
@@ -222,8 +222,13 @@ export class UserService {
   }
 
   sendEmail(userId: number, driverId: number): Promise<any> {
+    const headers = new HttpHeaders().set(
+      'Content-Type',
+      'text/plain; charset=utf-8'
+    );
     return this.http
-      .get(this.url + 'email/' + driverId + '/' + userId, {
+      .get(this.emailUrl + `?Driver_Id=${driverId}&User_Id=${userId}`, {
+        headers,
         responseType: 'text',
       })
       .toPromise();
