@@ -19,17 +19,25 @@ export class ProfileMembershipComponent implements OnInit {
     this.getAllBatches();
   }
   ngOnInit() {
-    
+
     this.userService.getUserById2(sessionStorage.getItem("userid")).subscribe((response)=>{
       console.log(response);
       this.user = response;
+      /**
+       * membershipForm is used to update the information of the user. It uses validation
+       * to ensure that all fields are filled.
+       */
       this.membershipForm = this.formBuilder.group({
-        driver: [this.user.driver, Validators.required],
-        active: [this.user.active, Validators.required],
+        driver: [this.user.isDriver, Validators.required],
+        active: [this.user.isActive, Validators.required],
         batch: [this.user.batch, Validators.required]
       });
     });
   }
+  /**
+   * updatesMembershipInfo is used when a user updates their information such as batch,
+   * state (active or disabled) and status (driver or rider).
+   */
   updatesMembershipInfo(){
     if(this.membershipForm.valid){
       this.userService.updateUserInfo(this.user);
@@ -46,7 +54,9 @@ export class ProfileMembershipComponent implements OnInit {
       });
     }
   }
-
+  /**
+   * get all batches for user to choose from in the dropdown menu.
+   */
   getAllBatches(){
     this.batchService.getAllBatchesByLocation1().subscribe(
       res => {

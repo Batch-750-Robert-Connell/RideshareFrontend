@@ -9,14 +9,14 @@ import { User } from 'src/app/models/user';
 @Component({
   selector: 'app-profile-car',
   templateUrl: './profile-car.component.html',
-  styleUrls: ['./profile-car.component.scss']
+  styleUrls: ['./profile-car.component.scss'],
 })
 export class ProfileCarComponent implements OnInit {
-  CarForm:FormGroup
+  CarForm: FormGroup;
 
   make: string;
-  model:string;
-  nrSeats:number;
+  model: string;
+  nrSeats: number;
   car: Car;
   success :string;
   isNew:boolean;
@@ -100,23 +100,23 @@ export class ProfileCarComponent implements OnInit {
 
   updatesCarInfo(){
     //console.log(this.currentUser);
+
     console.log(this.car);
     if (this.CarForm.valid) {
-    this.carService.updateCarInfo(this.car);
-    this.success = "Updated Successfully!";
-    this.snackBar.open("success", "", {
-      duration: 2000,
-      verticalPosition: 'top',
-      panelClass: ['success']
-    });
-    } else {
-      console.log("nope");
-      this.snackBar.open("success", "", {
+      this.carService.updateCarInfo(this.car);
+      this.success = 'Updated Successfully!';
+      this.snackBar.open('success', '', {
         duration: 2000,
         verticalPosition: 'top',
-        panelClass: ['success']
+        panelClass: ['success'],
+      });
+    } else {
+      console.log('nope');
+      this.snackBar.open('success', '', {
+        duration: 2000,
+        verticalPosition: 'top',
+        panelClass: ['success'],
       });
     }
   }
-
 }

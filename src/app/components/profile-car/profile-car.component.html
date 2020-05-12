@@ -3,13 +3,14 @@
         <!--<i class="fa fa-car" style="font-family:'FontAwesome';"></i>-->
         
     
+
         <h4>Car Information:</h4>
 
         <mat-form-field class="w-100 pl-5 pr-5 pt-0 pb-0">
             <mat-label>Make</mat-label>
             <input matInput formControlName="make" [(ngModel)]="car.make"   type="text" class="form-control" required >
           </mat-form-field>
-        
+
           <mat-form-field class="w-100 pl-5 pr-5 pt-0 pb-0">
             <mat-label>Model</mat-label>
             <input matInput formControlName="model" [(ngModel)]="car.model"   type="text" class="form-control" required >
@@ -36,11 +37,10 @@
               <mat-option [value]="5">5</mat-option>
             </mat-select>
           </mat-form-field>
-        
 
-      
+
+
         <button type="submit" mat-raised-button color="primary" >Save</button>
 </form>
-    
-        
-    
+
+

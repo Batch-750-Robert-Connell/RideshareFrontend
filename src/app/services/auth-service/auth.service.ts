@@ -5,72 +5,71 @@ import { Admin } from 'src/app/models/admin';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
-
 @Injectable({
-  	providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+
 	isAuthenticated:boolean;
 	/**
 	 * This is the Authorization Service
 	 */
 
 
-	@Output() fireIsLoggedIn: EventEmitter<any> = new EventEmitter<any>();
-	 loggedIn: boolean = false;
+  @Output() fireIsLoggedIn: EventEmitter<any> = new EventEmitter<any>();
+  loggedIn = false;
 
+  /**
+   * This is the constructor
+   * @param router Creates a router instance
+   */
+  constructor(private router: Router, private http: HttpClient) {}
 
-	/**
-	 * This is the constructor
-	 * @param router Creates a router instance
-	 */
-	constructor(private router: Router,private http:HttpClient) { }
+  /**
+   * An user object is created
+   */
+  public user: any = {};
+  public admin: Admin = new Admin();
 
-	/**
-	 * An user object is created
-	 */
-	public user: any = {};
-	public admin: Admin = new Admin();
+  /**
+   * This function logs the user into the application
+   * @param user
+   * @param chosenUserName
+   */
 
-	/**
-	 * This function logs the user into the application
-	 * @param user 
-	 * @param chosenUserName 
-	 */
+  login(user: User, chosenUserName: string) {
+    if (user.userName === chosenUserName) {
+      this.user = user;
+      if (this.user.isDriver) {
+        this.router.navigate(['/home/riders']);
+      } else {
+        this.router.navigate(['/home/drivers']);
+      }
 
-	login(user: User, chosenUserName: string) {
-		if (user.userName === chosenUserName) {
-			this.user = user;
-			if(this.user.driver){
-				this.router.navigate(['/home/riders']);
-			}
-			else{
-				this.router.navigate(['/home/drivers']);
-			}
-			
-			this.fireIsLoggedIn.emit(this.user);
-		} else {
-			return false;
-		}
-	}
+      this.fireIsLoggedIn.emit(this.user);
+    } else {
+      return false;
+    }
+  }
 
-	/**
-	 * This function returns an emitter.
-	 */
+  /**
+   * This function returns an emitter.
+   */
 
-	loginAsAdmin(admin: Admin, userName: string) {
-		if (admin.userName === userName) {
-			this.admin = admin;
-			this.router.navigate(['/admin']);
-			this.fireIsLoggedIn.emit(this.admin);
-		} else {
-			return false;
-		}
-	}
+  loginAsAdmin(admin: Admin, userName: string) {
+    if (admin.userName === userName) {
+      this.admin = admin;
+      this.router.navigate(['/admin']);
+      this.fireIsLoggedIn.emit(this.admin);
+    } else {
+      return false;
+    }
+  }
 
-	getEmitter() {
-		return this.fireIsLoggedIn;
-	}
+  getEmitter() {
+    return this.fireIsLoggedIn;
+  }
+
 
 	public authMe(username:String,password:String) {
 		return this.http.get(`${environment.loginUri}?userName=${username}&passWord=${password}`)
@@ -84,4 +83,5 @@ export class AuthService {
 		  : (this.isAuthenticated = true);
 		return this.isAuthenticated;
 	  }
+
 }

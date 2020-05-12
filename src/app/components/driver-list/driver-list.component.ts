@@ -17,7 +17,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
  *
  */
 export class DriverListComponent implements OnInit {
-  location: string = 'Morgantown, WV';
+  location = 'Morgantown, WV';
   mapProperties: {};
   availableCars: Array<any> = [];
   drivers: Array<any> = [];
@@ -64,240 +64,274 @@ export class DriverListComponent implements OnInit {
         ),
         styles: [
           {
-            "elementType": "geometry",
-            "stylers": [
+            elementType: 'geometry',
+            stylers: [
               {
-                "color": "#212121"
+                color: '#3e3e3e'
               }
             ]
           },
           {
-            "elementType": "labels.icon",
-            "stylers": [
+            elementType: 'labels.text.fill',
+            stylers: [
               {
-                "visibility": "off"
+                color: '#cecece'
+              },
+              {
+                weight: 0.5
               }
             ]
           },
           {
-            "elementType": "labels.text.fill",
-            "stylers": [
+            elementType: 'labels.text.stroke',
+            stylers: [
               {
-                "color": "#757575"
+                visibility: 'off'
               }
             ]
           },
           {
-            "elementType": "labels.text.stroke",
-            "stylers": [
+            featureType: 'administrative',
+            elementType: 'labels.text',
+            stylers: [
               {
-                "color": "#212121"
+                color: '#dbdbdb'
               }
             ]
           },
           {
-            "featureType": "administrative",
-            "elementType": "geometry",
-            "stylers": [
+            featureType: 'administrative.land_parcel',
+            stylers: [
               {
-                "color": "#757575"
+                color: '#757575'
               }
             ]
           },
           {
-            "featureType": "administrative.country",
-            "elementType": "labels.text.fill",
-            "stylers": [
+            featureType: 'administrative.land_parcel',
+            elementType: 'geometry.stroke',
+            stylers: [
               {
-                "color": "#9e9e9e"
+                color: '#dcd2be'
               }
             ]
           },
           {
-            "featureType": "administrative.land_parcel",
-            "stylers": [
+            featureType: 'landscape.natural',
+            elementType: 'geometry',
+            stylers: [
               {
-                "visibility": "off"
+                color: '#313131'
               }
             ]
           },
           {
-            "featureType": "administrative.locality",
-            "elementType": "labels.text.fill",
-            "stylers": [
+            featureType: 'poi',
+            elementType: 'geometry',
+            stylers: [
               {
-                "color": "#bdbdbd"
+                color: '#053203'
               }
             ]
           },
           {
-            "featureType": "poi",
-            "elementType": "labels.text.fill",
-            "stylers": [
+            featureType: 'poi',
+            elementType: 'labels.text.fill',
+            stylers: [
               {
-                "color": "#757575"
+                color: '#ffffff'
               }
             ]
           },
           {
-            "featureType": "poi.park",
-            "elementType": "geometry",
-            "stylers": [
+            featureType: 'poi.park',
+            elementType: 'geometry',
+            stylers: [
               {
-                "color": "#181818"
+                color: '#022600'
               }
             ]
           },
           {
-            "featureType": "poi.park",
-            "elementType": "labels.text.fill",
-            "stylers": [
+            featureType: 'poi.park',
+            elementType: 'labels.text.fill',
+            stylers: [
               {
-                "color": "#616161"
+                color: '#99be98'
               }
             ]
           },
           {
-            "featureType": "poi.park",
-            "elementType": "labels.text.stroke",
-            "stylers": [
+            featureType: 'road',
+            elementType: 'geometry.fill',
+            stylers: [
               {
-                "color": "#1b1b1b"
+                color: '#0092df'
               }
             ]
           },
           {
-            "featureType": "road",
-            "elementType": "geometry.fill",
-            "stylers": [
+            featureType: 'road',
+            elementType: 'labels.icon',
+            stylers: [
               {
-                "color": "#ff0000"
+                visibility: 'off'
               }
             ]
           },
           {
-            "featureType": "road",
-            "elementType": "labels.text.fill",
-            "stylers": [
+            featureType: 'road.arterial',
+            elementType: 'geometry',
+            stylers: [
               {
-                "color": "#8a8a8a"
+                color: '#fdfcf8'
               }
             ]
           },
           {
-            "featureType": "road.arterial",
-            "elementType": "geometry",
-            "stylers": [
+            featureType: 'road.arterial',
+            elementType: 'geometry.fill',
+            stylers: [
               {
-                "color": "#373737"
+                color: '#0bc8ff'
               }
             ]
           },
           {
-            "featureType": "road.arterial",
-            "elementType": "geometry.fill",
-            "stylers": [
+            featureType: 'road.highway',
+            elementType: 'geometry',
+            stylers: [
               {
-                "color": "#0b73ff"
+                color: '#00c4ce'
               }
             ]
           },
           {
-            "featureType": "road.highway",
-            "elementType": "geometry",
-            "stylers": [
+            featureType: 'road.highway',
+            elementType: 'geometry.fill',
+            stylers: [
               {
-                "color": "#3c3c3c"
+                color: '#00dadf'
               }
             ]
           },
           {
-            "featureType": "road.highway",
-            "elementType": "geometry.fill",
-            "stylers": [
+            featureType: 'road.highway',
+            elementType: 'labels.icon',
+            stylers: [
               {
-                "color": "#00ff13"
+                visibility: 'off'
               }
             ]
           },
           {
-            "featureType": "road.highway.controlled_access",
-            "elementType": "geometry",
-            "stylers": [
+            featureType: 'road.highway.controlled_access',
+            elementType: 'geometry',
+            stylers: [
               {
-                "color": "#4e4e4e"
+                color: '#00a4a8'
               }
             ]
           },
           {
-            "featureType": "road.highway.controlled_access",
-            "elementType": "geometry.fill",
-            "stylers": [
+            featureType: 'road.highway.controlled_access',
+            elementType: 'geometry.fill',
+            stylers: [
               {
-                "color": "#0bfff9"
+                color: '#0bfff9'
+              },
+              {
+                visibility: 'off'
               }
             ]
           },
           {
-            "featureType": "road.local",
-            "elementType": "geometry.fill",
-            "stylers": [
+            featureType: 'road.highway.controlled_access',
+            elementType: 'labels.icon',
+            stylers: [
               {
-                "color": "#ffff0b"
+                visibility: 'off'
               }
             ]
           },
           {
-            "featureType": "road.local",
-            "elementType": "labels.text.fill",
-            "stylers": [
+            featureType: 'road.local',
+            elementType: 'geometry.fill',
+            stylers: [
               {
-                "color": "#616161"
+                color: '#a6a6a6'
               }
             ]
           },
           {
-            "featureType": "transit",
-            "elementType": "geometry.fill",
-            "stylers": [
+            featureType: 'road.local',
+            elementType: 'labels.text.fill',
+            stylers: [
               {
-                "color": "#ff0b11"
+                color: '#c0c0c0'
               }
             ]
           },
           {
-            "featureType": "transit",
-            "elementType": "labels.text.fill",
-            "stylers": [
+            featureType: 'transit',
+            elementType: 'geometry.fill',
+            stylers: [
               {
-                "color": "#757575"
+                color: '#ff0b11'
               }
             ]
           },
           {
-            "featureType": "water",
-            "elementType": "geometry",
-            "stylers": [
+            featureType: 'transit.line',
+            elementType: 'geometry',
+            stylers: [
               {
-                "color": "#000000"
+                color: '#808080'
               }
             ]
           },
           {
-            "featureType": "water",
-            "elementType": "geometry.fill",
-            "stylers": [
+            featureType: 'transit.line',
+            elementType: 'labels.text.fill',
+            stylers: [
               {
-                "color": "#fe610c"
+                color: '#8f7d77'
               }
             ]
           },
           {
-            "featureType": "water",
-            "elementType": "labels.text.fill",
-            "stylers": [
+            featureType: 'transit.line',
+            elementType: 'labels.text.stroke',
+            stylers: [
               {
-                "color": "#3d3d3d"
+                color: '#ebe3cd'
+              }
+            ]
+          },
+          {
+            featureType: 'transit.station',
+            elementType: 'geometry',
+            stylers: [
+              {
+                color: '#808080'
+              }
+            ]
+          },
+          {
+            featureType: 'water',
+            elementType: 'geometry.fill',
+            stylers: [
+              {
+                color: '#ff6000'
+              }
+            ]
+          },
+          {
+            featureType: 'water',
+            elementType: 'labels.text.fill',
+            stylers: [
+              {
+                color: '#92998d'
               }
             ]
           }
@@ -328,8 +362,8 @@ export class DriverListComponent implements OnInit {
 
   showDriversOnMap(origin, drivers) {
     drivers.forEach((element) => {
-      var directionsService = new google.maps.DirectionsService();
-      var directionsRenderer = new google.maps.DirectionsRenderer({
+      const directionsService = new google.maps.DirectionsService();
+      const directionsRenderer = new google.maps.DirectionsRenderer({
         draggable: true,
         map: this.map,
       });
@@ -341,8 +375,8 @@ export class DriverListComponent implements OnInit {
       );
     });
   }
-
  /**
+  * User requests for a desired driver from the driver's List table
   *
   * @param driverId
   * @param driver
@@ -351,10 +385,9 @@ export class DriverListComponent implements OnInit {
   * message will appear for 2 seconds stating that the request has been sent to the specific
   * driver chosen.
   */
-
   submitRequest(driverId: string, driver: string) {
-    let parseDriverId = parseInt(driverId);
-    let userId = parseInt(sessionStorage.getItem('userid'));
+    const parseDriverId = parseInt(driverId);
+    const userId = parseInt(sessionStorage.getItem('userid'));
     this.userService.sendEmail(userId, parseDriverId).then((data) => {
       this.snackBar.open('Request has been sent to ' + driver, '', {
         duration: 2000,
@@ -379,12 +412,12 @@ export class DriverListComponent implements OnInit {
   displayRoute(origin, destination, service, display) {
     service.route(
       {
-        origin: origin,
-        destination: destination,
+        origin,
+        destination,
         travelMode: 'DRIVING',
-        //avoidTolls: true
+        // avoidTolls: true
       },
-      function (response, status) {
+      (response, status) => {
         if (status === 'OK') {
           display.setDirections(response);
         } else {
@@ -407,16 +440,14 @@ export class DriverListComponent implements OnInit {
    */
 
   displayDriversList(origin, drivers) {
-    let origins = [];
-    //set origin
+    const origins = [];
+    // set origin
     origins.push(origin);
-
-
     drivers.forEach((element) => {
-      var service = new google.maps.DistanceMatrixService();
+      const service = new google.maps.DistanceMatrixService();
       service.getDistanceMatrix(
         {
-          origins: origins,
+          origins,
           destinations: [element.origin],
           travelMode: google.maps.TravelMode.DRIVING,
           unitSystem: google.maps.UnitSystem.IMPERIAL,
@@ -430,11 +461,11 @@ export class DriverListComponent implements OnInit {
           } else {
             var originList = response.originAddresses;
             var destinationList = response.destinationAddresses;
-            var results = response.rows[0].elements;
+            let results = response.rows[0].elements;
 
-            var name = element.name;
+            const name = element.name;
 
-            let myobj = {
+            const myobj = {
               Id: element.id,
               Name: name,
               Distance: results[0].distance.text,

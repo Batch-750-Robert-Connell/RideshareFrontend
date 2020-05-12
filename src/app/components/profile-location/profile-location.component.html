@@ -1,29 +1,18 @@
 
 <form id="container" *ngIf="user" class="container mainContainer" [formGroup]="locationForm" (submit)="updatesContactInfo()">
-    <!--<i class="fa fa-home" style="font-family:'FontAwesome';"></i>-->
-       
+
         <h4>Location:</h4>
 
         <mat-form-field class="w-100 pl-5 pr-5 pt-2 pb-2">
             <mat-label>Address</mat-label>
             <input matInput formControlName="address" [(ngModel)]="user.hAddress"   type="text" class="form-control" id="address" required >
           </mat-form-field>
-        
-
-        
-      <!--  <div class="form-group row">
-                <div class="col-sm-1"></div>
-            <label for="address2" class="col-sm-4 col-form-label">Address 2:</label>
-            <div class="col-sm-4">
-                <input [(ngModel)]="address2" type="text" class="form-control" id="address2">
-            </div>
-        </div> -->
 
         <mat-form-field class="w-100 pl-5 pr-5 pt-0 pb-0">
             <mat-label>City</mat-label>
             <input matInput formControlName="city" [(ngModel)]="user.hCity" type="text" class="form-control" id="city" required >
           </mat-form-field>
-    
+
 
           <mat-form-field class="w-100 pl-5 pr-5 pt-0 pb-0">
             <mat-label>Select a state</mat-label>
@@ -92,6 +81,6 @@
           </mat-form-field>
 
 
-        
+
         <button type="submit" mat-raised-button color="primary" >Save</button>
         </form>

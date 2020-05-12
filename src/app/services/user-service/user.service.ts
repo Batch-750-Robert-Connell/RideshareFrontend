@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../auth-service/auth.service';
 import { LogService } from '../log.service';
 import { environment } from '../../../environments/environment';
-import { TypeaheadOptions } from 'ngx-bootstrap';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +25,16 @@ export class UserService {
    */
   url: string = environment.userUri;
   user: User = new User();
+
+  /**
+   * body to send update data
+   */
+  private body: string;
+
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    observe: 'response' as 'body',
+  };
 
   /**
    * Constructor
@@ -60,7 +69,7 @@ export class UserService {
   }
 
   getUserById2(idParam2: String): Observable<User> {
-    //console.log(this.url)
+    // console.log(this.url)
     return this.http.get<User>(this.url + idParam2);
   }
 
@@ -70,8 +79,8 @@ export class UserService {
    * @param role
    */
   createDriver(user: User, role) {
-    user.active = true;
-    user.driver = false;
+    user.isActive = true;
+    user.isDriver = false;
     user.isAcceptingRides = false;
     console.log(user);
 
@@ -115,8 +124,8 @@ export class UserService {
     this.getUserById(userId)
       .then((response) => {
         this.user = response;
-        this.user.driver = isDriver;
-        this.user.isAcceptingRides = this.user.active && isDriver;
+        this.user.isDriver = isDriver;
+        this.user.isAcceptingRides = this.user.isActive && isDriver;
 
         this.http.put(this.url + userId, this.user).subscribe(
           (response) => {
@@ -165,7 +174,7 @@ export class UserService {
    */
 
   updateUserInfo(user: User) {
-    //console.log(user);
+    // console.log(user);
     return this.http.put(this.url + user.userId, user).toPromise();
   }
   /**
@@ -197,15 +206,6 @@ export class UserService {
     return this.http.get(this.url);
   }
 
-  /**
-   * body to send update data
-   */
-  private body: string;
-
-  private httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-    observe: 'response' as 'body',
-  };
 
   /**
    * A function that bans users.

@@ -70,27 +70,27 @@ export class NavbarComponent implements OnInit {
   }
 
    /**
-   * Function that takes no parameters. 
+   * Function that takes no parameters.
    * It will clear the sesssion storage.
-   * @return {void} 
-   * 
+   * @return {void}
+   *
    */
 
-   
+
   logout() {
     this.authService.user = {};
     this.authService.admin = new Admin();
-    //clear all session
+    // clear all session
     this.name = '';
     this.admin = '';
     this.currentUser = '';
     sessionStorage.removeItem("name");
     sessionStorage.removeItem("userid");
-    //sessionStorage.clear(); 
+    // sessionStorage.clear();
     this.router.navigate(['']);
   }
 
   redirectToHome() {
-    this.authService.user.driver ? this.router.navigate(['home/riders']) : this.router.navigate(['home/drivers']);
+    this.authService.user.isDriver ? this.router.navigate(['home/riders']) : this.router.navigate(['home/drivers']);
   }
 }

@@ -17,7 +17,6 @@ export class DriverInfoComponent implements OnInit {
   /**
    * Sets all variables
    */
-
   batches: Batch[] = [];
   allAvailableCars: Car[] = [];
   availableCars: Car[] = [];
@@ -25,7 +24,6 @@ export class DriverInfoComponent implements OnInit {
   /**
    * Set order year as a boolean false
    */
-
   orderYear: boolean = false;
 
   /**
@@ -36,7 +34,6 @@ export class DriverInfoComponent implements OnInit {
   /**
    * Set search name field as a string
    */
-
   searchName: string = '';
 
   /**
@@ -46,13 +43,12 @@ export class DriverInfoComponent implements OnInit {
 
   noUserFound: boolean = false;
   /**
-   * A constructor 
+   * A constructor
    * @param carService A car service is injected.
    * @param authService An auth service is injected.
    * @param router  A router service is injected.
    * @param batchService A batch service is injected.
    */
-
   constructor(private carService: CarService, private authService: AuthService, private router: Router, private batchService: BatchService) { }
 
   /**
@@ -65,7 +61,7 @@ export class DriverInfoComponent implements OnInit {
     } else {
       this.carService.getAllCars().subscribe(
         data => {
-          this.allAvailableCars = data.filter(car => car.user.isAcceptingRides && car.user.active);
+          this.allAvailableCars = data.filter(car => car.user.isAcceptingRides && car.user.isActive);
           this.orderByLocation();
         }
       )
@@ -76,7 +72,6 @@ export class DriverInfoComponent implements OnInit {
   /**
    * A function the sorts the car object by batch location
    */
-
   orderByLocation() {
     let userLocation = this.authService.user.batch.batchLocation;
 
@@ -88,7 +83,6 @@ export class DriverInfoComponent implements OnInit {
   /**
    * A function that orders the year of the car
    */
-
   orderByYear() {
     if (!this.orderYear) {
       this.availableCars.sort((a, b) => b.year - a.year);
@@ -101,7 +95,6 @@ export class DriverInfoComponent implements OnInit {
   /**
    * A function that orders the data by full name
    */
-
   orderByFullName() {
     if (!this.orderFirstName) {
       this.availableCars.sort((a, b) => a.user.firstName > b.user.firstName ? 1 : -1);
@@ -114,10 +107,10 @@ export class DriverInfoComponent implements OnInit {
   /**
    * A function that searches driver by name
    */
-
   searchDriverByName() {
     this.noUserFound = false;
-    this.availableCars = this.allAvailableCars.filter(car => `${car.user.firstName} ${car.user.lastName}`.toLowerCase().includes(this.searchName.toLowerCase()));
+    this.availableCars = this.allAvailableCars.filter(car => `${car.user.firstName} ${car.user.lastName}`
+    .toLowerCase().includes(this.searchName.toLowerCase()));
     if (this.availableCars.length === 0) {
       this.availableCars = this.allAvailableCars;
       this.noUserFound = true;
@@ -127,16 +120,15 @@ export class DriverInfoComponent implements OnInit {
   /**
    * A function that searchs driver by location
    */
-
   searchDriverByLocation() {
-    this.availableCars = this.allAvailableCars.filter(car => 
+    this.availableCars = this.allAvailableCars.filter(car =>
      car.user.batch.batchLocation.toLowerCase().includes(this.searchLocation.toLowerCase()))
     }
+
   /**
    * A function that filters by location
    *
    */
-  
   filterDriverByLocation(event) {
     this.noUserFound = false;
     this.availableCars = this.allAvailableCars.filter(car => car.user.batch.batchLocation == event.target.value);
