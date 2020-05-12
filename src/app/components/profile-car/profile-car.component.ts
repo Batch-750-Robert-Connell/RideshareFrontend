@@ -18,90 +18,86 @@ export class ProfileCarComponent implements OnInit {
   model: string;
   nrSeats: number;
   car: Car;
-  success :string;
-  isNew:boolean;
-  userInfo:User;
+  success: string;
+  isNew: boolean;
+  userInfo: User;
 
-  constructor(private carService: CarService,private formBuilder: FormBuilder,private snackBar: MatSnackBar,private userService:UserService) {
-    this.carService.getCarByUserId2(sessionStorage.getItem("userid")).subscribe((response)=>{
-      console.log(response);
-      if(response == null) {
-        this.isNew = true;
-        this.userService.getUserById(Number.parseInt(sessionStorage.getItem("userid"))).then((userInfo)=>{
-          this.userInfo = userInfo;
-          
-          var d = new Date();
-          var year = d.getFullYear();
-          this.car = {
-            make:"",
-            model:"",
-            seats:1,
-            carId:0,
-            color:"",
-            user: userInfo,
-            year:year,
-          }
-          
+  constructor(
+    private carService: CarService,
+    private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar,
+    private userService: UserService
+  ) {
+    this.carService
+      .getCarByUserId2(sessionStorage.getItem('userid'))
+      .subscribe((response) => {
+        if (response == null) {
+          this.isNew = true;
+          this.userService
+            .getUserById(Number.parseInt(sessionStorage.getItem('userid')))
+            .then((userInfo) => {
+              this.userInfo = userInfo;
+
+              var d = new Date();
+              var year = d.getFullYear();
+              this.car = {
+                make: '',
+                model: '',
+                seats: 1,
+                carId: 0,
+                color: '',
+                user: userInfo,
+                year: year,
+              };
+
+              this.CarForm = this.formBuilder.group({
+                make: ['', Validators.required],
+                model: ['', Validators.required],
+                seats: ['', Validators.required],
+                color: ['', Validators.required],
+                year: [0, Validators.required],
+              });
+            });
+        } else {
+          this.isNew = false;
+          this.car = response;
+
           this.CarForm = this.formBuilder.group({
-            make: ["", Validators.required],
-            model: ["", Validators.required],
-            seats: ["", Validators.required],
-            color: ["", Validators.required],
-            year: [0, Validators.required]
+            make: [this.car.make, Validators.required],
+            model: [this.car.model, Validators.required],
+            seats: [this.car.seats, Validators.required],
+            color: [this.car.color, Validators.required],
+            year: [this.car.year, Validators.required],
           });
-
-        })
-      } else {
-        this.isNew = false;
-        this.car = response;
-
-        this.CarForm = this.formBuilder.group({
-          make: [this.car.make, Validators.required],
-          model: [this.car.model, Validators.required],
-          seats: [this.car.seats, Validators.required],
-          color: [this.car.color, Validators.required],
-          year: [this.car.year, Validators.required]
-        });
-      }
-
-
-    });
+        }
+      });
   }
 
-  ngOnInit() {
+  ngOnInit() {}
 
-
-  }
-
-
-  createNewCar(){
+  createNewCar() {
     if (this.CarForm.valid) {
       this.car.make = this.CarForm.value.make;
       this.car.model = this.CarForm.value.model;
       this.car.seats = this.CarForm.value.seats;
-      
-      console.log(this.car);
-      this.carService.createCar(this.car, sessionStorage.getItem("userid"));
-      this.success = "Updated Successfully!";
-      this.snackBar.open("success", "", {
+      this.carService.createCar(this.car, sessionStorage.getItem('userid'));
+      this.success = 'Updated Successfully!';
+      this.snackBar.open('success', '', {
         duration: 2000,
         verticalPosition: 'top',
-        panelClass: ['success']
+        panelClass: ['success'],
       });
-      } else {
-        console.log("nope");
-        this.snackBar.open("success", "", {
-          duration: 2000,
-          verticalPosition: 'top',
-          panelClass: ['success']
-        });
-      }
+    } else {
+      console.log('nope');
+      this.snackBar.open('success', '', {
+        duration: 2000,
+        verticalPosition: 'top',
+        panelClass: ['success'],
+      });
+    }
   }
 
-  updatesCarInfo(){
-    //console.log(this.currentUser);
-
-    console.log(this.car);
+  updatesCarInfo() {
     if (this.CarForm.valid) {
       this.carService.updateCarInfo(this.car);
       this.success = 'Updated Successfully!';
