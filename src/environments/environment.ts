@@ -11,15 +11,14 @@ const baseUri = `http://localhost`;
 const port = '8080';
 
 /**
- * google map api key 
+ * google map api key
  */
 const googleKey = '';
- /**
-   * This is the environment config.
-   */
+/**
+ * This is the environment config.
+ */
 
 export const environment = {
- 
   production: false,
   environmentName: 'Default Environment',
   userUri: `${baseUri}:${port}/users/`,
@@ -27,6 +26,7 @@ export const environment = {
   batchesUri: `${baseUri}:${port}/batches/`,
   carUri: `${baseUri}:${port}/cars/`,
   adminUri: `${baseUri}:${port}/admins/`,
+  emailUri: `${baseUri}:${port}/email`,
   googleMapKey: `${googleKey}`,
 };
 

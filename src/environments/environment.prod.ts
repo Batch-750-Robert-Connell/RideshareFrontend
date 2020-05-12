@@ -8,17 +8,17 @@ const baseUri = ``;
  */
 const port = '8080';
 
-  /**
+/**
  * These are the constants for the production config
  */
 
 export const environment = {
-
   production: true,
   environmentName: 'Production Environment',
   userUri: `${baseUri}:${port}/users/`,
   loginUri: `${baseUri}:${port}/login/`,
   batchesUri: `${baseUri}:${port}/batches/`,
   carUri: `${baseUri}:${port}/cars/`,
-  adminUri: `${baseUri}:${port}/admins/`
+  adminUri: `${baseUri}:${port}/admins/`,
+  emailUri: `${baseUri}:${port}/email`,
 };
