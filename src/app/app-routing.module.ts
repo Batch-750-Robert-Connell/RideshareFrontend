@@ -20,6 +20,7 @@ import { DriverContactModalComponent } from './components/driver-contact-modal/d
 import { DriverListComponent } from './components/driver-list/driver-list.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { AuthGuardService } from './services/auth-guard/auth-guard.service';
 
 
 const routes: Routes = [
@@ -34,16 +35,10 @@ const routes: Routes = [
   {path: 'car', component: MyCarComponent},
   {path: 'preference', component: PreferenceComponent},
   {path: 'signup', component: SignupModalComponent},
-  {path: 'landingPage', component: LandingPageComponent},
-  {path: 'drivers', component: DriverListComponent},
-{path: 'profile/contact', component: ProfileContactComponent},
-{path: 'profile/car', component: ProfileCarComponent},
-{path: 'profile/membership', component: ProfileMembershipComponent},
-{path: 'profile/location', component: ProfileLocationComponent},
-{path: 'driver', component: DriverContactModalComponent},
-{path: 'navbar', component: NavbarComponent},
+  {path: 'landingPage', component: LandingPageComponent,canActivate: [AuthGuardService]},
+  {path: 'drivers', component: DriverListComponent,canActivate: [AuthGuardService]},
 {path: '', component: HomePageComponent},
-{path: 'profile', component: ProfileComponent,
+{path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService],
 children: [
   {
     path: 'contact',

@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user-service/user.service';
 // import { ValidationService } from 'src/app/services/validation-service/validation.service';
 declare var $;
 declare var Cleave;
-
+declare var particlesJS;
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -23,6 +23,7 @@ declare var Cleave;
  * register as a driver or a rider.
  */
 export class HomePageComponent implements OnInit {
+  isAnime:boolean = true;
   isLogin = true;
   batches: Batch[];
   registerForm: FormGroup;
@@ -61,6 +62,9 @@ export class HomePageComponent implements OnInit {
 
   constructor(private batchService: BatchService, private formBuilder: FormBuilder,
               private authService: AuthService, private router: Router, private userService: UserService) {
+                setTimeout(() => {
+                  this.isAnime = false;
+                }, 3500);
      // gets a list of all the batch by their location.
     this.batchService.getAllBatchesByLocation1().subscribe(
       res => {
@@ -102,6 +106,9 @@ export class HomePageComponent implements OnInit {
    * slides animation in the login page.
    */
   ngOnInit() {
+    particlesJS.load('background', 'assets/particlesjs-config.json', function() {
+    });
+    sessionStorage.getItem("userid") == null ? "": this.router.navigateByUrl('/');
     $('#slides').carousel({
       interval: 3000
     });
@@ -115,10 +122,12 @@ export class HomePageComponent implements OnInit {
     this.registerForm.value.wState = this.registerForm.value.hState;
     this.registerForm.value.wZip = this.registerForm.value.hZip;
     console.log(this.registerForm.value);
-    this.userService.addUser(this.registerForm.value).subscribe((resp) => {
-      console.log(resp);
-      this.successRegister();
-    });
+    if (this.loginForm.valid) {
+      this.userService.addUser(this.registerForm.value).subscribe((resp) => {
+        console.log(resp);
+        this.successRegister();
+      });
+    }
   }
   /**
    * logIn function is used to verify credentials of the users to log them in

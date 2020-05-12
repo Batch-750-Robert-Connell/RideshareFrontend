@@ -67,14 +67,11 @@ export class CarService {
 
 	createCar(car, userId) {
 
-		this.user.userId = userId;
-		car.user = this.user;
 
 		this.http.post(this.url, car, {observe: 'response'}).subscribe(
 			(response) => {
 				if (response) {
 					this.userService.updateIsDriver(true, userId);
-					this.router.navigate(['car']);
 				}
 			},
 			(error) => {

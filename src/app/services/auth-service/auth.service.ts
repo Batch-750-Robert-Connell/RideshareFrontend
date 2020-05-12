@@ -9,9 +9,12 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class AuthService {
-  /**
-   * This is the Authorization Service
-   */
+
+	isAuthenticated:boolean;
+	/**
+	 * This is the Authorization Service
+	 */
+
 
   @Output() fireIsLoggedIn: EventEmitter<any> = new EventEmitter<any>();
   loggedIn = false;
@@ -67,9 +70,18 @@ export class AuthService {
     return this.fireIsLoggedIn;
   }
 
-  public authMe(username: string, password: string) {
-    return this.http
-      .get(`${environment.loginUri}?userName=${username}&passWord=${password}`)
-      .toPromise();
-  }
+
+	public authMe(username:String,password:String) {
+		return this.http.get(`${environment.loginUri}?userName=${username}&passWord=${password}`)
+		 .toPromise();
+	   }
+
+
+	   public isAuthenticatedFunc(): boolean {
+		JSON.parse(sessionStorage.getItem('userid')) == null
+		  ? (this.isAuthenticated = false)
+		  : (this.isAuthenticated = true);
+		return this.isAuthenticated;
+	  }
+
 }

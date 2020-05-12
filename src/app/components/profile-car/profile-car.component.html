@@ -1,26 +1,40 @@
-<form id="container" *ngIf="car" class="container mainContainer" [formGroup]="CarForm" (submit)="updatesCarInfo()">
+<form id="container" *ngIf="car" class="container mainContainer" [formGroup]="CarForm" (submit)="isNew ? createNewCar():updatesCarInfo()">
+    
+        <!--<i class="fa fa-car" style="font-family:'FontAwesome';"></i>-->
+        
+    
 
         <h4>Car Information:</h4>
 
         <mat-form-field class="w-100 pl-5 pr-5 pt-0 pb-0">
             <mat-label>Make</mat-label>
-            <input matInput formControlName="make" [(ngModel)]="car.make"   type="text" class="form-control" id="address" required >
+            <input matInput formControlName="make" [(ngModel)]="car.make"   type="text" class="form-control" required >
           </mat-form-field>
 
           <mat-form-field class="w-100 pl-5 pr-5 pt-0 pb-0">
-            <mat-label>Make</mat-label>
-            <input matInput formControlName="model" [(ngModel)]="car.model"   type="text" class="form-control" id="address" required >
+            <mat-label>Model</mat-label>
+            <input matInput formControlName="model" [(ngModel)]="car.model"   type="text" class="form-control" required >
+          </mat-form-field>
+
+          <mat-form-field class="w-100 pl-5 pr-5 pt-0 pb-0">
+            <mat-label>Color</mat-label>
+            <input matInput formControlName="color" [(ngModel)]="car.color"   type="text" class="form-control"  required >
+          </mat-form-field>
+
+          <mat-form-field class="w-100 pl-5 pr-5 pt-0 pb-0">
+            <mat-label>Year</mat-label>
+            <input matInput formControlName="year" [(ngModel)]="car.year"   type="number" class="form-control"  required >
           </mat-form-field>
 
 
           <mat-form-field class="w-100 pl-5 pr-5 pt-0 pb-0">
             <mat-label>Choose the number of seats</mat-label>
-            <mat-select formControlName="seats"  id="Nrseats" [(ngModel)]="seats" required>
-              <mat-option value="1">1</mat-option>
-              <mat-option value="2">2</mat-option>
-              <mat-option value="3">3</mat-option>
-              <mat-option value="4">4</mat-option>
-              <mat-option value="5">5</mat-option>
+            <mat-select formControlName="seats"  [(ngModel)]="car.seats" required>
+              <mat-option [value]="1">1</mat-option>
+              <mat-option [value]="2">2</mat-option>
+              <mat-option [value]="3">3</mat-option>
+              <mat-option [value]="4">4</mat-option>
+              <mat-option [value]="5">5</mat-option>
             </mat-select>
           </mat-form-field>
 
