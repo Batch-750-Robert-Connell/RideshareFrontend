@@ -31,7 +31,8 @@
             ],
             "scripts": [
               "node_modules/cleave.js/dist/cleave.min.js",
-              "node_modules/cleave.js/dist/addons/cleave-phone.us.js"
+              "node_modules/cleave.js/dist/addons/cleave-phone.us.js",
+              "node_modules/particles.js/particles.js"
             ]
           },
           "configurations": {

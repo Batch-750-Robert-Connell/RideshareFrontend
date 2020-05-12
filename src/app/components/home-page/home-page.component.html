@@ -46,11 +46,15 @@
   </div>
 </div>  -->
 
+<div id="background"></div>
 
 <div id="container">
 
   <div id="card">
-    <div class="row h-100 m-0 p-0">
+    <div id="welcome" *ngIf="isAnime">
+      <img id="logo" class="mt-3 mb-3" src="../../../assets/revature_logo.png" alt="">
+    </div>
+    <div *ngIf="!isAnime" class="row h-100 m-0 p-0">
       <div class="col-6 p-0 left">
         <img id="logo" class="mt-3 mb-3" src="../../../assets/revature_logo.png" alt="">
         <div *ngIf="isLogin" id="form-container">
