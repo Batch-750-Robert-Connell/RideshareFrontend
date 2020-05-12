@@ -49,6 +49,8 @@ export class HomePageComponent implements OnInit {
     phoneNumber: '',
     isActive: false,
     isDriver: false,
+    active: false,
+    driver: false,
     isAcceptingRides: false ,
     hState: '',
     hAddress: '',
