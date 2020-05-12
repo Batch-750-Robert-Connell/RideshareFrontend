@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-5">
+      <h4>Driver's List</h4>
+
+      <table class="table table-striped" aria-describedby="table of drivers">
+
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Distance</th>
+            <th scope="col">Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let driver of googleDrivers">
+            <td>{{ driver.Name }}</td>
+            <td>{{ driver.Distance }}</td>
+            <td>{{ driver.Duration }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-6">
+      <div #map id="gmap" class="img-responsive"></div>
+    </div>
+  </div>
+</div>

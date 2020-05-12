@@ -43,6 +43,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { DriverRequestManagerComponent } from './components/driver-request-manager/driver-request-manager.component';
+import { RiderDashboardComponent } from './components/rider-dashboard/rider-dashboard.component';
 
 
 
@@ -72,6 +73,7 @@ import { DriverRequestManagerComponent } from './components/driver-request-manag
     UserRegisterComponent,
     HomePageComponent,
     DriverRequestManagerComponent,
+    RiderDashboardComponent,
 
 
   ],
