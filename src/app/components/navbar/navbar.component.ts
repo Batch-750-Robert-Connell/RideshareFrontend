@@ -93,4 +93,9 @@ export class NavbarComponent implements OnInit {
   redirectToHome() {
     this.authService.user.isDriver ? this.router.navigate(['home/riders']) : this.router.navigate(['home/drivers']);
   }
+
+
+  goToProfile() {
+    this.router.navigateByUrl("/profile/(my:contact)")
+  }
 }

@@ -43,6 +43,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { DriverRequestManagerComponent } from './components/driver-request-manager/driver-request-manager.component';
+import { AgmCoreModule } from '@agm/core';
 
 
 
@@ -91,7 +92,11 @@ import { DriverRequestManagerComponent } from './components/driver-request-manag
     MatSelectModule,
     MatSnackBarModule,
     MatIconModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+      AgmCoreModule.forRoot({
+          apiKey: 'AIzaSyAJnZ3a5krUFvldtEnnNE6RUYRKD1-AISo',
+          libraries: ["places"]
+        })
   ],
   providers: [
     UserService,
