@@ -19,6 +19,7 @@ export class DriverRequestManagerComponent implements OnInit {
 
   ngOnInit() {
     this.getReservations();
+    console.log(this.driverRequest.length + 'GHIS:KJFLDJLJSLJFLJDL');
   }
 
   getReservations() {
@@ -26,8 +27,9 @@ export class DriverRequestManagerComponent implements OnInit {
     this.reservationService
       .getAllReservationsByDriverID(id)
       .then((data) => {
-        this.driverRequest = data;
-        console.log(this.driverRequest);
+        if (data != null) {
+          this.driverRequest = data;
+        }
       })
       .catch((error) => {
         console.log(error);
