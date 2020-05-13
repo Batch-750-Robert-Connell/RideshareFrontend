@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { Batch } from 'src/app/models/batch';
 import { BatchService } from 'src/app/services/batch-service/batch.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -34,7 +34,7 @@ export class HomePageComponent implements OnInit {
   isLoginSuccess = false;
   isRegisterSuccess = false;
   isLoginFailure = false;
-
+  @ViewChild("msgRegister",{static:false}) msgRegister:ElementRef;
   user: User = {
     userId: 0,
     userName: '',
@@ -67,11 +67,12 @@ export class HomePageComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private changeDetector : ChangeDetectorRef
   ) {
     setTimeout(() => {
       this.isAnime = false;
-    }, 3500);
+    }, 1500);
     // gets a list of all the batch by their location.
     this.batchService.getAllBatchesByLocation1().subscribe((res) => {
       this.batches = res;
@@ -116,12 +117,12 @@ export class HomePageComponent implements OnInit {
       'assets/particlesjs-config.json',
       function () {}
     );
-    sessionStorage.getItem('userid') == null
-      ? ''
-      : this.router.navigateByUrl('/');
-    $('#slides').carousel({
-      interval: 3000,
-    });
+    setTimeout(() => {
+      $('#slides').carousel({
+        interval: 3000,
+      });
+    }, 3500);
+
   }
   /**
    * singUp function that users input their info to be stored in the database.
@@ -135,9 +136,18 @@ export class HomePageComponent implements OnInit {
     console.log(this.registerForm.valid);
     if (this.registerForm.valid) {
       this.userService.addUser(this.registerForm.value).subscribe((resp) => {
+        this.MsgRegister();
+        if(Object.keys(resp).length == 0) {
+          this.msgRegister.nativeElement.innerHTML = "Thank you for choosing us "+this.user.firstName;
+          this.isLogin = true;
+        } else {
+          this.msgRegister.nativeElement.innerHTML = resp[Object.keys(resp)[0]];
+        }
         console.log(resp);
-        this.successRegister();
       });
+    } else {
+      this.MsgRegister();
+      this.msgRegister.nativeElement.innerHTML = "please fill out the form";
     }
   }
   /**
@@ -175,12 +185,12 @@ export class HomePageComponent implements OnInit {
     this.isLoginFailure = true;
   }
   // this fucntion is called when registration is successful.
-  successRegister() {
+  MsgRegister() {
     this.isWelcome = false;
     this.isLoginSuccess = false;
     this.isRegisterSuccess = true;
     this.isLoginFailure = false;
-    this.isLogin = true;
+    this.changeDetector.detectChanges();
   }
 
   /**
