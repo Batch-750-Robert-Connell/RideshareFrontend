@@ -60,6 +60,7 @@ export class HomePageComponent implements OnInit {
     wCity: '',
     wState: '',
     wZip: null,
+    emailVerified: false
   };
 
   constructor(
@@ -117,6 +118,7 @@ export class HomePageComponent implements OnInit {
       'assets/particlesjs-config.json',
       function () {}
     );
+
     setTimeout(() => {
       $('#slides').carousel({
         interval: 3000,

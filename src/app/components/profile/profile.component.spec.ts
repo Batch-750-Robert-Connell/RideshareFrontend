@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProfileComponent } from './profile.component';
 import { AdminComponent } from '../admin/admin.component';
 import { UserRegisterComponent } from '../user-register/user-register.component';
-import { RegisterComponent } from '../register/register.component';
 import { LoginComponent } from '../login/login.component';
 import { MyCarComponent } from '../my-car/my-car.component';
 import { NavbarComponent } from '../navbar/navbar.component';
@@ -13,7 +12,6 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 import { CarRegisterComponent } from '../car-register/car-register.component';
-import { userInfo } from 'os';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;

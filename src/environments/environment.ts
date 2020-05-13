@@ -28,6 +28,9 @@ export const environment = {
   adminUri: `${baseUri}:${port}/admins/`,
   emailUri: `${baseUri}:${port}/email`,
   googleMapKey: `${googleKey}`,
+  reservationUri: `${baseUri}:${port}/reservations`,
+  approveRequestUri: `${baseUri}:${port}/approveDash`,
+  deniedRequestUri: `${baseUri}:${port}/declineDash`,
 };
 
 /*

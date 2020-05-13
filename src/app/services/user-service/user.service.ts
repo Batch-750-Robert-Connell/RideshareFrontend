@@ -69,7 +69,7 @@ export class UserService {
     return this.http.get<User>(this.url + idParam).toPromise();
   }
 
-  getUserById2(idParam2: String): Observable<User> {
+  getUserById2(idParam2: string): Observable<User> {
     // console.log(this.url)
     return this.http.get<User>(this.url + idParam2);
   }
@@ -175,7 +175,7 @@ export class UserService {
    */
 
   updateUserInfo(user: User) {
-    return this.http.put(this.url, user).toPromise();
+    return this.http.put(this.url + this.user.userId, user).toPromise();
   }
   /**
    * A GET method that retrieves a driver by Id

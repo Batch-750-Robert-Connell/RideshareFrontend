@@ -12,12 +12,14 @@ import { MyCarComponent } from '../my-car/my-car.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { PreferenceComponent } from '../preference/preference.component';
 import { ProfileComponent } from '../profile/profile.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
-  // let fixture: ComponentFixture<LoginComponent>;
+  let fixture: ComponentFixture<LoginComponent>;
+  let de: DebugElement;
+
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -63,7 +65,22 @@ describe('LoginComponent', () => {
         phoneNumber: '9171234567',
         active: true,
         driver: true,
-        acceptingRides: true,
+        isAcceptingRides: true,
+
+        password: 'test',
+        hState: '',
+        hAddress: '',
+        hCity: '',
+        hZip: 80000,
+        wAddress: '',
+        wCity: '',
+        wState: '',
+        wZip: 80000,
+        isDriver: true,
+        isActive: true,
+
+        emailVerified: true,
+
       },
     ];
     // fixture.detectChanges();
@@ -89,7 +106,21 @@ describe('LoginComponent', () => {
         phoneNumber: '9171234567',
         active: true,
         driver: true,
-        acceptingRides: true,
+        isAcceptingRides: true,
+
+        password: 'test',
+        hState: '',
+        hAddress: '',
+        hCity: '',
+        hZip: 80000,
+        wAddress: '',
+        wCity: '',
+        wState: '',
+        wZip: 80000,
+        isDriver: true,
+        isActive: true,
+        emailVerified: true,
+
       },
     ]);
     // act

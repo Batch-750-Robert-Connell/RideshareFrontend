@@ -16,4 +16,5 @@ export const environment = {
   carUri: `${baseUri}:${port}/cars/`,
   adminUri: `${baseUri}:${port}/admins/`,
   emailUri: `${baseUri}:${port}/email`,
+  reservationDriverUri: `${baseUri}:${port}/reservations/driver`,
 };

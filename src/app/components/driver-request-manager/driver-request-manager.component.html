@@ -1,22 +1,53 @@
 <table class="table table-striped" aria-describedby="table of drivers">
-
   <thead class="thead-dark">
-    <tr>
+    <tr *ngIf="driverRequest.length == 0">
+      <th scope="col">No Reservations</th>
+    </tr>
+    <tr *ngIf="driverRequest.length > 0">
       <th scope="col">Name</th>
-      <th scope="col">Distance</th>
-      <th scope="col">Time</th>
+      <th scope="col">Status</th>
+
       <th scope="col">Approve</th>
       <th scope="col">Deny</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>Bob Barker</td>
-      <td>5 miles</td>
-      <td></td>
-      <td><button (click)="approveRequest()" class="btn btn-light btn-sm"><em class="fa fa-check-square"></em></button>
+    <tr *ngFor="let reservation of driverRequest">
+      <td>{{ reservation.rider.firstName }}</td>
+      <td>
+        {{
+          reservation.status == 1
+            ? 'Pending'
+            : reservation.status == 2
+            ? 'Approved'
+            : 'Denied'
+        }}
       </td>
-      <td><button (click)="denyRequest()" class="btn btn-light btn-sm"><em class="fa fa-window-close"></em></button>
+
+      <td>
+        <button
+          (click)="
+            approveRequest(
+              reservation.rider.userId,
+              reservation.driver.userId,
+              reservation.reservationId,
+              reservation.rider.firstName
+            )
+          "
+          class="btn btn-light"
+        >
+          Approve
+        </button>
+      </td>
+      <td>
+        <button
+          (click)="
+            denyRequest(reservation.rider.userId, reservation.reservationId)
+          "
+          class="btn btn-light"
+        >
+          Deny
+        </button>
       </td>
     </tr>
   </tbody>
