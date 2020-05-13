@@ -1,10 +1,10 @@
-import { Component, OnInit, NgModule, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { UserService } from 'src/app/services/user-service/user.service';
 import { User } from 'src/app/models/user';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
-import { Router, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 
 @Component({
@@ -29,15 +29,15 @@ export class LoginComponent implements OnInit {
   allUsers: User[] = [];
 
   chosenUser: User;
-  chosenUserFullName: string = '';
-  userName: string = '';
-  passWord: string = '';
-  totalPage: number = 1;
-  curPage: number = 1;
+  chosenUserFullName = '';
+  userName = '';
+  passWord = '';
+  totalPage = 1;
+  curPage = 1;
 
-  showDropDown: boolean = false;
-  failed: boolean = false;
-  banned: boolean = false;
+  showDropDown = false;
+  failed = false;
+  banned = false;
 
   pwdError: string;
   usernameError: string;
