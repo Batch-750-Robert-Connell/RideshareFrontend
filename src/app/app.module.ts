@@ -44,6 +44,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { DriverRequestManagerComponent } from './components/driver-request-manager/driver-request-manager.component';
 import { AgmCoreModule } from '@agm/core';
+import { RiderDashboardComponent } from './components/rider-dashboard/rider-dashboard.component';
+
 
 
 
@@ -73,6 +75,7 @@ import { AgmCoreModule } from '@agm/core';
     UserRegisterComponent,
     HomePageComponent,
     DriverRequestManagerComponent,
+    RiderDashboardComponent,
 
 
   ],

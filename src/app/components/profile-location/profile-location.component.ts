@@ -114,7 +114,6 @@ export class ProfileLocationComponent implements OnInit {
    * updates the location of the user.
    */
   updatesContactInfo() {
-    console.log(this.user);
     if (this.locationForm.valid) {
       this.userService.updateUserInfo(this.user).then(resp=>{
         this.snackBar.open('success', '', {
@@ -133,7 +132,6 @@ export class ProfileLocationComponent implements OnInit {
       });
 
     } else {
-      console.log('nope');
       this.snackBar.open('failure', '', {
         duration: 2000,
         verticalPosition: 'top',
