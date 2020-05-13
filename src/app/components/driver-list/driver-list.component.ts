@@ -66,7 +66,7 @@ export class DriverListComponent implements OnInit {
             elementType: 'geometry',
             stylers: [
               {
-                color: '#3e3e3e',
+                color: '#1E2733',
               },
             ],
           },
@@ -74,10 +74,7 @@ export class DriverListComponent implements OnInit {
             elementType: 'labels.text.fill',
             stylers: [
               {
-                color: '#cecece',
-              },
-              {
-                weight: 0.5,
+                color: '#FFE09F',
               },
             ],
           },
@@ -85,141 +82,97 @@ export class DriverListComponent implements OnInit {
             elementType: 'labels.text.stroke',
             stylers: [
               {
-                visibility: 'off',
+                color: '#242F3E',
               },
             ],
           },
           {
-            featureType: 'administrative',
-            elementType: 'labels.text',
+            featureType: 'administrative.locality',
+            elementType: 'labels.text.fill',
             stylers: [
               {
-                color: '#dbdbdb',
+                color: '#ECD0B9',
               },
             ],
           },
           {
-            featureType: 'administrative.land_parcel',
+            featureType: 'poi',
+            elementType: 'labels.text.fill',
             stylers: [
               {
-                color: '#757575',
+                color: '#F2DECE',
               },
             ],
           },
           {
-            featureType: 'administrative.land_parcel',
+            featureType: 'poi.park',
+            elementType: 'geometry',
+            stylers: [
+              {
+                color: '#015C05',
+              },
+            ],
+          },
+          {
+            featureType: 'poi.park',
+            elementType: 'labels.text.fill',
+            stylers: [
+              {
+                color: '#F7FDBD',
+              },
+            ],
+          },
+          {
+            featureType: 'road',
+            elementType: 'geometry',
+            stylers: [
+              {
+                color: '#FD8806',
+              },
+            ],
+          },
+          {
+            featureType: 'road',
+            elementType: 'labels.text.fill',
+            stylers: [
+              {
+                color: '#9CA5B3',
+              },
+            ],
+          },
+          {
+            featureType: 'road.arterial',
+            elementType: 'geometry',
+            stylers: [
+              {
+                color: '#B97400',
+              },
+            ],
+          },
+          {
+            featureType: 'road.highway',
+            elementType: 'geometry',
+            stylers: [
+              {
+                color: '#CA4B00',
+              },
+            ],
+          },
+          {
+            featureType: 'road.highway',
             elementType: 'geometry.stroke',
             stylers: [
               {
-                color: '#dcd2be',
+                color: '#1F2835',
               },
             ],
           },
           {
-            featureType: 'landscape.natural',
-            elementType: 'geometry',
-            stylers: [
-              {
-                color: '#313131',
-              },
-            ],
-          },
-          {
-            featureType: 'poi',
-            elementType: 'geometry',
-            stylers: [
-              {
-                color: '#053203',
-              },
-            ],
-          },
-          {
-            featureType: 'poi',
+            featureType: 'road.highway',
             elementType: 'labels.text.fill',
             stylers: [
               {
-                color: '#ffffff',
-              },
-            ],
-          },
-          {
-            featureType: 'poi.park',
-            elementType: 'geometry',
-            stylers: [
-              {
-                color: '#022600',
-              },
-            ],
-          },
-          {
-            featureType: 'poi.park',
-            elementType: 'labels.text.fill',
-            stylers: [
-              {
-                color: '#99be98',
-              },
-            ],
-          },
-          {
-            featureType: 'road',
-            elementType: 'geometry.fill',
-            stylers: [
-              {
-                color: '#0092df',
-              },
-            ],
-          },
-          {
-            featureType: 'road',
-            elementType: 'labels.icon',
-            stylers: [
-              {
-                visibility: 'off',
-              },
-            ],
-          },
-          {
-            featureType: 'road.arterial',
-            elementType: 'geometry',
-            stylers: [
-              {
-                color: '#fdfcf8',
-              },
-            ],
-          },
-          {
-            featureType: 'road.arterial',
-            elementType: 'geometry.fill',
-            stylers: [
-              {
-                color: '#0bc8ff',
-              },
-            ],
-          },
-          {
-            featureType: 'road.highway',
-            elementType: 'geometry',
-            stylers: [
-              {
-                color: '#00c4ce',
-              },
-            ],
-          },
-          {
-            featureType: 'road.highway',
-            elementType: 'geometry.fill',
-            stylers: [
-              {
-                color: '#00dadf',
-              },
-            ],
-          },
-          {
-            featureType: 'road.highway',
-            elementType: 'labels.icon',
-            stylers: [
-              {
-                visibility: 'off',
+                color: '#F3D19C',
               },
             ],
           },
@@ -228,100 +181,52 @@ export class DriverListComponent implements OnInit {
             elementType: 'geometry',
             stylers: [
               {
-                color: '#00a4a8',
-              },
-            ],
-          },
-          {
-            featureType: 'road.highway.controlled_access',
-            elementType: 'geometry.fill',
-            stylers: [
-              {
-                color: '#0bfff9',
-              },
-              {
-                visibility: 'off',
-              },
-            ],
-          },
-          {
-            featureType: 'road.highway.controlled_access',
-            elementType: 'labels.icon',
-            stylers: [
-              {
-                visibility: 'off',
+                color: '#E63F00',
               },
             ],
           },
           {
             featureType: 'road.local',
-            elementType: 'geometry.fill',
+            elementType: 'geometry',
             stylers: [
               {
-                color: '#a6a6a6',
-              },
-            ],
-          },
-          {
-            featureType: 'road.local',
-            elementType: 'labels.text.fill',
-            stylers: [
-              {
-                color: '#c0c0c0',
+                color: '#979797',
               },
             ],
           },
           {
             featureType: 'transit',
-            elementType: 'geometry.fill',
-            stylers: [
-              {
-                color: '#ff0b11',
-              },
-            ],
-          },
-          {
-            featureType: 'transit.line',
             elementType: 'geometry',
             stylers: [
               {
-                color: '#808080',
-              },
-            ],
-          },
-          {
-            featureType: 'transit.line',
-            elementType: 'labels.text.fill',
-            stylers: [
-              {
-                color: '#8f7d77',
-              },
-            ],
-          },
-          {
-            featureType: 'transit.line',
-            elementType: 'labels.text.stroke',
-            stylers: [
-              {
-                color: '#ebe3cd',
+                color: '#2F3948',
               },
             ],
           },
           {
             featureType: 'transit.station',
-            elementType: 'geometry',
+            elementType: 'labels.text.fill',
             stylers: [
               {
-                color: '#808080',
+                color: '#D59563',
+              },
+            ],
+          },
+          {
+            featureType: 'transit.station.airport',
+            elementType: 'labels.text.fill',
+            stylers: [
+              {
+                color: '#ECD0B9',
               },
             ],
           },
           {
             featureType: 'water',
-            elementType: 'geometry.fill',
+            elementType: 'geometry',
             stylers: [
               {
-                color: '#ff6000',
+                color: '#00D2DD',
               },
             ],
           },
@@ -330,7 +235,16 @@ export class DriverListComponent implements OnInit {
             elementType: 'labels.text.fill',
             stylers: [
               {
-                color: '#92998d',
+                color: '#434D5A',
+              },
+            ],
+          },
+          {
+            featureType: 'water',
+            elementType: 'labels.text.stroke',
+            stylers: [
+              {
+                color: '#17263C',
               },
             ],
           },

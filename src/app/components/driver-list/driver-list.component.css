@@ -67,7 +67,7 @@
   margin-top: 15px;
   width: 105%;
   margin-right: 5px;
-  background-color: #e7b382;
+  background-color: #5a5a5a;
   color: white;
   font-weight: 600;
 }
@@ -91,13 +91,13 @@ h4 {
 
 .table .thead-dark th {
   color: #fff;
-  background-color: #da6900;
-  border-color: #8b4a00;
+  background-color: #222222;
+  border-color: #5a5a5a;
 }
 
 .btn-light {
   color: #ffffff;
-  background-color: #ffa33a;
+  background-color: #D4500D;
   border-color: #ffd09b;
   font-weight: 600;
 }
