@@ -54,4 +54,6 @@ export class User {
     // don't delete or it breaks the code, we don't know why thanks.
     isDriver: boolean;
     isActive: boolean;
+
+    emailVerified: boolean;
 }

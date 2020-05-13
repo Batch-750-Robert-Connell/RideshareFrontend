@@ -60,6 +60,7 @@ export class HomePageComponent implements OnInit {
     wCity: '',
     wState: '',
     wZip: null,
+    emailVerified: false
   };
 
   constructor(
@@ -116,12 +117,12 @@ export class HomePageComponent implements OnInit {
       'assets/particlesjs-config.json',
       function () {}
     );
-    sessionStorage.getItem('userid') == null
-      ? ''
-      : this.router.navigateByUrl('/');
-    $('#slides').carousel({
-      interval: 3000,
-    });
+    if (sessionStorage.getItem('userid') == null) {
+      this.router.navigateByUrl('/');
+      $('#slides').carousel({
+        interval: 3000,
+      });
+    }
   }
   /**
    * singUp function that users input their info to be stored in the database.
