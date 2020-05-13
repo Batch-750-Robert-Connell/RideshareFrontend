@@ -9,7 +9,7 @@ import { Reservation } from 'src/app/models/reservation';
 export class ReservationService {
   urlReservation: string = environment.reservationUri;
   urlApproveRes: string = environment.approveRequestUri;
-  urlDenyRes: String = environment.deniedRequestUri;
+  urlDenyRes: string = environment.deniedRequestUri;
   constructor(private http: HttpClient) {}
 
   getAllReservationsByDriverID<Promise>(id: number) {
