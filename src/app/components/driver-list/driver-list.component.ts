@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/services/user-service/user.service';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { MapsAPILoader } from '@agm/core';
+declare var google;
 @Component({
   selector: 'app-driver-list',
   templateUrl: './driver-list.component.html',
@@ -31,7 +32,8 @@ export class DriverListComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private userService: UserService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private mapsAPILoader: MapsAPILoader
   ) {}
 
   /**
@@ -256,10 +258,13 @@ export class DriverListComponent implements OnInit {
         this.mapElement.nativeElement,
         this.mapProperties
       );
+      
       // get all routes
       this.displayDriversList(this.location, this.drivers);
       // show drivers on map
       this.showDriversOnMap(this.location, this.drivers);
+
+
     });
   }
 
@@ -273,19 +278,22 @@ export class DriverListComponent implements OnInit {
    */
 
   showDriversOnMap(origin, drivers) {
-    drivers.forEach((element) => {
-      const directionsService = new google.maps.DirectionsService();
-      const directionsRenderer = new google.maps.DirectionsRenderer({
-        draggable: true,
-        map: this.map,
+    this.mapsAPILoader.load().then(() => {
+      drivers.forEach((element) => {
+        const directionsService = new google.maps.DirectionsService();
+        const directionsRenderer = new google.maps.DirectionsRenderer({
+          draggable: true,
+          map: this.map,
+        });
+        this.displayRoute(
+          origin,
+          element.origin,
+          directionsService,
+          directionsRenderer
+        );
       });
-      this.displayRoute(
-        origin,
-        element.origin,
-        directionsService,
-        directionsRenderer
-      );
     });
+
   }
   /**
    * User requests for a desired driver from the driver's List table
@@ -364,52 +372,55 @@ export class DriverListComponent implements OnInit {
    */
 
   displayDriversList(origin, drivers) {
-    const origins = [];
-    // set origin
-    origins.push(origin);
-    drivers.forEach((element) => {
-      const service = new google.maps.DistanceMatrixService();
-      service.getDistanceMatrix(
-        {
-          origins,
-          destinations: [element.origin],
-          travelMode: google.maps.TravelMode.DRIVING,
-          unitSystem: google.maps.UnitSystem.IMPERIAL,
-          avoidHighways: false,
-          avoidTolls: false,
-        },
-
-        (response, status) => {
-          if (status !== 'OK') {
-            alert('Error was: ' + status);
-          } else {
-            var originList = response.originAddresses;
-            var destinationList = response.destinationAddresses;
-            let results = response.rows[0].elements;
-
-            const name = element.name;
-
-            const myobj = {
-              Id: element.id,
-              Name: name,
-              Distance: results[0].distance.text,
-              Duration: results[0].duration.text,
-            };
-
-            // driver won't be able to view himself in the driversList.
-            if (myobj.Id != sessionStorage.getItem('userid')) {
-              this.googleDrivers.push(myobj);
+    this.mapsAPILoader.load().then(() => {
+      const origins = [];
+      // set origin
+      origins.push(origin);
+      drivers.forEach((element) => {
+        const service = new google.maps.DistanceMatrixService();
+        service.getDistanceMatrix(
+          {
+            origins,
+            destinations: [element.origin],
+            travelMode: google.maps.TravelMode.DRIVING,
+            unitSystem: google.maps.UnitSystem.IMPERIAL,
+            avoidHighways: false,
+            avoidTolls: false,
+          },
+  
+          (response, status) => {
+            if (status !== 'OK') {
+              alert('Error was: ' + status);
+            } else {
+              var originList = response.originAddresses;
+              var destinationList = response.destinationAddresses;
+              let results = response.rows[0].elements;
+  
+              const name = element.name;
+  
+              const myobj = {
+                Id: element.id,
+                Name: name,
+                Distance: results[0].distance.text,
+                Duration: results[0].duration.text,
+              };
+  
+              // driver won't be able to view himself in the driversList.
+              if (myobj.Id != sessionStorage.getItem('userid')) {
+                this.googleDrivers.push(myobj);
+              }
+              // sorting the drivers list by distance
+              this.googleDrivers.sort((a, b) =>
+                parseFloat(a.Distance.split()[0]) >
+                parseFloat(b.Distance.split()[0])
+                  ? 1
+                  : -1
+              );
             }
-            // sorting the drivers list by distance
-            this.googleDrivers.sort((a, b) =>
-              parseFloat(a.Distance.split()[0]) >
-              parseFloat(b.Distance.split()[0])
-                ? 1
-                : -1
-            );
           }
-        }
-      );
+        );
+      });
     });
+
   }
 }

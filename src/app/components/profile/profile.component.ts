@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
   membership :string = '';
 
   ngOnInit() {
-    this.router.navigateByUrl('/profile/(my:contact)');
+    //this.router.navigateByUrl('/profile/(my:contact)');
     this.showCont = true;
   /**
    * A GET method that retrieves user's information

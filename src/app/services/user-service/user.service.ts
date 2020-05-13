@@ -175,7 +175,7 @@ export class UserService {
    */
 
   updateUserInfo(user: User) {
-    return this.http.put(this.url + user.userId, user).toPromise();
+    return this.http.put(this.url + this.user.userId, user).toPromise();
   }
   /**
    * A GET method that retrieves a driver by Id
