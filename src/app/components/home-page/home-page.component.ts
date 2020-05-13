@@ -92,7 +92,7 @@ export class HomePageComponent implements OnInit {
         this.user.phoneNumber,
         Validators.pattern(/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/),
       ],
-      driver: [true, Validators.required],
+      driver: [this.user.isDriver, Validators.required],
       hState: [this.user.hState, Validators.required],
       hAddress: [this.user.hAddress, Validators.required],
       hCity: [this.user.hCity, Validators.required],
@@ -131,8 +131,11 @@ export class HomePageComponent implements OnInit {
     this.registerForm.value.wCity = this.registerForm.value.hCity;
     this.registerForm.value.wState = this.registerForm.value.hState;
     this.registerForm.value.wZip = this.registerForm.value.hZip;
-    if (this.loginForm.valid) {
+    console.log(this.registerForm);
+    console.log(this.registerForm.valid);
+    if (this.registerForm.valid) {
       this.userService.addUser(this.registerForm.value).subscribe((resp) => {
+        console.log(resp);
         this.successRegister();
       });
     }
