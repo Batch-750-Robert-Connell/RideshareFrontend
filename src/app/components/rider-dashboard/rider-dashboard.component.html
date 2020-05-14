@@ -1,30 +1,60 @@
-<app-navbar></app-navbar>
+<div>
+  <table class="table table-striped" aria-describedby="table of drivers">
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-5">
-      <h4>Driver's List</h4>
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Driver Name</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reservation of riderRequest">
+        <td>{{ reservation.driver.firstName}}</td>
+        <td>
+          {{
+          reservation.status == 1
+            ? 'Pending'
+            : reservation.status == 2
+            ? 'Approved'
+            : 'Denied'
+        }}
+        </td>
+        <td>
+          <img *ngIf="reservation.status == 1" style="width: 50px;"
+            src=" https://assets-global.website-files.com/5b283a9ce1d84c649b724269/5b321dd937b49c6b5cc6ace5_pending.gif"
+            alt="">
+          <button *ngIf="reservation.status == 2" class="btn btn-light" (click)="getCarInfo(reservation.driver.userId);"
+            data-toggle="modal" data-target="#exampleModal"><i class="fa fa-info-circle"></i></button>
+          <button disabled *ngIf="reservation.status == 3" class="btn btn-light"> <i class="fa fa-window-close"
+              style="color: red;"></i></button>
 
-      <table class="table table-striped" aria-describedby="table of drivers">
 
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Distance</th>
-            <th scope="col">Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let driver of googleDrivers">
-            <td>{{ driver.Name }}</td>
-            <td>{{ driver.Distance }}</td>
-            <td>{{ driver.Duration }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-lg-6">
-      <div #map id="gmap" class="img-responsive"></div>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div *ngIf="driverCar" class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{driverCar.make}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <p>Look out for {{driverCar.user.firstName}} in a {{driverCar.color}} {{driverCar.make}} {{driverCar.model}}.
+          </p>
+          <i class="fa fa-car fa-4x" [style.color]="color"></i>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
