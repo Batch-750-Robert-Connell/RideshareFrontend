@@ -4,6 +4,7 @@ import { Reservation } from '../../models/reservation';
 import { CarService } from '../../services/car-service/car.service';
 import { Car } from '../../models/car';
 
+
 @Component({
   selector: 'app-rider-dashboard',
   templateUrl: './rider-dashboard.component.html',
