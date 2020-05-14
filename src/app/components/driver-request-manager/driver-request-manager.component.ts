@@ -3,7 +3,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { ReservationService } from '../../services/reservation-service/reservation.service';
 import { Reservation } from 'src/app/models/reservation';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-driver-request-manager',

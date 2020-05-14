@@ -65,7 +65,7 @@ describe('BatchService', () => {
     expect(batchService).toBeTruthy();
   });
 
-  //Adding test for getAllBatches() method
+  // Adding test for getAllBatches() method
   describe('getAllBatches', () => {
     it('should return a list of batches', () => {
       const batchResponse = [

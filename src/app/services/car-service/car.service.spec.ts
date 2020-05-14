@@ -65,7 +65,7 @@ describe('CarService', () => {
     expect(carService).toBeTruthy();
   });
 
-  //Adding test for getAllCars() method
+  // Adding test for getAllCars() method
   describe('getAllCars', () => {
     it('should return a collection of cars', () => {
       const carsResponse = [
@@ -89,7 +89,7 @@ describe('CarService', () => {
             phoneNumber: '1231231231',
             driver: true,
             active: true,
-            acceptingRides: true,
+            isAcceptingRides: true,
           },
         },
         {
@@ -112,7 +112,7 @@ describe('CarService', () => {
             phoneNumber: '3213213213',
             driver: true,
             active: true,
-            acceptingRides: true,
+            isAcceptingRides: true,
           },
         },
       ];
@@ -122,7 +122,8 @@ describe('CarService', () => {
       carService.getAllCars().subscribe((res) => {
         response = res;
       });
-
+      console.log(response);
+      console.log(carsResponse);
       expect(response).toEqual(carsResponse);
     });
   });
