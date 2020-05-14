@@ -162,7 +162,7 @@ export class RiderDashboardComponent implements OnInit {
     'Yellow',
     'YellowGreen',
   ];
-  color: String = 'orange';
+  color: string = 'orange';
 
   Modal: boolean = false;
 

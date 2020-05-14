@@ -4,8 +4,8 @@
     <thead class="thead-dark">
       <tr>
         <th scope="col">Driver Name</th>
-        <th>Status</th>
-        <th></th>
+        <th scope="col">Status</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -25,9 +25,9 @@
             src=" https://assets-global.website-files.com/5b283a9ce1d84c649b724269/5b321dd937b49c6b5cc6ace5_pending.gif"
             alt="">
           <button *ngIf="reservation.status == 2" class="btn btn-light" (click)="getCarInfo(reservation.driver.userId);"
-            data-toggle="modal" data-target="#exampleModal"><i class="fa fa-info-circle"></i></button>
-          <button disabled *ngIf="reservation.status == 3" class="btn btn-light"> <i class="fa fa-window-close"
-              style="color: red;"></i></button>
+            data-toggle="modal" data-target="#exampleModal"><em class="fa fa-info-circle"></em></button>
+          <button disabled *ngIf="reservation.status == 3" class="btn btn-light"> <em class="fa fa-window-close"
+              style="color: red;"></em></button>
 
 
 
@@ -48,7 +48,7 @@
         <div class="modal-body text-center">
           <p>Look out for {{driverCar.user.firstName}} in a {{driverCar.color}} {{driverCar.make}} {{driverCar.model}}.
           </p>
-          <i class="fa fa-car fa-4x" [style.color]="color"></i>
+          <em class="fa fa-car fa-4x" [style.color]="color"></em>
 
         </div>
         <div class="modal-footer">
