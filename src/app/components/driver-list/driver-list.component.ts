@@ -3,11 +3,12 @@ import { UserService } from 'src/app/services/user-service/user.service';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MapsAPILoader } from '@agm/core';
+import { User } from 'src/app/models/user';
 declare var google;
 @Component({
   selector: 'app-driver-list',
   templateUrl: './driver-list.component.html',
-  styleUrls: ['./driver-list.component.css'],
+  styleUrls: ['./driver-list.component.scss'],
 })
 
 /**
@@ -25,6 +26,8 @@ export class DriverListComponent implements OnInit {
   googleDrivers: Array<any> = [];
   IdOfDriver: number;
   IdOfUser: number;
+  isDriver:boolean;
+  isLoaded:boolean = false;
 
   @ViewChild('map', null) mapElement: any;
   map: google.maps.Map;
@@ -34,7 +37,11 @@ export class DriverListComponent implements OnInit {
     private userService: UserService,
     private snackBar: MatSnackBar,
     private mapsAPILoader: MapsAPILoader
-  ) {}
+  ) {
+    this.userService.getUserById(parseInt(sessionStorage.getItem("userid"))).then((resp:User)=>{
+      this.isDriver =resp.isDriver;
+    })
+  }
 
   /**
    * ngOnInit() gets the drivers from our database and adds them to our drivers array.
@@ -279,6 +286,7 @@ export class DriverListComponent implements OnInit {
 
   showDriversOnMap(origin, drivers) {
     this.mapsAPILoader.load().then(() => {
+        this.isLoaded = true;
       drivers.forEach((element) => {
         const directionsService = new google.maps.DirectionsService();
         const directionsRenderer = new google.maps.DirectionsRenderer({
