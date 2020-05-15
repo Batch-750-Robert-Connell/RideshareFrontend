@@ -30,6 +30,18 @@ h4 {
   color: #fff;
   background-color: #222222;
   border-color: #5a5a5a;
+  font-size: 15px;
+  text-align: center;
+
+}
+table {
+  tbody{
+    tr{
+      td{
+        text-align: center;
+      }
+    }
+  }
 }
 
 .btn-light {

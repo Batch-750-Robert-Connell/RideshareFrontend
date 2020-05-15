@@ -18,8 +18,10 @@
               <td>{{ driver.Name }}</td>
               <td>{{ driver.Distance }}</td>
               <td>{{ driver.Duration }}</td>
-              <td><input type="hidden" value="{{driver.Id}}"><button id="submit"
-                  (click)="submitRequest(driver.Id, driver.Name)" class="btn btn-light btn-sm">Request</button></td>
+              <td><input type="hidden" value="{{driver.Id}}"><button [disabled]="isRequested" id="submit"
+                  (click)="submitRequest(driver.Id, driver.Name)" class="btn btn-light btn-sm"><span *ngIf="whichLoadingRequest == driver.Id else requestTxt"><div class="spinner-container"><div class="spinner">
+                    <div></div><div><div></div></div>
+                    </div></div></span> <ng-template #requestTxt>Request</ng-template></button></td>
             </tr>
           </tbody>
         </table>

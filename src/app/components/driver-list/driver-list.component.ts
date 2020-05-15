@@ -28,6 +28,8 @@ export class DriverListComponent implements OnInit {
   IdOfUser: number;
   isDriver:boolean;
   isLoaded:boolean = false;
+  whichLoadingRequest = undefined;
+  isRequested:boolean= false;
 
   @ViewChild('map', null) mapElement: any;
   map: google.maps.Map;
@@ -314,6 +316,8 @@ export class DriverListComponent implements OnInit {
    * driver chosen.
    */
   submitRequest(driverId: string, driver: string) {
+    this.isRequested = true;
+    this.whichLoadingRequest = driverId;
     const parseDriverId = parseInt(driverId);
     const userId = parseInt(sessionStorage.getItem('userid'));
     this.userService
@@ -328,6 +332,7 @@ export class DriverListComponent implements OnInit {
           horizontalPosition: 'center',
           panelClass: ['success'],
         });
+        this.whichLoadingRequest = undefined;
       })
       .catch((error) => {
         this.snackBar.open('Request has failed', '', {
