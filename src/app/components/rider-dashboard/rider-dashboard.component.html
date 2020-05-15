@@ -1,6 +1,6 @@
 <div>
+  <h3>Pending Requests</h3>
   <table class="table table-striped" aria-describedby="table of drivers">
-
     <thead class="thead-dark">
       <tr>
         <th scope="col">Driver Name</th>
@@ -10,49 +10,88 @@
     </thead>
     <tbody>
       <tr *ngFor="let reservation of riderRequest">
-        <td>{{ reservation.driver.firstName}}</td>
+        <td>{{ reservation.driver.firstName }}</td>
         <td>
           {{
-          reservation.status == 1
-            ? 'Pending'
-            : reservation.status == 2
-            ? 'Approved'
-            : 'Denied'
-        }}
+            reservation.status == 1
+              ? 'Pending'
+              : reservation.status == 2
+              ? 'Approved'
+              : 'Denied'
+          }}
         </td>
         <td>
-          <img *ngIf="reservation.status == 1" style="width: 50px;"
+          <img
+            *ngIf="reservation.status == 1"
+            style="width: 50px;"
             src=" https://assets-global.website-files.com/5b283a9ce1d84c649b724269/5b321dd937b49c6b5cc6ace5_pending.gif"
-            alt="">
-          <button *ngIf="reservation.status == 2" class="btn btn-light" (click)="getCarInfo(reservation.driver.userId);"
-            data-toggle="modal" data-target="#exampleModal"><em class="fa fa-info-circle"></em></button>
-          <button disabled *ngIf="reservation.status == 3" class="btn btn-light"> <em class="fa fa-window-close"
-              style="color: red;"></em></button>
-
-
-
+            alt=""
+          />
+          <button
+            *ngIf="reservation.status == 2"
+            class="btn btn-light"
+            (click)="getCarInfo(reservation.driver)"
+            data-toggle="modal"
+            data-target="#exampleModal"
+          >
+            <em class="fa fa-info-circle"></em>
+          </button>
+          <button
+            disabled
+            *ngIf="reservation.status == 3"
+            class="btn btn-light"
+          >
+            <em class="fa fa-window-close" style="color: red;"></em>
+          </button>
         </td>
       </tr>
     </tbody>
   </table>
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
     <div class="modal-dialog" role="document">
       <div *ngIf="driverCar" class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">{{driverCar.make}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <h5 class="modal-title" id="exampleModalLabel">
+            {{ driverCar.make }}
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body text-center">
-          <p>Look out for {{driverCar.user.firstName}} in a {{driverCar.color}} {{driverCar.make}} {{driverCar.model}}.
+          <p>
+            Look out for {{ driverCar.user.firstName }} in a
+            {{ driverCar.color }} {{ driverCar.make }} {{ driverCar.model }}.
           </p>
           <em class="fa fa-car fa-4x" [style.color]="color"></em>
-
+          <h5>Contact Infomation</h5>
+          <a href="tel:+{{ driverUser.phoneNumber.replace('-', '') }}"
+            ><em class="fa fa-phone fa-2x m-1"></em
+            >{{ driverUser.phoneNumber }}</a
+          >
+          <br />
+          <a href="mailto:{{ driverUser.email }}"
+            ><em class="fa fa-2x fa-envelope-square"></em>
+            {{ driverUser.email }}</a
+          >
         </div>
+
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { ReservationService } from '../../services/reservation-service/reservati
 import { Reservation } from '../../models/reservation';
 import { CarService } from '../../services/car-service/car.service';
 import { Car } from '../../models/car';
-
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-rider-dashboard',
@@ -13,6 +13,7 @@ import { Car } from '../../models/car';
 export class RiderDashboardComponent implements OnInit {
   riderRequest: Reservation[] = [];
   driverCar: Car;
+  driverUser: User;
   CSS_COLOR_NAMES: Array<string> = [
     'AliceBlue',
     'AntiqueWhite',
@@ -194,17 +195,20 @@ export class RiderDashboardComponent implements OnInit {
     console.log(this.Modal + ' Hello From showModal');
     this.Modal = !this.Modal;
   }
-  getCarInfo(driverId: string) {
-    let driverIdNumber = parseInt(driverId);
+  getCarInfo(driver: User) {
+    //let driverIdNumber = parseInt(driverId);
+
+    console.log(driver);
+    this.driverUser = driver;
+
     this.carService
-      .getCarByUserId(driverIdNumber)
+      .getCarByUserId(driver.userId)
       .then((data) => {
         this.driverCar = data;
 
         this.color = this.CSS_COLOR_NAMES.includes(this.driverCar.color)
           ? this.driverCar.color
           : 'orange';
-        console.log('Can you SMELL what the Rock is cooking!');
       })
       .catch((error) => {
         console.log(error);
