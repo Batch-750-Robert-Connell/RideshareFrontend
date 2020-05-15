@@ -3,6 +3,7 @@ import { UserService } from 'src/app/services/user-service/user.service';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MapsAPILoader } from '@agm/core';
+import { CarService } from 'src/app/services/car-service/car.service';
 declare var google;
 @Component({
   selector: 'app-driver-list',
@@ -22,6 +23,7 @@ export class DriverListComponent implements OnInit {
   mapProperties: {};
   availableCars: Array<any> = [];
   drivers: Array<any> = [];
+  drivers2: Array<any> = [];
   googleDrivers: Array<any> = [];
   IdOfDriver: number;
   IdOfUser: number;
@@ -32,6 +34,7 @@ export class DriverListComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private userService: UserService,
+    private carService: CarService,
     private snackBar: MatSnackBar,
     private mapsAPILoader: MapsAPILoader
   ) {}
@@ -44,17 +47,38 @@ export class DriverListComponent implements OnInit {
     this.drivers = [];
     this.googleDrivers = [];
 
-    this.userService.getRidersForLocation1(this.location).subscribe((res) => {
-      res.forEach((element) => {
+    this.carService.getAllCars().subscribe((cars) => {
+      console.log(cars);
+      this.drivers2 = cars.filter((element) => {
+        return element.user.active && element.user.driver;
+      });
+
+      this.drivers2.forEach((element) => {
         this.drivers.push({
-          id: element.userId,
-          name: element.firstName,
-          origin: element.hCity + ',' + element.hState,
-          email: element.email,
-          phone: element.phoneNumber,
+          id: element.user.userId,
+          name: element.user.firstName,
+          origin: element.user.hCity + ',' + element.hState,
+          email: element.user.email,
+          phone: element.user.phoneNumber,
+          car: element,
         });
       });
     });
+    console.log(this.drivers);
+
+    // this.userService.getRidersForLocation1(this.location).subscribe((res) => {
+    //   console.log(res);
+    //   this.drivers = res;
+    //   res.forEach((element) => {
+    //     this.drivers.push({
+    //       id: element.userId,
+    //       name: element.firstName,
+    //       origin: element.hCity + ',' + element.hState,
+    //       email: element.email,
+    //       phone: element.phoneNumber,
+    //     });
+    //   });
+    // });
 
     // shows the map on the drivers page
     this.sleep(2000).then(() => {
@@ -258,13 +282,11 @@ export class DriverListComponent implements OnInit {
         this.mapElement.nativeElement,
         this.mapProperties
       );
-      
+
       // get all routes
       this.displayDriversList(this.location, this.drivers);
       // show drivers on map
       this.showDriversOnMap(this.location, this.drivers);
-
-
     });
   }
 
@@ -293,7 +315,6 @@ export class DriverListComponent implements OnInit {
         );
       });
     });
-
   }
   /**
    * User requests for a desired driver from the driver's List table
@@ -387,7 +408,7 @@ export class DriverListComponent implements OnInit {
             avoidHighways: false,
             avoidTolls: false,
           },
-  
+
           (response, status) => {
             if (status !== 'OK') {
               alert('Error was: ' + status);
@@ -395,32 +416,33 @@ export class DriverListComponent implements OnInit {
               var originList = response.originAddresses;
               var destinationList = response.destinationAddresses;
               let results = response.rows[0].elements;
-  
+
               const name = element.name;
-  
+
               const myobj = {
                 Id: element.id,
                 Name: name,
-                Distance: results[0].distance.text,
+                Distance: results[0].distance.text.replace(',', '').split()[0],
                 Duration: results[0].duration.text,
               };
-  
+
+              console.log(myobj.Distance);
+
               // driver won't be able to view himself in the driversList.
-              if (myobj.Id != sessionStorage.getItem('userid')) {
+              if (
+                myobj.Id != sessionStorage.getItem('userid') &&
+                parseInt(myobj.Distance) < 300
+              ) {
                 this.googleDrivers.push(myobj);
               }
               // sorting the drivers list by distance
               this.googleDrivers.sort((a, b) =>
-                parseFloat(a.Distance.split()[0]) >
-                parseFloat(b.Distance.split()[0])
-                  ? 1
-                  : -1
+                parseFloat(a.Distance) > parseFloat(b.Distance) ? 1 : -1
               );
             }
           }
         );
       });
     });
-
   }
 }
