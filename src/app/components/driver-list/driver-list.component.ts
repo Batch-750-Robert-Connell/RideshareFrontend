@@ -3,12 +3,14 @@ import { UserService } from 'src/app/services/user-service/user.service';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MapsAPILoader } from '@agm/core';
+import { User } from 'src/app/models/user';
 import { CarService } from 'src/app/services/car-service/car.service';
+
 declare var google;
 @Component({
   selector: 'app-driver-list',
   templateUrl: './driver-list.component.html',
-  styleUrls: ['./driver-list.component.css'],
+  styleUrls: ['./driver-list.component.scss'],
 })
 
 /**
@@ -27,6 +29,10 @@ export class DriverListComponent implements OnInit {
   googleDrivers: Array<any> = [];
   IdOfDriver: number;
   IdOfUser: number;
+  isDriver:boolean;
+  isLoaded:boolean = false;
+  whichLoadingRequest = undefined;
+  isRequested:boolean= false;
 
   @ViewChild('map', null) mapElement: any;
   map: google.maps.Map;
@@ -37,7 +43,11 @@ export class DriverListComponent implements OnInit {
     private carService: CarService,
     private snackBar: MatSnackBar,
     private mapsAPILoader: MapsAPILoader
-  ) {}
+  ) {
+    this.userService.getUserById(parseInt(sessionStorage.getItem("userid"))).then((resp:User)=>{
+      this.isDriver =resp.isDriver;
+    })
+  }
 
   /**
    * ngOnInit() gets the drivers from our database and adds them to our drivers array.
@@ -300,6 +310,7 @@ export class DriverListComponent implements OnInit {
 
   showDriversOnMap(origin, drivers) {
     this.mapsAPILoader.load().then(() => {
+        this.isLoaded = true;
       drivers.forEach((element) => {
         const directionsService = new google.maps.DirectionsService();
         const directionsRenderer = new google.maps.DirectionsRenderer({
@@ -326,6 +337,8 @@ export class DriverListComponent implements OnInit {
    * driver chosen.
    */
   submitRequest(driverId: string, driver: string) {
+    this.isRequested = true;
+    this.whichLoadingRequest = driverId;
     const parseDriverId = parseInt(driverId);
     const userId = parseInt(sessionStorage.getItem('userid'));
     this.userService
@@ -340,6 +353,7 @@ export class DriverListComponent implements OnInit {
           horizontalPosition: 'center',
           panelClass: ['success'],
         });
+        this.whichLoadingRequest = undefined;
       })
       .catch((error) => {
         this.snackBar.open('Request has failed', '', {

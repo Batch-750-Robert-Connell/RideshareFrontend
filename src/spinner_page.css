@@ -1,0 +1,91 @@
+@keyframes spinner-page {
+    0% {
+        transform: translate(12.059999999999999px, 80.39999999999999px) scale(0);
+    }
+    25% {
+        transform: translate(12.059999999999999px, 80.39999999999999px) scale(0);
+    }
+    50% {
+        transform: translate(12.059999999999999px, 80.39999999999999px) scale(1);
+    }
+    75% {
+        transform: translate(80.39999999999999px, 80.39999999999999px) scale(1);
+    }
+    100% {
+        transform: translate(148.73999999999998px, 80.39999999999999px) scale(1);
+    }
+}
+@keyframes spinner-page-r {
+    0% {
+        transform: translate(148.73999999999998px, 80.39999999999999px) scale(1);
+    }
+    100% {
+        transform: translate(148.73999999999998px, 80.39999999999999px) scale(0);
+    }
+}
+@keyframes spinner-page-c {
+    0% {
+        background: #e05a16ad;
+    }
+    25% {
+        background: #e05a16ad;
+    }
+    50% {
+        background: #e05a16ad;
+    }
+    75% {
+        background: #e05a16ad;
+    }
+    100% {
+        background: #e05a16ad;
+    }
+}
+.spinner-page div {
+    position: absolute;
+    width: 40.199999999999996px;
+    height: 40.199999999999996px;
+    border-radius: 50%;
+    transform: translate(80.39999999999999px, 80.39999999999999px) scale(1);
+    background: #e05a16ad;
+    animation: spinner-page 2.3255813953488373s infinite cubic-bezier(0, 0.5, 0.5, 1);
+}
+.spinner-page div:nth-child(1) {
+    background: #e05a16ad;
+    transform: translate(148.73999999999998px, 80.39999999999999px) scale(1);
+    animation: spinner-page-r 0.5813953488372093s infinite cubic-bezier(0, 0.5, 0.5, 1),
+        spinner-page-c 2.3255813953488373s infinite step-start;
+}
+.spinner-page div:nth-child(2) {
+    animation-delay: -0.5813953488372093s;
+    background: #e05a16ad;
+}
+.spinner-page div:nth-child(3) {
+    animation-delay: -1.1627906976744187s;
+    background: #e05a16ad;
+}
+.spinner-page div:nth-child(4) {
+    animation-delay: -1.744186046511628s;
+    background: #e05a16ad;
+}
+.spinner-page div:nth-child(5) {
+    animation-delay: -2.3255813953488373s;
+    background: #e05a16ad;
+}
+.spinner-page-container {
+    width: 200px;
+    height: 130px;
+    display: inline-block;
+    overflow: hidden;
+    background: none;
+}
+.spinner-page {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateZ(0) scale(1);
+    backface-visibility: hidden;
+    transform-origin: 0 0; /* see note above */
+}
+.spinner-page div {
+    box-sizing: content-box;
+}

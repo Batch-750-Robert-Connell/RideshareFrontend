@@ -1,35 +1,48 @@
 <app-navbar></app-navbar>
-<div class="container">
-  <div class="row">
-    <div class="col-lg-5">
-      <h4>Driver's List</h4>
-
-      <table class="table table-striped" aria-describedby="table of drivers">
-
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Distance</th>
-            <th scope="col">Time</th>
-            <th scope="col">Request a Ride</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let driver of googleDrivers">
-            <td>{{ driver.Name }}</td>
-            <td>{{ driver.Distance }}</td>
-            <td>{{ driver.Duration }}</td>
-            <td><input type="hidden" value="{{driver.Id}}"><button id="submit"
-                (click)="submitRequest(driver.Id, driver.Name)" class="btn btn-light btn-sm">Request</button></td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="row m-0" [hidden]="!isLoaded">
+    <div class="col-4 p-0">
+      <div id="table" *ngIf="!isDriver">
+        <h4>Driver's List</h4>
+        <table  class="table table-striped m-0" aria-describedby="table of drivers">
+  
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Distance</th>
+              <th scope="col">Time</th>
+              <th scope="col">Request a Ride</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let driver of googleDrivers">
+              <td>{{ driver.Name }}</td>
+              <td>{{ driver.Distance }}</td>
+              <td>{{ driver.Duration }}</td>
+              <td><input type="hidden" value="{{driver.Id}}"><button [disabled]="isRequested" id="submit"
+                  (click)="submitRequest(driver.Id, driver.Name)" class="btn btn-light btn-sm"><span *ngIf="whichLoadingRequest == driver.Id else requestTxt"><div class="spinner-container"><div class="spinner">
+                    <div></div><div><div></div></div>
+                    </div></div></span> <ng-template #requestTxt>Request</ng-template></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <app-driver-request-manager *ngIf="isDriver"></app-driver-request-manager>
+      <app-rider-dashboard *ngIf="!isDriver"></app-rider-dashboard>
     </div>
-    <div class="col-lg-6">
-      <div #map id="gmap" class="img-responsive"></div>
+    <div class="col-8 p-0">
+      <div #map id="gmap" class="img-responsive m-0"></div>
     </div>
 
   </div>
-  <app-driver-request-manager></app-driver-request-manager>
-  <app-rider-dashboard></app-rider-dashboard>
-</div>
+ <div class="wait" [hidden]="isLoaded">
+  <div class="spinner-page-container">
+    <div class="spinner-page">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <div>Please wait...</div>
+ </div>

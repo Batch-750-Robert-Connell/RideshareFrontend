@@ -26,14 +26,14 @@ nav {
 }
 
 .navbar {
-     padding-left: 7%;
-     padding-right: 7%;
     /* line-height: 42px; */
-    height: 81px;
+    height: 80px;
     font-size: -2.7rem;
     font-weight: 800;
     /* background-color: #F26925; */
     background-image: linear-gradient(#F26925, rgb(211, 79, 12));
+    border: 0 !important;
+    padding: 5px 15px !important;
 
 }
 

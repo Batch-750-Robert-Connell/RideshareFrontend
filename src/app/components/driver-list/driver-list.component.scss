@@ -1,0 +1,75 @@
+
+#gmap {
+  height: calc(100vh - 80px);
+  width: 100%;
+}
+
+
+
+.btn-outline-secondary {
+  font-size: 14px;
+}
+
+.table {
+  width: 100%;
+  background-color: #5a5a5a;
+  color: white;
+  font-weight: 600;
+}
+
+h4 {
+  text-align: center;
+  margin-left: 26px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+
+
+.table .thead-dark th {
+  color: #fff;
+  background-color: #222222;
+  border-color: #5a5a5a;
+  font-size: 15px;
+  text-align: center;
+
+}
+table {
+  tbody{
+    tr{
+      td{
+        text-align: center;
+      }
+    }
+  }
+}
+
+.btn-light {
+  color: #ffffff;
+  background-color: #D4500D;
+  border-color: #ffd09b;
+  font-weight: 600;
+}
+
+.btn-light:hover {
+  color: #ffffff;
+  background-color: #000000;
+  border-color: #ffffff;
+  transform: translateY(-1px);
+}
+
+#table{
+  height: 40vh;
+  overflow: auto;
+  width: 100%;
+}
+
+.wait{
+  margin-top: calc(50vh - 220px);
+  text-align: center;
+  div{
+    font-size: 30px;
+    color: gray;
+    user-select: none;
+  }
+}
