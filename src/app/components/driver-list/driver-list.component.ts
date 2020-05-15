@@ -64,7 +64,6 @@ export class DriverListComponent implements OnInit {
         });
       });
     });
-    console.log(this.drivers);
 
     // this.userService.getRidersForLocation1(this.location).subscribe((res) => {
     //   console.log(res);
