@@ -29,10 +29,10 @@ export class DriverListComponent implements OnInit {
   googleDrivers: Array<any> = [];
   IdOfDriver: number;
   IdOfUser: number;
-  isDriver:boolean;
-  isLoaded:boolean = false;
+  isDriver: boolean;
+  isLoaded: boolean = false;
   whichLoadingRequest = undefined;
-  isRequested:boolean= false;
+  isRequested: boolean = false;
 
   @ViewChild('map', null) mapElement: any;
   map: google.maps.Map;
@@ -44,9 +44,11 @@ export class DriverListComponent implements OnInit {
     private snackBar: MatSnackBar,
     private mapsAPILoader: MapsAPILoader
   ) {
-    this.userService.getUserById(parseInt(sessionStorage.getItem("userid"))).then((resp:User)=>{
-      this.isDriver =resp.isDriver;
-    })
+    this.userService
+      .getUserById(parseInt(sessionStorage.getItem('userid')))
+      .then((resp: User) => {
+        this.isDriver = resp.driver;
+      });
   }
 
   /**
@@ -310,7 +312,7 @@ export class DriverListComponent implements OnInit {
 
   showDriversOnMap(origin, drivers) {
     this.mapsAPILoader.load().then(() => {
-        this.isLoaded = true;
+      this.isLoaded = true;
       drivers.forEach((element) => {
         const directionsService = new google.maps.DirectionsService();
         const directionsRenderer = new google.maps.DirectionsRenderer({
