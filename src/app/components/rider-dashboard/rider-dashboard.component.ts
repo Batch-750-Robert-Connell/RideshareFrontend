@@ -191,10 +191,7 @@ export class RiderDashboardComponent implements OnInit {
         console.log(error);
       });
   }
-  showModal() {
-    console.log(this.Modal + ' Hello From showModal');
-    this.Modal = !this.Modal;
-  }
+
   getCarInfo(driver: User) {
     //let driverIdNumber = parseInt(driverId);
 
