@@ -42,8 +42,8 @@
           </button>
         </td>
         <td>
-          <button class="btn btn-light" (click)="getRiderInfo(reservation.rider)" data-toggle="modal"
-            data-target="#riderModal">
+          <button *ngIf="reservation.status == 2" class="btn btn-light" (click)="getRiderInfo(reservation.rider)"
+            data-toggle="modal" data-target="#riderModal">
             <em class="fa fa-info-circle"></em>
           </button>
         </td>
