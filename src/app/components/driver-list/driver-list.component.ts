@@ -5,6 +5,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MapsAPILoader } from '@agm/core';
 import { User } from 'src/app/models/user';
 import { CarService } from 'src/app/services/car-service/car.service';
+import { ReservationService } from '../../services/reservation-service/reservation.service';
+import { Reservation } from '../../models/reservation';
 
 declare var google;
 @Component({
@@ -33,12 +35,15 @@ export class DriverListComponent implements OnInit {
   isLoaded: boolean = false;
   whichLoadingRequest = undefined;
   isRequested: boolean = false;
+  riderRequest: Reservation[] = [];
+  color: string = 'orange';
+  currentDistance: number = 300;
 
   @ViewChild('map', null) mapElement: any;
   map: google.maps.Map;
 
   constructor(
-    private http: HttpClient,
+    private reservationService: ReservationService,
     private userService: UserService,
     private carService: CarService,
     private snackBar: MatSnackBar,
@@ -58,9 +63,9 @@ export class DriverListComponent implements OnInit {
   ngOnInit() {
     this.drivers = [];
     this.googleDrivers = [];
+    this.getReservations();
 
     this.carService.getAllCars().subscribe((cars) => {
-      console.log(cars);
       this.drivers2 = cars.filter((element) => {
         return element.user.active && element.user.driver;
       });
@@ -346,7 +351,6 @@ export class DriverListComponent implements OnInit {
     this.userService
       .sendEmail(userId, parseDriverId)
       .then((data) => {
-        console.log(data);
         this.snackBar.open('Request has been sent to ' + driver, '', {
           duration: 2000,
           direction: 'ltr',
@@ -356,6 +360,10 @@ export class DriverListComponent implements OnInit {
           panelClass: ['success'],
         });
         this.whichLoadingRequest = undefined;
+        // calling the get reservations to update the pending request table
+        this.getReservations();
+        // rebuilding the display request list to make the name fall off
+        this.displayDriversList(this.location, this.drivers);
       })
       .catch((error) => {
         this.snackBar.open('Request has failed', '', {
@@ -366,6 +374,25 @@ export class DriverListComponent implements OnInit {
           horizontalPosition: 'center',
           panelClass: ['failure'],
         });
+      });
+  }
+
+  /**
+   * gets all reseverations made by the user that is logged in
+   */
+  getReservations() {
+    let id = parseInt(sessionStorage.getItem('userid'));
+    this.reservationService
+      .getAllReservationsByRiderID(id)
+      .then((data) => {
+        if (data != null) {
+          this.riderRequest = data;
+
+          //this.color = this.driverCar.color;
+        }
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }
 
@@ -408,8 +435,10 @@ export class DriverListComponent implements OnInit {
    */
 
   displayDriversList(origin, drivers) {
+    this.googleDrivers = [];
     this.mapsAPILoader.load().then(() => {
       const origins = [];
+
       // set origin
       origins.push(origin);
       drivers.forEach((element) => {
@@ -439,14 +468,18 @@ export class DriverListComponent implements OnInit {
                 Name: name,
                 Distance: results[0].distance.text.replace(',', '').split()[0],
                 Duration: results[0].duration.text,
+                Car: element.car,
+                AvailableSeats: 1,
               };
 
-              console.log(myobj.Distance);
+              let hasRequested = this.checkIfUserHasRequest(myobj.Id);
 
-              // driver won't be able to view himself in the driversList.
+              let seatsAvailable = this.getAvailableSeats(myobj);
+              // driver won't be able to view himself in the driversList. also will not show drivers outside of the given radius. Also will not show drivers that the user has already made a reauest to.
               if (
                 myobj.Id != sessionStorage.getItem('userid') &&
-                parseInt(myobj.Distance) < 300
+                parseInt(myobj.Distance) < this.currentDistance &&
+                hasRequested == true
               ) {
                 this.googleDrivers.push(myobj);
               }
@@ -459,5 +492,30 @@ export class DriverListComponent implements OnInit {
         );
       });
     });
+  }
+
+  getAvailableSeats(myObj) {
+    this.reservationService
+      .getAvailableSeats(myObj.Id)
+      .then((data) => {
+        myObj['AvailableSeats'] = data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  checkIfUserHasRequest(driverIdTest: number) {
+    for (let i = 0; i < this.riderRequest.length; i++) {
+      if (this.riderRequest[i].driver.userId == driverIdTest) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  milesSelected(miles: number) {
+    this.currentDistance = miles;
+    this.displayDriversList(this.location, this.drivers);
   }
 }

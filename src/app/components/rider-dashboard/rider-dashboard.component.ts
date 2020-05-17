@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ReservationService } from '../../services/reservation-service/reservation.service';
 import { Reservation } from '../../models/reservation';
 import { CarService } from '../../services/car-service/car.service';
@@ -11,7 +11,7 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./rider-dashboard.component.css'],
 })
 export class RiderDashboardComponent implements OnInit {
-  riderRequest: Reservation[] = [];
+  @Input() riderRequest: Reservation[];
   driverCar: Car;
   driverUser: User;
   CSS_COLOR_NAMES: Array<string> = [
@@ -173,23 +173,8 @@ export class RiderDashboardComponent implements OnInit {
     private reservationService: ReservationService
   ) {}
   ngOnInit() {
-    this.getReservations();
-  }
-
-  getReservations() {
-    let id = parseInt(sessionStorage.getItem('userid'));
-    this.reservationService
-      .getAllReservationsByRiderID(id)
-      .then((data) => {
-        if (data != null) {
-          this.riderRequest = data;
-          console.log(this.riderRequest);
-          this.color = this.driverCar.color;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    console.log(this.riderRequest);
+    //this.getReservations();
   }
 
   getCarInfo(driver: User) {

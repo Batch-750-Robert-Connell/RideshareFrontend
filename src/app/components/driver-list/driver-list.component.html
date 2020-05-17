@@ -1,40 +1,67 @@
 <app-navbar></app-navbar>
-  <div class="row m-0" [hidden]="!isLoaded">
-    <div class="col-4 p-0">
-      <div id="table" *ngIf="!isDriver">
-        <h4>Driver's List</h4>
-        <table  class="table table-striped m-0" aria-describedby="table of drivers">
-  
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Distance</th>
-              <th scope="col">Time</th>
-              <th scope="col">Request a Ride</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let driver of googleDrivers">
-              <td>{{ driver.Name }}</td>
-              <td>{{ driver.Distance }}</td>
-              <td>{{ driver.Duration }}</td>
-              <td><input type="hidden" value="{{driver.Id}}"><button [disabled]="isRequested" id="submit"
-                  (click)="submitRequest(driver.Id, driver.Name)" class="btn btn-light btn-sm"><span *ngIf="whichLoadingRequest == driver.Id else requestTxt"><div class="spinner-container"><div class="spinner">
-                    <div></div><div><div></div></div>
-                    </div></div></span> <ng-template #requestTxt>Request</ng-template></button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <app-driver-request-manager *ngIf="isDriver"></app-driver-request-manager>
-      <app-rider-dashboard *ngIf="!isDriver"></app-rider-dashboard>
-    </div>
-    <div class="col-8 p-0">
-      <div #map id="gmap" class="img-responsive m-0"></div>
-    </div>
+<div class="row m-0" [hidden]="!isLoaded">
+  <div class="col-4 p-0">
+    <div id="table" *ngIf="!isDriver">
+      <h4>Driver's List</h4>
+      <div class="dropdown show">
+        <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          {{currentDistance ==2000 ? 'All' : 'Radius of ' + currentDistance}}
+        </a>
 
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a (click)="milesSelected(10)" class="dropdown-item">10 miles</a>
+          <a (click)="milesSelected(100)" class="dropdown-item">100 miles</a>
+          <a (click)="milesSelected(300)" class="dropdown-item">300 miles</a>
+          <a (click)="milesSelected(2000)" class="dropdown-item">All</a>
+        </div>
+      </div>
+      <table class="table table-striped m-0" aria-describedby="table of drivers">
+
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Distance</th>
+            <th scope="col">Time</th>
+            <th scope="col">Available Seats</th>
+            <th scope="col">Request a Ride</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let driver of googleDrivers">
+            <td>{{ driver.Name }}</td>
+            <td>{{ driver.Distance }}</td>
+            <td>{{ driver.Duration }}</td>
+            <td>
+              {{driver.AvailableSeats}}
+            </td>
+            <td><input type="hidden" value="{{driver.Id}}"><button [disabled]="isRequested || driver.AvailableSeats <=0"
+                id=" submit" (click)="submitRequest(driver.Id, driver.Name)" class="btn btn-light btn-sm"><span
+                  *ngIf="whichLoadingRequest == driver.Id else requestTxt">
+                  <div class="spinner-container">
+                    <div class="spinner">
+                      <div></div>
+                      <div>
+                        <div></div>
+                      </div>
+                    </div>
+                  </div>
+                </span>
+                <ng-template #requestTxt>Request</ng-template>
+              </button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <app-driver-request-manager *ngIf="isDriver"></app-driver-request-manager>
+    <app-rider-dashboard *ngIf="!isDriver" [riderRequest]="riderRequest"></app-rider-dashboard>
   </div>
- <div class="wait" [hidden]="isLoaded">
+  <div class="col-8 p-0">
+    <div #map id="gmap" class="img-responsive m-0"></div>
+  </div>
+
+</div>
+<div class="wait" [hidden]="isLoaded">
   <div class="spinner-page-container">
     <div class="spinner-page">
       <div></div>
@@ -45,4 +72,4 @@
     </div>
   </div>
   <div>Please wait...</div>
- </div>
+</div>
