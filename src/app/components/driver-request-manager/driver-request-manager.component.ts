@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { ReservationService } from '../../services/reservation-service/reservation.service';
 import { Reservation } from 'src/app/models/reservation';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-driver-request-manager',
@@ -11,6 +12,7 @@ import { Reservation } from 'src/app/models/reservation';
 })
 export class DriverRequestManagerComponent implements OnInit {
   driverRequest: Reservation[] = [];
+  currentRiderInfo: User;
   constructor(
     private reservationService: ReservationService,
     private snackBar: MatSnackBar
@@ -83,5 +85,9 @@ export class DriverRequestManagerComponent implements OnInit {
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  getRiderInfo(currentRiderInfo: User) {
+    this.currentRiderInfo = currentRiderInfo;
   }
 }
