@@ -18,6 +18,12 @@ export class ReservationService {
       .toPromise();
   }
 
+  getAvailableSeats(id: number): Promise<any> {
+    return this.http
+      .get<Reservation[]>(`${this.urlReservation}/seats?id=${id}`)
+      .toPromise();
+  }
+
   getAllReservationsByRiderID(id: number): Promise<any> {
     return this.http
       .get<Reservation[]>(`${this.urlReservation}/rider?id=${id}`)
