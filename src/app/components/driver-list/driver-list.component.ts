@@ -34,6 +34,9 @@ export class DriverListComponent implements OnInit {
   whichLoadingRequest = undefined;
   isRequested: boolean = false;
 
+  /**
+   * This will get Map from the DOM.
+   */
   @ViewChild('map', null) mapElement: any;
   map: google.maps.Map;
 

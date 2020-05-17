@@ -19,7 +19,7 @@ import {SignupModalComponent} from '../sign-up-modal/sign-up-modal.component';
 export class NavbarComponent implements OnInit {
   modal :SignupModalComponent;
   /**
-   * This is a name string.
+   * This is a name string, displays the name of the logged in user.
    */
 
   name: string = '';
@@ -89,6 +89,7 @@ export class NavbarComponent implements OnInit {
     // sessionStorage.clear();
     this.router.navigate(['']);
   }
+
 
   redirectToHome() {
     this.authService.user.isDriver ? this.router.navigate(['home/riders']) : this.router.navigate(['home/drivers']);

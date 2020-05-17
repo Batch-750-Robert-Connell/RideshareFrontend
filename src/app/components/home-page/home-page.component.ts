@@ -18,7 +18,7 @@ declare var particlesJS;
 
 /**
  * HomePageComponent is the class with different properties to log in
- * and sign up. some of the properties are username, password, email, and
+ * and sign up. Some of the properties are username, password, email, and
  * all other personal information about the user. A user can also choose to
  * register as a driver or a rider.
  */
@@ -35,6 +35,9 @@ export class HomePageComponent implements OnInit {
   isRegisterSuccess = false;
   isLoginFailure = false;
   @ViewChild("msgRegister",{static:false}) msgRegister:ElementRef;
+  /**
+   * instantiated the user.
+   */
   user: User = {
     userId: 0,
     userName: '',
@@ -71,6 +74,9 @@ export class HomePageComponent implements OnInit {
     private userService: UserService,
     private changeDetector : ChangeDetectorRef
   ) {
+    /**
+     * Animation on the homepage.
+     */
     setTimeout(() => {
       this.isAnime = false;
     }, 1500);
@@ -119,6 +125,9 @@ export class HomePageComponent implements OnInit {
       function () {}
     );
 
+    /**
+     * animation slides on the log in page. 3 seconds between each slide.
+     */
     setTimeout(() => {
       $('#slides').carousel({
         interval: 3000,
