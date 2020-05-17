@@ -20,7 +20,7 @@ export class DriverComponent implements OnInit {
 
   /**
    * Constructor
-   * @param userService An user service is instantiated.
+   * @param userService A user service is instantiated.
    * @param router Provides an instance of a router.
    * @param authService An auth service is injected.
    */
@@ -48,7 +48,8 @@ export class DriverComponent implements OnInit {
   }
 
   /**
-   * A PUT method that changes accepting ride status
+   * A PUT method that changes accepting ride status, this method makes sure that
+   * a user can't be a driver and a rider at the same time.
    * @param userdriver
    */
   changeAcceptingRides(userdriver) {

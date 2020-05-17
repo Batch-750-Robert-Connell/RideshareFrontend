@@ -11,6 +11,10 @@ import { User } from 'src/app/models/user';
   templateUrl: './profile-car.component.html',
   styleUrls: ['./profile-car.component.scss'],
 })
+/**
+ * ProfileCarComponent allows a user to update and modify their car information such as
+ * make, mode, and number of seats.
+ */
 export class ProfileCarComponent implements OnInit {
   CarForm: FormGroup;
 
@@ -38,6 +42,11 @@ export class ProfileCarComponent implements OnInit {
             .then((userInfo) => {
               this.userInfo = userInfo;
 
+              /**
+               * Instatiate the current year when there is no information about the
+               * car. This is the default setting for the car information. Other car information
+               * are set to empty for the user to modify and update based on their car information.
+               */
               var d = new Date();
               var year = d.getFullYear();
               this.car = {
@@ -50,6 +59,11 @@ export class ProfileCarComponent implements OnInit {
                 year: year,
               };
 
+
+              /**
+               * This is the form where user has to fill the information about their car. This is used for
+               * form validation. These fields are required to be filled by the user upon registering their car.
+               */
               this.CarForm = this.formBuilder.group({
                 make: ['', Validators.required],
                 model: ['', Validators.required],
@@ -75,6 +89,9 @@ export class ProfileCarComponent implements OnInit {
 
   ngOnInit() {}
 
+  /**
+   * this funtion is executed when the user inputs new information for their car.
+   */
   createNewCar() {
     if (this.CarForm.valid) {
       this.car.make = this.CarForm.value.make;
@@ -97,6 +114,10 @@ export class ProfileCarComponent implements OnInit {
     }
   }
 
+/**
+ * This funtion is executed when a user updates their car information. For example when they buy
+ * a new car.
+ */
   updatesCarInfo() {
     if (this.CarForm.valid) {
       this.carService.updateCarInfo(this.car);

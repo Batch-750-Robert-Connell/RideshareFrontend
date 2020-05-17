@@ -14,6 +14,9 @@ export class ProfileLocationComponent implements OnInit {
   locationForm: FormGroup;
   user: User;
   searchedPlace: string = "";
+  /**
+   * Gets the address input from the DOM.
+   */
   @ViewChild("addresstext", {static: false}) addresstext: ElementRef;
   constructor(
     private userService: UserService,
@@ -40,10 +43,10 @@ export class ProfileLocationComponent implements OnInit {
         });
       });
 
-      
 
 
-         
+
+
     //load Places Autocomplete
 
   }
@@ -53,6 +56,11 @@ export class ProfileLocationComponent implements OnInit {
   }
 
 
+  /**
+   * This funtion uses GoogleMapsAPI autocomplete. When a user inputs their address, this API
+   * will suggest the full address that includes the city, state, street and zipcode. It will
+   * autofill the address for the user.
+   */
   findAdress(){
 
     console.log(this.addresstext);
@@ -91,7 +99,7 @@ export class ProfileLocationComponent implements OnInit {
                   break;
               }
              })
-           
+
 
              //  this.address = place.formatted_address;
             //  this.web_site = place.website;
@@ -106,10 +114,10 @@ export class ProfileLocationComponent implements OnInit {
        });
    }
 
- 
 
 
-  
+
+
   /**
    * updates the location of the user.
    */
