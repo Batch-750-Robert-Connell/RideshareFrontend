@@ -9,7 +9,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let reservation of riderRequest">
+      <tr *ngFor="let reservation of riderRequest" class="{{reservation.status== 2 ? 'table-success'
+      :reservation.status== 3 ? 'table-danger'
+      : ''}}">
         <td>{{ reservation.driver.firstName }}</td>
         <td>
           {{
