@@ -476,8 +476,7 @@ export class DriverListComponent implements OnInit {
               };
 
               let hasRequested = this.checkIfUserHasRequest(myobj.Id);
-
-              let seatsAvailable = this.getAvailableSeats(myobj);
+              this.getAvailableSeats(myobj);
               // driver won't be able to view himself in the driversList. also will not show drivers outside of the given radius. Also will not show drivers that the user has already made a reauest to.
               if (
                 myobj.Id != sessionStorage.getItem('userid') &&
