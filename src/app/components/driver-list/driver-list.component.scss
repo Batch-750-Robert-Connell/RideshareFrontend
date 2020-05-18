@@ -1,10 +1,9 @@
+@import "../../../custom-theme.scss";
 
 #gmap {
   height: calc(100vh - 80px);
   width: 100%;
 }
-
-
 
 .btn-outline-secondary {
   font-size: 14px;
@@ -24,16 +23,14 @@ h4 {
   font-weight: bold;
 }
 
-
-
 .table .thead-dark th {
   color: #fff;
   background-color: #222222;
   border-color: #5a5a5a;
-  font-size: 15px;
+  font-size: 10px;
   text-align: center;
-
 }
+
 table {
   tbody{
     tr{
@@ -62,6 +59,9 @@ table {
   height: 40vh;
   overflow: auto;
   width: 100%;
+  background-image: linear-gradient(rgb(31, 31, 31), rgb(49, 49, 49));
+  color: white;
+  border-bottom: 3px dashed rgb(214, 103, 47);
 }
 
 .wait{
@@ -72,4 +72,13 @@ table {
     color: gray;
     user-select: none;
   }
+}
+
+.dropdown{
+  float: right;
+    margin: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #242424 !important;
 }
