@@ -6,7 +6,7 @@ const baseUri = `http://34.238.165.243/`;
 /**
  * Set the port var
  */
-const port = '8080';
+const port = '9002';
 
 /**
  * These are the constants for the production config
