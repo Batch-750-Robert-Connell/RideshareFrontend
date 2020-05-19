@@ -5,11 +5,16 @@ import { CarService } from '../../services/car-service/car.service';
 import { Car } from '../../models/car';
 import { User } from 'src/app/models/user';
 
+/**
+ * RiderDashboardComponent is a presentation component that recieves its
+ * input from the driver-list component.
+ */
 @Component({
   selector: 'app-rider-dashboard',
   templateUrl: './rider-dashboard.component.html',
   styleUrls: ['./rider-dashboard.component.css'],
 })
+
 export class RiderDashboardComponent implements OnInit {
   @Input() riderRequest: Reservation[];
   driverCar: Car;
@@ -177,6 +182,13 @@ export class RiderDashboardComponent implements OnInit {
     //this.getReservations();
   }
 
+  /**
+   *
+   * @param driver
+   * getCarInfo() will display the car and contact information of the driver. This function
+   * is only called when a driver accepts a request. The information that will be displayed for the rider includes-
+   * full name, email, phone number, and car make, model and color.
+   */
   getCarInfo(driver: User) {
     //let driverIdNumber = parseInt(driverId);
 

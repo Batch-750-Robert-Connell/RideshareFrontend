@@ -5,6 +5,9 @@ import { ReservationService } from '../../services/reservation-service/reservati
 import { Reservation } from 'src/app/models/reservation';
 import { User } from 'src/app/models/user';
 
+/**
+ * Dashboard for driver. Displays the requests that the driver has.
+ */
 @Component({
   selector: 'app-driver-request-manager',
   templateUrl: './driver-request-manager.component.html',
@@ -22,6 +25,9 @@ export class DriverRequestManagerComponent implements OnInit {
     this.getReservations();
   }
 
+  /**
+   * getReservations will populate the table with pending requests for each driver.
+   */
   getReservations() {
     let id = parseInt(sessionStorage.getItem('userid'));
     this.reservationService
@@ -36,6 +42,15 @@ export class DriverRequestManagerComponent implements OnInit {
       });
   }
 
+  /**
+   *
+   * @param riderId
+   * @param driverId
+   * @param reservationId
+   * @param riderName
+   * approveRequest() is called when a driver accepts a pending request. When the approve button is
+   * clicked, an alert will appear notifying that an email was sent to the rider.
+   */
   approveRequest(
     riderId: string,
     driverId: string,
@@ -70,6 +85,15 @@ export class DriverRequestManagerComponent implements OnInit {
       });
   }
 
+  /**
+   *
+   * @param riderId
+   * @param driverId
+   * If a rider has multiple pending requests to different drivers, cancelRemainingRequestForRider()
+   * will be invoked once one of the driver approves one of these requests. This will make sure that
+   * only one driver is assgined per rider request.
+   *
+   */
   cancelRemainingRequestForRider(riderId: string, driverId: string) {
     // grabbing all reservation to cancel anything pending
     let riderIdInt = parseInt(riderId);
@@ -95,6 +119,13 @@ export class DriverRequestManagerComponent implements OnInit {
       });
   }
 
+  /**
+   *
+   * @param riderId
+   * @param reservationId
+   * denyRequest() is called when a driver denies a pending request. When the deny button is
+   * clicked, an alert will appear notifying that an email was sent to the rider.
+   */
   denyRequest(riderId: string, reservationId: string) {
     this.reservationService
       .denyReservation(riderId, reservationId)
@@ -114,6 +145,11 @@ export class DriverRequestManagerComponent implements OnInit {
       });
   }
 
+  /**
+   *
+   * @param currentRiderInfo
+   * Gets the rider information to be displayed for the driver after they approve a request.
+   */
   getRiderInfo(currentRiderInfo: User) {
     this.currentRiderInfo = currentRiderInfo;
   }
