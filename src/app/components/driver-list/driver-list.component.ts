@@ -460,8 +460,10 @@ export class DriverListComponent implements OnInit {
             if (status !== 'OK') {
               alert('Error was: ' + status);
             } else {
-              var originList = response.originAddresses;
-              var destinationList = response.destinationAddresses;
+
+              //Below is legacy code that we never used.
+              // var originList = response.originAddresses;
+              // var destinationList = response.destinationAddresses;
               let results = response.rows[0].elements;
 
               const name = element.name;
@@ -477,7 +479,8 @@ export class DriverListComponent implements OnInit {
 
               let hasRequested = this.checkIfUserHasRequest(myobj.Id);
               this.getAvailableSeats(myobj);
-              // driver won't be able to view himself in the driversList. also will not show drivers outside of the given radius. Also will not show drivers that the user has already made a reauest to.
+              // driver won't be able to view himself in the driversList. Also will not show drivers outside of the given radius.
+              //Also will not show drivers that the user has already made a reauest to.
               if (
                 myobj.Id != sessionStorage.getItem('userid') &&
                 parseInt(myobj.Distance) < this.currentDistance &&
@@ -495,6 +498,11 @@ export class DriverListComponent implements OnInit {
       });
     });
   }
+  /**
+   *
+   * @param myObj
+   * getAvailableSeats function will display how many seats are left in the drivers car.
+   */
 
   getAvailableSeats(myObj) {
     this.reservationService
@@ -507,6 +515,12 @@ export class DriverListComponent implements OnInit {
       });
   }
 
+  /**
+   *
+   * @param driverIdTest
+   * When a rider requests a ride from a driver, this function will drop the driver form
+   * the driver list, and will populate the pending requests table.
+   */
   checkIfUserHasRequest(driverIdTest: number) {
     for (let i = 0; i < this.riderRequest.length; i++) {
       if (this.riderRequest[i].driver.userId == driverIdTest) {
@@ -516,6 +530,13 @@ export class DriverListComponent implements OnInit {
     return true;
   }
 
+  /**
+   *
+   * @param miles
+   * when Users selects the dropdown option in the driver list UI, this funtion
+   * will set the radius for the user and load the drivers within the specified redius.
+   * After setting the radius, it will call the displayDriverList function.
+   */
   milesSelected(miles: number) {
     this.currentDistance = miles;
     this.displayDriversList(this.location, this.drivers);
