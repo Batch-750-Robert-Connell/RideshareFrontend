@@ -61,7 +61,34 @@ export class DriverRequestManagerComponent implements OnInit {
           }
         );
 
+        this.cancelRemainingRequestForRider(riderId, driverId);
+
         this.getReservations();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  cancelRemainingRequestForRider(riderId: string, driverId: string) {
+    // grabbing all reservation to cancel anything pending
+    let riderIdInt = parseInt(riderId);
+    this.reservationService
+      .getAllReservationsByRiderID(riderIdInt)
+      .then((data) => {
+        if (data.length > 0) {
+          console.log(data);
+          data.forEach((element) => {
+            if (element.status == 1) {
+              this.reservationService
+                .denyReservation(element.rider.userId, element.reservationId)
+                .then((data) => {
+                  console.log(data);
+                })
+                .catch((error) => console.log(error));
+            }
+          });
+        }
       })
       .catch((error) => {
         console.log(error);
