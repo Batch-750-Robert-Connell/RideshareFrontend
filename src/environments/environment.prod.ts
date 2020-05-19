@@ -1,7 +1,7 @@
 /**
  * This is the base URI
  */
-const baseUri = `http://34.238.165.243/`;
+const baseUri = `http://54.67.12.172/`;
 
 /**
  * Set the port var
