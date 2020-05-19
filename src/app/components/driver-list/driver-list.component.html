@@ -35,8 +35,8 @@
             <td>
               {{driver.AvailableSeats}}
             </td>
-            <td><input type="hidden" value="{{driver.Id}}"><button [disabled]="isRequested || driver.AvailableSeats <=0"
-                id=" submit" (click)="submitRequest(driver.Id, driver.Name)" class="btn btn-light btn-sm"><span
+            <td><input type="hidden" value="{{driver.Id}}"><button [disabled]="driver.AvailableSeats <=0" id=" submit"
+                (click)="submitRequest(driver.Id, driver.Name)" class="btn btn-light btn-sm"><span
                   *ngIf="whichLoadingRequest == driver.Id else requestTxt">
                   <div class="spinner-container">
                     <div class="spinner">
