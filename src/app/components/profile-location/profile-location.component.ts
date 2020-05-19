@@ -63,14 +63,12 @@ export class ProfileLocationComponent implements OnInit {
    */
   findAdress(){
 
-    console.log(this.addresstext);
     this.mapsAPILoader.load().then(() => {
          let autocomplete = new google.maps.places.Autocomplete(this.addresstext.nativeElement);
          autocomplete.addListener("place_changed", () => {
            this.ngZone.run(() => {
              // some details
              let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-             console.log(place);
             this.user.hAddress = "";
             this.user.hCity = "";
             this.user.hState = "";
@@ -131,7 +129,6 @@ export class ProfileLocationComponent implements OnInit {
         });
       }).catch((error)=>{
         console.log(error);
-        console.log('nope');
         this.snackBar.open('failure', '', {
           duration: 2000,
           verticalPosition: 'top',

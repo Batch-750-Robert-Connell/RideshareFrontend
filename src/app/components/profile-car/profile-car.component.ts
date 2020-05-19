@@ -105,7 +105,6 @@ export class ProfileCarComponent implements OnInit {
         panelClass: ['success'],
       });
     } else {
-      console.log('nope');
       this.snackBar.open('success', '', {
         duration: 2000,
         verticalPosition: 'top',
@@ -128,7 +127,6 @@ export class ProfileCarComponent implements OnInit {
         panelClass: ['success'],
       });
     } else {
-      console.log('nope');
       this.snackBar.open('success', '', {
         duration: 2000,
         verticalPosition: 'top',

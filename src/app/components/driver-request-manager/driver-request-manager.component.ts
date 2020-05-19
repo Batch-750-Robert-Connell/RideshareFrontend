@@ -77,13 +77,11 @@ export class DriverRequestManagerComponent implements OnInit {
       .getAllReservationsByRiderID(riderIdInt)
       .then((data) => {
         if (data.length > 0) {
-          console.log(data);
           data.forEach((element) => {
             if (element.status == 1) {
               this.reservationService
                 .denyReservation(element.rider.userId, element.reservationId)
                 .then((data) => {
-                  console.log(data);
                 })
                 .catch((error) => console.log(error));
             }

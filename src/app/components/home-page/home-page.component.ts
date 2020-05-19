@@ -143,8 +143,6 @@ export class HomePageComponent implements OnInit {
     this.registerForm.value.wCity = this.registerForm.value.hCity;
     this.registerForm.value.wState = this.registerForm.value.hState;
     this.registerForm.value.wZip = this.registerForm.value.hZip;
-    console.log(this.registerForm);
-    console.log(this.registerForm.valid);
     if (this.registerForm.valid) {
       this.userService.addUser(this.registerForm.value).subscribe((resp) => {
         this.MsgRegister();

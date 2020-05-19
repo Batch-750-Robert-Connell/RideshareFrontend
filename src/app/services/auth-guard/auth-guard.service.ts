@@ -10,7 +10,6 @@ export class AuthGuardService {
 
   canActivate(): boolean {
     if (!this.auth.isAuthenticatedFunc()) {
-      console.log(this.auth.isAuthenticated);
       this.router.navigateByUrl('/');
       return false;
     }

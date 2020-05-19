@@ -173,14 +173,12 @@ export class RiderDashboardComponent implements OnInit {
     private reservationService: ReservationService
   ) {}
   ngOnInit() {
-    console.log(this.riderRequest);
     //this.getReservations();
   }
 
   getCarInfo(driver: User) {
     //let driverIdNumber = parseInt(driverId);
 
-    console.log(driver);
     this.driverUser = driver;
 
     this.carService

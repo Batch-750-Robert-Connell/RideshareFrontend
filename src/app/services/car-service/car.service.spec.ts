@@ -122,8 +122,6 @@ describe('CarService', () => {
       carService.getAllCars().subscribe((res) => {
         response = res;
       });
-      console.log(response);
-      console.log(carsResponse);
       expect(response).toEqual(carsResponse);
     });
   });

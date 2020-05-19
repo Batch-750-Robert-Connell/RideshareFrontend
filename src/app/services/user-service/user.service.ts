@@ -65,7 +65,6 @@ export class UserService {
    * @param idParam
    */
   getUserById(idParam: number) {
-    console.log(this.url);
     return this.http.get<User>(this.url + idParam).toPromise();
   }
 
@@ -83,7 +82,6 @@ export class UserService {
     user.isActive = true;
     user.isDriver = false;
     user.isAcceptingRides = false;
-    console.log(user);
 
     this.http.post(this.url, user, { observe: 'response' }).subscribe(
       (response) => {

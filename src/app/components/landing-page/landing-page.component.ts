@@ -80,7 +80,6 @@ export class LandingPageComponent implements OnInit {
             draggable: true,
             map: this.map,
           });
-          console.log(element.Distance);
           this.displayRoute(
             this.location_s,
             element.hCity + ',' + element.hState,
