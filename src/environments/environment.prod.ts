@@ -1,7 +1,11 @@
 /**
  * This is the base URI
  */
+<<<<<<< Updated upstream
 const baseUri = `http://54.67.12.172/`;
+=======
+const baseUri = `http://34.238.165.243`;
+>>>>>>> Stashed changes
 
 /**
  * Set the port var
