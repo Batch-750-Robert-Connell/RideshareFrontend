@@ -10,7 +10,7 @@ const port = '8080';
 export const environment = {
   production: false,
   environmentName: 'Default Dev Environment',
-  userUri: `${baseUri}:${port}/users/`,
+  userUri: baseUri:${port}/users/`,
   loginUri: `${baseUri}:${port}/login/`,
   batchesUri: `${baseUri}:${port}/batches/`,
   carUri: `${baseUri}:${port}/cars/`,
